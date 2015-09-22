@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+        <title>.:: VICO ::.</title>
+
+
+        <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css" type="text/css" media="screen">
+        <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap-responsive.min.css" type="text/css" media="screen">
+        <link rel="stylesheet" href="../css/estilos_personalizados.css" type="text/css" media="screen">
+
+        <link href='../img/vtelca.ico' rel='shortcut icon' />
+
+        <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- JQUERY UI -->
+        <link href="../plugins/jquery-ui/css/custom-theme/jquery-ui-1.9.2.custom.css" rel="stylesheet">
+
+
+        <script type="text/javascript">
+            $(function(){
+                $("#usuario").focus();
+                $( "#accordion" ).accordion();
+
+            });
+        </script>
+
+        <script type="text/javascript" src="../plugins/jquery-ui/js/jquery-ui-1.9.2.custom.js"></script>
+        <meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+
+
+
+		<link rel="stylesheet" type="text/css" href="../css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="../css/component.css" />
+		<!-- csstransforms3d-shiv-cssclasses-prefixed-teststyles-testprop-testallprops-prefixes-domprefixes-load --> 
+		<script src="../js/modernizr.custom.25376.js"></script>
+
+        <script type="text/javascript" src="../../js/foundation/js/foundation.min.js"></script>
+        <link rel="stylesheet" href="../../js/foundation/css/foundation.css">
+        <link rel="stylesheet" href="../../js/foundation/css/foundation.min.css">
+        <link rel="stylesheet" href="http://rec.vtelca.gob.ve/reveal/1.0/reveal.css">
+        <script src="http://rec.vtelca.gob.ve/reveal/1.0/jquery.reveal.js"></script>
+        <script src="http://rec.vtelca.gob.ve/jplayer/2.6.0/jquery.jplayer.min.js"></script>
+        <script src="http://rec.vtelca.gob.ve/jplayer/2.6.0/add-on/jplayer.playlist.min.js"></script>
+        <script src="http://rec.vtelca.gob.ve/jplayer/2.6.0/add-on/jquery.jplayer.inspector.js"></script>
+        <script src="http://rec.vtelca.gob.ve/jplayer/2.6.0/popcorn/popcorn.jplayer.js"></script>
+	</head>
+    <style type="text/css">
+        body {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            background-color: #f5f5f5;
+            background: #f5f5f5 url(../img/back2.jpg) center fixed no-repeat;
+        }
+
+        .panel_contenido, .span9 {
+            background-color: rgba(255, 255, 255, 0.5
+            );
+        }
+        header {
+
+            height: 80px;
+            background: url(http://rec.vtelca.gob.ve/img/cintillo-movilnet.png) left no-repeat,
+            url(http://rec.vtelca.gob.ve/img/vtelca-transparente.png) center no-repeat,
+            url(http://rec.vtelca.gob.ve/img/pueblo-victorioso.jpg) right no-repeat;
+            background-color: #fff;
+            background-size: auto 40px;
+            margin: 0px;
+            margin-top: -10px;
+            border-bottom: 4px solid #f00;
+        }
+        .form-signin {
+            max-width: 300px;
+            padding: 19px 29px 29px;
+            margin: 0 auto 20px;
+            background-color: #fff;
+            border: 1px solid #e5e5e5;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            box-shadow: 0 1px 2px rgba(0,0,0,.05);
+        }
+        .form-signin .form-signin-heading,
+        .form-signin .checkbox {
+            margin-bottom: 10px;
+        }
+        .form-signin input[type="text"],
+        .form-signin input[type="password"] {
+            font-size: 16px;
+            height: auto;
+            margin-bottom: 15px;
+            padding: 7px 9px;
+        }
+        .menu_acordeon{
+            height: 150px;
+        }
+
+
+    </style>
+	<body>
+
+    <header>
+        <script>
+            $(document).ready(function () {
+                $("#txtCedula").focus();
+            });
+        </script>
+    </header>
+
+		<div id="perspective" class="perspective effect-airbnb">
+			<div class="container">
+				<div class="wrapper">
+
+				<p><button id="showMenu">Menu</button></p>
+
+
+
+
+				</div><!-- wrapper -->
+			</div><!-- /container -->
+			<nav class="outer-nav left vertical">
+				<a href="#" class="icon-home">Home</a>
+                <a class="icon-home" href="control_ip/control_ip.php" target="contenido_principal">Programar Contenidos</a>
+				<a href="#" class="icon-news">News</a>
+				<a href="#" class="icon-image">Images</a>
+				<a href="#" class="icon-upload">Uploads</a>
+				<a href="#" class="icon-star">Favorites</a>
+				<a href="#" class="icon-mail">Messages</a>
+				<a href="#" class="icon-lock">Security</a>
+			</nav>
+		</div><!-- /perspective -->
+    <div id="myModal" class="reveal-modal" style="max-height:780px;min-width: 1024px;margin-left: -27%" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+
+        <div  class="">
+            <div  id="jquery_jplayer_1"></div>
+
+        </div>
+        <div  id="jp_container_1" style="text-align: center;margin-top: 10px;">
+            <a href="#" class="jp-pause btn btn-default"><span class="glyphicon glyphicon-pause"></span></a>
+            <a href="#" class="jp-play btn btn-default"><span class="glyphicon glyphicon-play"></span></a>
+        </div>
+
+        <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+		<script src="../js/classie.js"></script>
+		<script src="../js/menu.js"></script>
+	</body>
+</html>

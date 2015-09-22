@@ -1,0 +1,13 @@
+*.sql
+*.zip
+.directory
+.buildpath
+.settings
+.project
+.metadata/*
+.google_apis/*
+*.pdf
+nbproject
+clases_generales/parametros_bd/parametros_bd.php
+.idea/*
+multimedia

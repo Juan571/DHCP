@@ -1,0 +1,2366 @@
+# Archivo de configuración del servidor DHCP de VTELCA
+#
+# Última modificación: 14/05/2013
+#
+# Reestructuración general de la red (Segmentación)
+#
+# Segmento 1: 192.168.10.0/24  --> LAN Producción.
+# Segmento 2: 192.168.20.0/24  --> LAN Voz/Ip.
+# Segmento 3: 192.168.50.0/24  --> LAN Modulo Obrero -> TEMPORAL
+# Segmento 5: 192.168.100.0/24 --> LAN Administrativa.
+# Segmento 6: 192.168.200.0/24 --> LAN Servidores
+#
+# Configuraciones globales
+#
+# Última modificación 25-08-2015
+
+
+ddns-update-style none;
+
+option domain-name "vtelca.gob.ve";
+option domain-name-servers 192.168.200.36;
+lease-file-name "/var/log/dhcp.leases";
+#default-lease-time 7700; # 4 horas
+max-lease-time 28800;    # 8 horas
+
+authoritative;
+
+log-facility local7;
+
+
+shared-network VTELCA {
+
+#	option netbios-name-servers 192.168.10.1; # Servidor Controlados Samba
+
+subnet 192.168.50.0 netmask 255.255.255.0 {
+       option routers 192.168.50.1;
+##     range  
+#      Segmento 3: LAN Modulo Obrero
+}
+subnet 192.168.20.0 netmask 255.255.255.0 {
+      option routers 192.168.20.1;
+#    range ###
+#   SEGMENTO 1: ASTERISK RED
+}
+subnet 192.168.200.0 netmask 255.255.255.0 {
+      option routers 192.168.200.1;
+#    range ###
+#   SEGMENTO 6: LAN SERVIDORES
+}
+subnet 192.168.10.0 netmask 255.255.255.0 {
+      option routers 192.168.10.1;
+     range 192.168.10.2 192.168.10.254
+#   SEGMENTO PRODUCCION 
+}
+subnet 192.168.100.0 netmask 255.255.255.0 {
+      option routers 192.168.100.1;
+#    range ###
+#   SEGMENTO 5: LAN ADMINISTRATIVA 100
+}
+###FINSUBNET
+
+
+
+### SEGMENTO PRODUCCION.....
+host MAQUINA_PARLEY {
+	# Maquina del Parley esta en Produccion
+	hardware ethernet 00:19:21:28:3e:73;
+	fixed-address 192.168.10.02;
+}
+host Caja-Grande-L1 {
+	# Caja grande Linea1
+	hardware ethernet 00:1f:c6:69:d8:06;
+	fixed-address 192.168.10.10;
+}
+host Meid1-L1 {
+	# Meid Linea 1
+	hardware ethernet 70:71:bc:b6:d2:14;
+	fixed-address 192.168.10.11;
+}
+host Meid2-L1 {
+	# Meid Linea 1
+	hardware ethernet 74:27:ea:d2:83:d2;
+	fixed-address 192.168.10.12;
+}
+host Meid3-L1 {
+	#  Meid Linea 1
+	hardware ethernet c8:9c:dc:67:52:2e;
+	fixed-address 192.168.10.13;
+}
+host Lider-Linea-1 {
+        # Lider Linea 1
+        hardware ethernet 00:1f:c6:69:e6:ae;
+        fixed-address 192.168.10.14;
+}
+host MEID-linea1-- {
+        # MEID Linea 1
+        hardware ethernet ec:a8:6b:9a:00:04;
+        fixed-address 192.168.10.15;
+}
+host Caja-Grande-L2 {
+	# Caja grande Linea2 
+	hardware ethernet 00:19:21:28:1f:99;
+	fixed-address 192.168.10.20;
+}
+host Accesorios1-Linea2 {
+	# Accesorios Linea2 
+	hardware ethernet 00:1f:c6:69:d8:75;
+	fixed-address 192.168.10.21;
+}
+host Meid1-L2 {
+	# Meid Linea 2
+	hardware ethernet c8:9c:dc:38:7a:a0;
+	fixed-address 192.168.10.22;
+}
+host Meid2-L2 {
+	# Meid Linea 2
+	hardware ethernet e0:69:95:9d:bb:08;
+	fixed-address 192.168.10.23;
+}
+host Lider-Linea-2 {
+        # Lider Linea 2
+	hardware ethernet 00:1f:c6:69:d8:9d;
+	fixed-address 192.168.10.24;
+}
+host Meid3-L2 {
+	# Meid Linea 2
+	hardware ethernet 00:1f:c6:69:d8:03;
+	fixed-address 192.168.10.25;
+}
+host Accesorios2-linea2 {
+	# Meid Linea 2
+	hardware ethernet 70:71:bc:b9:98:f7;
+	fixed-address 192.168.10.26;
+}
+host Caja-Grande-L3 {
+	# Caja grande Linea3
+	hardware ethernet 00:1f:c6:69:db:1e;
+	fixed-address 192.168.10.30;
+}
+host MEID-Linea3 {
+	# linea 3 - meid 3
+	hardware ethernet 6c:fd:b9:02:86:01;
+	fixed-address 192.168.10.31;
+}
+host Accesorios1-Linea3 {
+	# linea 2 - meid 2
+	hardware ethernet 00:1f:c6:69:e5:63;
+	fixed-address 192.168.10.32;
+}
+host Meid1-L3 {
+	# Meid Linea 3
+	hardware ethernet ec:a8:6b:98:c8:bb;
+	fixed-address 192.168.10.33;
+}
+host Meid2-L3 {
+	# Meid Linea 3
+	hardware ethernet e0:69:95:9d:bb:dd;
+	fixed-address 192.168.10.34;
+}
+host Meid3-L3 {
+	# Meid Linea 3
+	hardware ethernet ec:a8:6b:98:c9:8c;
+	fixed-address 192.168.10.35;
+}
+host Lider-Linea-3 {
+        # Lider Linea 3
+	hardware ethernet 70:71:bc:b6:d1:a4;
+	fixed-address 192.168.10.36;
+}
+host linea3-meid0301 {
+        # Lider Linea 3
+	hardware ethernet ec:a8:6b:98:c4:b2;
+	fixed-address 192.168.10.37;
+}
+host Caja-Grande-L4 {
+	# Caja grande Linea4
+	hardware ethernet 00:1f:c6:69:e5:50;
+	fixed-address 192.168.10.40;
+}
+host Meid1-L4 {
+	# Meid Linea 4
+	hardware ethernet c8:9c:dc:af:fe:53;
+	fixed-address 192.168.10.41;
+}
+host caja_grafica-linea4 {
+	# caja grafica
+	hardware ethernet ec:a8:6b:9a:08:d6;
+	fixed-address 192.168.10.42;
+}
+host Meid3-L4 {
+	# Meid Linea 4
+	hardware ethernet c8:9c:dc:af:36:79;
+	fixed-address 192.168.10.43;
+}
+host meid48-L4 {
+	# Meid Linea 4
+	hardware ethernet ec:a8:6b:9a:08:d6;
+	fixed-address 192.168.10.44;
+}
+host Meid4-L4 {
+	# Meid Linea 4
+	hardware ethernet 00:1f:c6:69:da:e8;
+	fixed-address 192.168.10.45;
+}
+host Meid5-L4 {
+	# Meid Linea 4
+	hardware ethernet ec:a8:6b:99:eb:4d;
+	fixed-address 192.168.10.46;
+}
+host Lider-Linea-4 {
+        # Lider Linea 4
+	hardware ethernet c8:9c:dc:ad:9a:0c;
+	fixed-address 192.168.10.44;
+}
+host Accesorios-Linea-4 {
+        # Accesorios Linea 4
+	hardware ethernet 00:1f:c6:69:d8:8a;
+	fixed-address 192.168.10.47;
+}
+host imei-Linea-4 {
+        # imei Linea 4
+	hardware ethernet e0:69:95:e6:9c:b8;
+	fixed-address 192.168.10.48;
+}
+host Caja-Grande-L5 {
+	# Caja grande Linea5
+	hardware ethernet 70:71:bc:af:1a:8a;
+	fixed-address 192.168.10.50;
+}
+host Accesorios1-Linea5 {
+	# Accesorios Linea5
+	hardware ethernet 00:1f:c6:69:d7:ca;
+	fixed-address 192.168.10.51;
+}
+host Accesorios2-Linea5 {
+	# Accesorios Linea5
+	hardware ethernet 00:1f:c6:69:dd:9e;
+	fixed-address 192.168.10.52;
+}
+host Meid1-L5 {
+	# Meid Linea 5
+	hardware ethernet e0:69:95:b4:e7:38;
+	fixed-address 192.168.10.53;
+}
+host Meid2-L5 {
+	# Meid Linea 5
+	hardware ethernet c8:9c:dc:67:80:81;
+	fixed-address 192.168.10.54;
+}
+host Meid3-L5 {
+	# Meid Linea 5
+	hardware ethernet ec:a8:6b:99:ff:64;
+	fixed-address 192.168.10.55;
+}
+host Lider-Linea-5 {
+        # Lider Linea 5
+	hardware ethernet 70:71:bc:97:f4:70;
+	fixed-address 192.168.10.56;
+}
+host Meid4-L5 {
+	# Meid Linea 5
+	hardware ethernet e0:69:95:b4:e7:38;
+	fixed-address 192.168.10.57;
+}
+host Meid5-L5 {
+	# Meid Linea 5
+	hardware ethernet ec:a8:6b:99:fe:5c;
+	fixed-address 192.168.10.58;
+}
+host Irwin-Avila {
+	# Almacen 1 
+	hardware ethernet 00:1f:c6:69:dc:55;
+	fixed-address 192.168.10.60;
+}
+host Angela-Borges {
+	# Almacen 2 
+	hardware ethernet 00:19:21:54:a5:96;
+	fixed-address 192.168.10.61;
+}
+host Aurivet-Jimenez {
+	# Almacen de defectuosos 
+	hardware ethernet 00:1e:8c:3b:13:f1;
+	fixed-address 192.168.10.62;
+}
+host Tony-Godoy {
+     	#Almacen 1 
+        hardware ethernet 70:71:bc:b6:c0:2e;
+        fixed-address 192.168.10.63;
+}
+host Jose-Aular {
+	# Almacen 3 
+	hardware ethernet 00:1f:c6:69:d7:ab;
+	fixed-address 192.168.10.64;
+}
+host Yackelin-Agreda {
+	# Almacen 3 
+	hardware ethernet 00:1f:c6:69:da:35;
+	fixed-address 192.168.10.65;
+}
+host Pedro-Sarmiento {
+	# Almacen 1
+	hardware ethernet 70:71:bc:b6:d2:f4;
+	fixed-address 192.168.10.67;
+}
+host Oscar-E-Galicia {
+	# Almacen 1
+	hardware ethernet 00:1f:c6:69:e6:2d;
+	fixed-address 192.168.10.68;
+}
+host Mauricio-Caraballo {
+	# Almacen Defectuoso
+	hardware ethernet 6c:fd:b9:02:69:01;
+	fixed-address 192.168.10.69;
+}
+host Serializacion-1 {
+	#  Serializacion
+	hardware ethernet e0:69:95:b4:ec:0a;
+	fixed-address 192.168.10.70;
+}
+host Serializacion-2 {
+	# Serializacion
+	hardware ethernet e0:69:95:af:2c:df;
+	fixed-address 192.168.10.71;
+}
+host Serializacion-3 {
+	# Serializacion 
+	hardware ethernet c8:9c:dc:38:aa:c0;
+	fixed-address 192.168.10.72;
+}
+host Serializacion-4 {
+	# Serializacion
+	hardware ethernet e0:69:95:b4:df:b4;
+	fixed-address 192.168.10.73;
+}
+host ZTE_pc_prueba {
+	# Serializacion
+	hardware ethernet 70:71:bc:b6:d3:6e;
+	fixed-address 192.168.10.74;
+}
+host Emizael-Guanipa {
+	# Gestion Tecnica
+	hardware ethernet 00:1f:c6:69:dd:cb;
+	fixed-address 192.168.10.80; 
+}
+host soporte-tic {
+	# Equipo de soporte
+	hardware ethernet 00:1f:c6:69:e6:55;
+	fixed-address 192.168.10.81;
+}
+host Cesar-Egocheaga {
+        # Reparacion
+		hardware ethernet 00:1f:c6:69:d7:b2;
+        fixed-address 192.168.10.91;
+}
+host Vicky-Arcaya {
+        # Reparacion
+        hardware ethernet ec:a8:6b:98:09:9f;
+        fixed-address 192.168.10.98;
+}
+host TV-Estadisticas-pord-Linea2 {
+        # linea 2
+        hardware ethernet 74:27:ea:28:42:53;
+        fixed-address 192.168.10.99;
+}
+host oscar_enrique__galicia_c {
+	# Administracion
+	hardware ethernet 00:1f:c6:69:e6:2d;
+	fixed-address 192.168.10.100;
+}
+host laptopIT {
+	# Laptop IT
+	hardware ethernet ec:a8:6b:5c:5d:37;
+	fixed-address 192.168.10.200;
+}
+host red-usb {
+	# Puerto rj45 USB - TIC, IT
+	hardware ethernet 00:e0:4c:53:44:58;
+	fixed-address 192.168.10.201;
+}
+host laptop-soporte {
+	# laptop pedro
+	hardware ethernet ec:a8:6b:5c:52:9a;
+	fixed-address 192.168.10.202;
+}
+host Marlon_Calidad {
+        # Calidad
+        hardware ethernet 00:1f:c6:8c:77:fe;
+        fixed-address 192.168.10.203;
+}
+host Richard-Barbera {
+        # Calidad
+        hardware ethernet 00:1f:c6:8c:77:fe;
+        fixed-address 192.168.10.204;
+}
+host Calidad_de_entrada {
+        # Calidad de entrada
+        hardware ethernet 00:1f:c6:8c:77:fe;
+        fixed-address 192.168.10.205;
+}
+host blumario_quintero {
+        # Calidad de entrada
+        hardware ethernet 00:1f:c6:69:e6:31;
+        fixed-address 192.168.10.206;
+}
+host laptop-personal-betsabeth {
+        # ALMACEN
+        hardware ethernet 38:60:77:52:06:2f;
+        fixed-address 192.168.10.102;
+}
+host TV_PRESIDENCIA {
+        # PRESIDENCIA
+        hardware ethernet 74:27:ea:f4:04:cb;
+        fixed-address 192.168.10.103;
+}
+
+
+###SEGMENTO VOZ-IP-ASTERISK
+
+host Akram_Makaren {
+	# Ext. 1100 Presidencia
+	hardware ethernet 00:0B:82:3A:04:64;
+	fixed-address 192.168.20.2;
+}
+host Faraj_Elandari {
+	# Ext. 1101 Vice-Presidencia
+	hardware ethernet 00:0B:82:3E:74:CB;
+	fixed-address 192.168.20.3;
+}
+host Ricardo_Ramirez {
+	# Ext. 1102 Despacho Presidencia – Jefe
+	hardware ethernet 00:0B:82:44:6F:CA;
+	fixed-address 192.168.20.4;
+}
+host Cagla_Caliskan {
+	# Ext. 1103 Despacho Presidencia - Coordinador
+	hardware ethernet 00:0B:82:3E:74:D1;
+	fixed-address 192.168.20.5;
+}
+host Jeika_Gotera {
+	# Ext. 1104 Despacho Presidencia - Coordinador 
+	hardware ethernet 00:0B:82:3E:73:2B;
+	fixed-address 192.168.20.6;
+}
+host Rosanny_Perez {
+	# Ext. 1105 Despacho Presidencia - Coordinador Adjunto
+	hardware ethernet 00:0B:82:3A:04:68;
+	fixed-address 192.168.20.7;
+}
+host Jesus_Dacosta {
+	# Ext. 1106 Despacho Presidencia - Coordinador Planificacion 
+	hardware ethernet 00:0B:82:44:6F:D2;
+	fixed-address 192.168.20.8;
+}
+host Maria_Virginia_Boscan {
+	# Ext. 1107 Despacho Presidencia - Coordinador Produccion
+	hardware ethernet 00:0B:82:44:9E:45;
+	fixed-address 192.168.20.9;
+}
+host Javier_Albaran {
+	# Ext. 1109 Despacho Presidencia - Coordinador Financiero
+	hardware ethernet 00:0B:82:44:6F:D5;
+	fixed-address 192.168.20.10;
+
+}
+host Francisco_Chavez {
+        # Ext. 1110 Despacho Presidencia - Coordinador Seguridad
+        hardware ethernet 00:0B:82:5F:8D:2A;
+        fixed-address 192.168.20.11;
+}
+host Valeria_Vargas {
+	# Ext. 1200 Administracion - Asistente Administrativo
+	hardware ethernet 00:0B:82:44:9E:44;
+	fixed-address 192.168.20.12;
+}
+host Eunny_Cedeno {
+	# Ext. 1201 Administracion - Analista de tesoreria
+	hardware ethernet 00:0B:82:44:9E:3F;
+	fixed-address 192.168.20.13;
+}
+host Darimar_Ramirez {
+	# Ext. 1202 Administracion - Compras
+	hardware ethernet 00:0B:82:3E:73:2C;
+	fixed-address 192.168.20.14;
+}
+host Mahibe_Calles {
+	# Ext. 1203 Administracion - Analista de Cuentas por cobrar
+	hardware ethernet 00:0B:82:44:9E:43;
+	fixed-address 192.168.20.15;
+}
+host Maria_Mavarez {
+	# Ext. 1204 Administracion - Analista de Costos
+	hardware ethernet 00:0B:82:44:9E:3C;
+	fixed-address 192.168.20.16;
+}
+host Victor_Marval {
+	# Ext. 1206 Administracion - Suministro
+	hardware ethernet 00:0B:82:58:85:0B;
+	fixed-address 192.168.20.17;
+}
+host Irwin_Avila {
+	# Ext. 1207 Administracion - Almacen 1
+	hardware ethernet 00:0B:82:3A:04:69;
+	fixed-address 192.168.20.18;
+}
+host Angela_Borges {
+	# Ext. 1208 Administracion - Almacen 2
+	hardware ethernet 00:0B:82:3B:33:DA;
+	fixed-address 192.168.20.19;
+}
+host Frank_Sierra {
+	# Ext. 1209 Administracion - Almacen 3
+	hardware ethernet 00:0B:82:44:6F:CD;
+	fixed-address 192.168.20.20;
+}
+host Marwil_Mora {
+	# Ext. 1300 Ensamblaje - Asistente Administrativo
+	hardware ethernet 00:0B:82:5F:8D:28;
+	fixed-address 192.168.20.21;
+}
+host Rosaura_Martinez {
+	# Ext. 1301 Ensamblaje - Gerente
+	hardware ethernet 00:0B:82:39:12:33;
+	fixed-address 192.168.20.22;
+}
+host Albelys_Acosta {
+	# Ext. 1302 Ensamblaje - Jefe de Produccion
+	hardware ethernet 00:0B:82:3A:04:67;
+	fixed-address 192.168.20.23;
+}
+host Ozlis_Garcia {
+	# Ext. 1303 Ensamblaje - Produccion
+	hardware ethernet 00:0B:82:3E:73:2F;
+	fixed-address 192.168.20.24;
+}
+host Eraldo_Espin {
+	# Ext. 1304 Ensamblaje - Investigación Desarrollo e Innovación
+	hardware ethernet 00:0B:82:5F:89:04;
+	fixed-address 192.168.20.25;
+}
+host Ivan_Gomez {
+	# Ext. 1305 Ensamblaje - Coordinador Gestion Tecnica
+	hardware ethernet 00:0B:82:5F:89:0D;
+	fixed-address 192.168.20.26;
+}
+host Jesus_Oropeza {
+	# Ext. 1306 Ensamblaje - Serializacion
+	hardware ethernet 00:0B:82:5F:89:0B;
+	fixed-address 192.168.20.27;
+}
+host Emizael_Guanipa {
+	# Ext. 1307 Ensamblaje - Soporte Electro/Mecánico
+	hardware ethernet 00:0B:82:44:9E:46;
+	fixed-address 192.168.20.28;
+}
+host Cecilia_Lopez {
+	# Ext. 1308 Ensamblaje - Coordinadora Reparacion
+	hardware ethernet 00:0B:82:39:12:35;
+	fixed-address 192.168.20.29;
+}
+host Linea_1 {
+	# Ext. 1309 Ensamblaje - Linea de Produccion 1
+	hardware ethernet 00:0B:82:5F:89:08;
+	fixed-address 192.168.20.30;
+}
+host Linea_2 {
+	# Ext. 1310 Ensamblaje - Linea de Produccion 2
+	hardware ethernet 00:0B:82:5F:89:05;
+	fixed-address 192.168.20.31;
+}
+host Linea_3 {
+	# Ext. 1311 Ensamblaje - Linea de Produccion 3
+	hardware ethernet 00:0B:82:5F:8D:27;
+	fixed-address 192.168.20.32;
+}
+host Linea_4 {
+	# Ext. 1312 Ensamblaje - Linea de Produccion 4
+	hardware ethernet 00:0B:82:5F:89:0F;
+	fixed-address 192.168.20.33;
+}
+host Linea_5 {
+	# Ext. 1313 Ensamblaje - Linea de Produccion 5
+	hardware ethernet 00:0B:82:5F:8D:22;
+	fixed-address 192.168.20.34;
+}
+host Adriana_Martinez {
+	# Ext. 1400 GOT - Asistente Administrativo
+	hardware ethernet 00:0B:82:5F:8D:24;
+	fixed-address 192.168.20.35;
+}
+host Paula_Hurtado {
+	# Ext. 1401 GOT - Gerente
+	hardware ethernet 00:0B:82:44:9E:39;
+	fixed-address 192.168.20.36;
+}
+host Marianela_Colina {
+	# Ext. 1402 GOT - Dpto. Adm. del Trabajo
+	hardware ethernet 00:0B:82:5F:8D:2C;
+	fixed-address 192.168.20.37;
+}
+host Amangil_Riera {
+	# Ext. 1403 GOT - Jefe Dpto. Adm. del Trabajo
+	hardware ethernet 00:0B:82:5F:89:07;
+	fixed-address 192.168.20.38;
+}
+host Elimer_Urdaneta {
+	# Ext. 1404 GOT - Jefe de Ingreso y Formación
+	hardware ethernet 00:0B:82:44:9E:48;
+	fixed-address 192.168.20.39;
+}
+host Monica_Ayala {
+	# Ext. 1405 GOT - SHA Jefe de Departamento
+	hardware ethernet 00:0b:82:44:6f:c9;
+	fixed-address 192.168.20.40;
+}
+host Liday_Mendez {
+	# Ext. 1406 GOT - SHA (seguridad industrial Ambiente)
+	hardware ethernet 00:0B:82:4B:6C:00;
+	fixed-address 192.168.20.41;
+}
+host Edgar_Tremont {
+	# Ext. 1407 GOT - Servicio Médico - (Enfermero)
+	hardware ethernet 00:0B:82:44:6F:D0;
+	fixed-address 192.168.20.42;
+}
+host Iran_Martinez {
+	# Ext. 1408 GOT - Consultorio Médico Nº 1 - (Doctor)
+	hardware ethernet 00:0B:82:44:6F:D7;
+	fixed-address 192.168.20.43;
+}
+host Omar_Duarte {
+	# Ext. 1409 GOT - Consultorio Médico Nº 2 - (Doctor)
+	hardware ethernet 00:0B:82:3E:73:33;
+	fixed-address 192.168.20.44;
+}
+host Leswi_Romero {
+	# Ext. 1500 Asuntos Públicos
+	hardware ethernet 00:0B:82:3E:73:34;
+	fixed-address 192.168.20.45;
+}
+host Ronny_Guanipa {
+	# Ext. 1501 Asuntos Públicos - Sala de Audio
+	hardware ethernet 00:0B:82:44:6F:D8;
+	fixed-address 192.168.20.46;
+}
+host Eudys_Rodriguez {
+	# Ext. 1600 GSPRS - Asistente Administrativo
+	hardware ethernet 00:0B:82:44:6F:CB;
+	fixed-address 192.168.20.47;
+}
+host Teresita_Chirino {
+	# Ext. 1601 GSPRS
+	hardware ethernet 00:0b:82:3e:73:2e;
+	fixed-address 192.168.20.48;
+}
+host Nill_Rodriguez {
+	# Ext. 1602 GSPRS - Coordinación  Socio- Política
+	hardware ethernet 00:0B:82:44:9E:3E;
+	fixed-address 192.168.20.49;
+}
+host Unidad_de_Reciclaje {
+	# Ext. 1603 GSPRS - Unidad de Reciclaje
+	hardware ethernet 00:0B:82:3E:74:CE;
+	fixed-address 192.168.20.50;
+}
+host Adriana_Abis {
+	# Ext. 1604 GSPRS - Biblioteca
+	hardware ethernet 00:0b:82:3e:73:36;
+	fixed-address 192.168.20.51;
+}
+host Douglas_Paz {
+        # Ext. 1605 GSPRS - Asesor de Formacion
+        hardware ethernet 00:0b:82:44:9e:47;
+        fixed-address 192.168.20.81;
+}
+host Rossana_Marval {
+	# Ext. 1700 Calidad - Asistente Administrativo
+	hardware ethernet 00:0B:82:44:9E:41;
+	fixed-address 192.168.20.52;
+}
+host Dennie_Lugo {
+	# Ext. 1701 Calidad - Gerente
+	hardware ethernet 00:0B:82:44:9E:3D;
+	fixed-address 192.168.20.53;
+}
+host Yuliana_Hurtado {
+	# Ext. 1800 Infraestructura - Asistente Administrativo
+	hardware ethernet 00:0b:82:5f:89:06;
+	fixed-address 192.168.20.54;
+}
+host Gladys_Camili {
+	# Ext. 1801 Arquitecto (Consultor Externo  Fase 2)
+	hardware ethernet 00:0B:82:44:9E:42;
+	fixed-address 192.168.20.55;
+}
+host Suneidy_Mavarez {
+	# Ext. 1900 TIC – Asistente de Administrativo
+	hardware ethernet 00:0B:82:3E:73:32;
+	fixed-address 192.168.20.56;
+}
+host Benjamin_Moussa {
+	# Ext. 1901 TIC – Gerente
+	hardware ethernet 00:0b:82:6b:9a:f2;
+	fixed-address 192.168.20.57;
+}
+host Jean_Carlos_Garcia {
+	# Ext. 1902 TIC – Jefe de Infraestructura Tecnológica
+	hardware ethernet 00:0B:82:3E:73:2F;
+	fixed-address 192.168.20.58;
+}
+host Isabel_Zarraga  {
+	# Ext. 1903 TIC – Jefe de Desarrollo de Aplicaciones
+	hardware ethernet 00:0B:82:44:9E:3B;
+	fixed-address 192.168.20.59;
+}
+host Pedro_Garcia  {
+	# Ext. 1904 TIC – Jefe de Soporte Técnico Informático
+	hardware ethernet 00:0B:82:44:6F:CD;
+	fixed-address 192.168.20.60;
+}
+host Duglerys_Gonzalez   {
+	# Ext. 1905 TIC – Soporte Técnico Informático
+	hardware ethernet 00:0B:82:44:9E:40;
+	fixed-address 192.168.20.61;
+}
+host Yesenia_Arias    {
+	# Ext. 1906 TIC – Desarrollo y Aplicaciones
+	hardware ethernet 00:0B:82:3E:73:38;
+	fixed-address 192.168.20.62;
+}
+host Marisbelia_Castillo    {
+	# Ext. 1907 TIC – Base de Datos
+	hardware ethernet 00:0B:82:3E:73:2D;
+	fixed-address 192.168.20.63;
+}
+host Sala_de_Servidores_1    {
+	# Ext. 1908 TIC – Sala de Servidores
+	hardware ethernet 00:0B:82:39:12:27;
+	fixed-address 192.168.20.64;
+}
+host Sala_de_Servidores_2    {
+	# Ext. 1909 TIC – Sala de Servidores
+	hardware ethernet 00:0b:82:3e:74:d8;
+	fixed-address 192.168.20.65;
+}
+host Wilmer_Montano    {
+	# Ext. 1910 TIC – Analista de Inventario
+	hardware ethernet 00:0B:82:44:9E:3A;
+	fixed-address 192.168.20.66;
+}
+host Santos_Ocando    {
+	# Ext. 1911 TIC – Laboratorio de Computación
+	hardware ethernet 00:0B:82:3E:73:37;
+	fixed-address 192.168.20.67;
+}
+host Doris_Delgado    {
+	# Ext. 2000 Asesoria Legal 
+	hardware ethernet 00:0B:82:3E:73:2A;
+	fixed-address 192.168.20.68;
+}
+host Jorge_Prieto    {
+	# Ext. 2001 Asesoria Legal - Gerente
+	hardware ethernet 00:0B:82:44:6F:D4;
+	fixed-address 192.168.20.69;
+}
+host Harmery_Gonzales    {
+	# Ext. 2100 Planificación y Presupuesto
+	hardware ethernet 00:0B:82:3E:73:39;
+	fixed-address 192.168.20.70;
+}
+host Luis_Suarez     {
+	# Ext. 2200 Auditoría
+	hardware ethernet 00:0B:82:39:12:36;
+	fixed-address 192.168.20.71;
+}
+host Ana_Guerrero     {
+	# Ext. 2300 ZTE
+	hardware ethernet 00:0B:82:3E:73:35;
+	fixed-address 192.168.20.72;
+}
+host Carmen_Vera    {
+	# Ext. 1000 PCP - Recepcion
+	hardware ethernet 00:0B:82:3E:73:30;
+	fixed-address 192.168.20.73;
+}
+host Cristal_Garcia    {
+	# Ext. 1001 PCP - Asist. Administrativo 
+	hardware ethernet 00:0B:82:58:85:0A;
+	fixed-address 192.168.20.74;
+}
+host Gregorio_Guardia    {
+	# Ext. 1002 PCP - Gerente
+	hardware ethernet 00:0B:82:44:6F:CE;
+	fixed-address 192.168.20.75;
+}
+host Fernando_Ochoa    {
+	# Ext. 1003 PCP - Sala de Monitoreo
+	hardware ethernet 00:0B:82:5F:8D:31;
+	fixed-address 192.168.20.76;
+}
+host Garita_Acceso_Vehicular    {
+	# Ext. 1004 PCP
+	hardware ethernet 00:0B:82:58:85:F2;
+	fixed-address 192.168.20.77;
+}
+host Reparacion_Post_Venta    {
+	# Ext. 1314 Reparacion
+	hardware ethernet 00:0B:82:5F:89:0C;
+	fixed-address 192.168.20.78;
+}
+host Coord_Presidencia_informatica    {
+	# Ext. 1108 Despacho Presidencia
+	hardware ethernet 00:0B:82:5F:8D:2B;
+	fixed-address 192.168.20.79;
+}
+host Eliomar_Brett {
+	# Ext. 1210 Administracion - Almacen Defectuoso
+	hardware ethernet 00:0b:82:39:12:3b;
+	fixed-address 192.168.20.80;
+}
+host Soporte_Informatico_Tecnico    {
+        # Ext. 1912 TIC – Laboratorio de Computación
+        hardware ethernet 00:0B:82:44:6F:D1;
+        fixed-address 192.168.20.82;
+}
+host Mery_Seguro {
+        # Ext. 1315 - Ensamblaje
+        hardware ethernet 00:0b:82:4b:6b:fb;
+        fixed-address 192.168.20.83;
+}
+host jose_cossi {
+        # Ext. 1211 - Almacen 3
+        hardware ethernet 00:0b:82:6b:99:9c;
+        fixed-address 192.168.20.84;
+}
+
+host Agente_Autorizado {
+        # Ext. 1502 - Agente Autorizado
+	hardware ethernet 00:0b:82:6b:9a:e1;
+        fixed-address 192.168.20.85;
+}
+
+
+### SEGMENTO MODULO OBRERO
+
+#####################################
+#Laboratorio informatico
+#####################################
+host lab_01 {
+# Maquina #01 del laboratorio 
+	hardware ethernet 74:27:ea:f4:08:c2;
+	fixed-address 192.168.50.50;
+}
+host lab_02 {
+# Maquina #02 del laboratorio 
+	hardware ethernet 74:27:ea:f4:09:59;
+	fixed-address 192.168.50.51;
+}
+host lab_03 {
+# Maquina #03 del laboratorio 
+	hardware ethernet 74:27:ea:f3:fb:d6;
+	fixed-address 192.168.50.52;
+}
+host lab_04 {
+# Maquina #04 del laboratorio 
+	hardware ethernet 74:27:ea:f4:04:05;
+	fixed-address 192.168.50.53;
+}
+
+host lab_05 {
+# Maquina #05 del laboratorio 
+	hardware ethernet 74:27:ea:f4:08:5a;
+	fixed-address 192.168.50.54;
+}
+
+host lab_06 {
+# Maquina #06 del laboratorio
+	hardware ethernet 74:27:ea:f3:fe:f9;
+	fixed-address 192.168.50.55;
+}
+
+host lab_07 {
+# Maquina #07 del laboratorio 
+	hardware ethernet  74:27:ea:f4:83:e2;
+	fixed-address 192.168.50.56;
+}
+
+host lab_08 {
+# Maquina #08 del laboratorio 
+	hardware ethernet  74:27:ea:f3:fe:83;
+	fixed-address 192.168.50.57;
+}
+
+host lab_09 {
+# Maquina #09 del laboratorio 
+	hardware ethernet  74:27:ea:f4:09:8d;
+	fixed-address 192.168.50.58;
+}
+host lab_10 {
+# Maquina #10 del laboratorio 
+	hardware ethernet  74:27:ea:f4:03:de;
+	fixed-address 192.168.50.59;
+}
+host lab_11 {
+# Maquina #11 del laboratorio 
+	hardware ethernet  74:27:ea:f4:09:56;
+	fixed-address 192.168.50.60;
+}
+host lab_12 {
+# Maquina #12 del laboratorio
+	hardware ethernet  74:27:ea:f4:08:81;
+	fixed-address 192.168.50.61;
+}
+host lab_13 {
+# Maquina #13 del laboratorio
+	hardware ethernet  74:27:ea:f4:06:f3;
+	fixed-address 192.168.50.62;
+}
+
+#####################################
+#Biblioteca
+#####################################
+
+host biblioteca {
+# Maquina de la biblioteca hugo chavez
+	hardware ethernet 70:71:bc:8b:6c:df;
+	fixed-address 192.168.50.63;
+}
+
+#####################################
+#Unidad de relaciones socialistas 
+#####################################
+
+host pablo_martinez {
+# GSPRS
+	hardware ethernet 70:71:bc:f1:3d:1f;
+	fixed-address 192.168.50.64;
+}
+host teresita_chirinos {
+# GSPRS
+	hardware ethernet 00:1f:c6:69:dd:65;
+	fixed-address 192.168.50.65;
+}
+host rso_eudis_rodriguez {
+# pc eudis rodriguez
+	hardware ethernet 70:71:bc:e4:0e:0d;
+	fixed-address 192.168.50.66;
+}
+
+host Nellys_Sanchez_de_Amaya {
+# GSPRS_ Gerente
+	hardware ethernet e0:69:95:9d:bc:00;
+	fixed-address 192.168.50.68;
+}
+host liday_mendez {
+# sha
+	hardware ethernet e0:69:95:9d:b6:6b;
+	fixed-address 192.168.50.69;
+}
+host rosaura-salcedo-taller {
+# oficina de unidad de reciclaje
+	hardware ethernet 00:1f:c6:69:e6:09;
+	fixed-address 192.168.50.70;
+}
+#############################################
+#Servicios medicos
+#############################################
+
+host Edgar_Tremont {
+# pc recepcion de servicios medicos
+	hardware ethernet 70:71:bc:8a:e1:6b;
+	fixed-address 192.168.50.71;
+}
+host Iran_Martinez { 
+# SHA_Consultorio_2
+        hardware ethernet E0:69:95:B4:ED:00;
+        fixed-address 192.168.50.72;
+
+}
+host Arelis_Chourio {
+# SHA
+	hardware ethernet 70:71:bc:b6:d2:21;
+	fixed-address 192.168.50.73;
+}
+host Monica_Ayala {
+# SHA Gerente
+	hardware ethernet 74:27:ea:f4:03:7f;
+	fixed-address 192.168.50.74;
+}
+host Omar_Duarte {
+# SHA Consultorio_1
+	hardware ethernet 70:71:bc:b6:d3:65;
+	fixed-address 192.168.50.75;
+}
+host laptop_orgtra {
+# laptop organizacion del trabajo
+	hardware ethernet e8:40:f2:04:37:54;
+	fixed-address 192.168.50.76;
+}
+host javier_gonzalez {
+# SHA
+	hardware ethernet 74:27:ea:27:c0:76;
+	fixed-address 192.168.50.77;
+}
+host router-tplink {
+# Router Edificio de los Trabajadores - Sala de conferencias
+	hardware ethernet 90:f6:52:63:b0:51;
+	fixed-address 192.168.50.78;
+}
+host router_comedor {
+	# Router trabajadores - modulo integral
+	hardware ethernet 78:54:2e:5a:dc:1c;
+	fixed-address 192.168.50.79;
+}
+host router_comedor-mac {
+	# Router trabajadores - modulo integral
+	hardware ethernet 70:aa:b2:bc:2b:ac;
+	fixed-address 192.168.50.79;
+}
+
+host mildred_Salero {
+# GSPRS
+	hardware ethernet 74:27:ea:28:42:be;
+	fixed-address 192.168.50.80;
+}
+host Nill_Rodriguez {
+# GSPRS
+	hardware ethernet 70:71:bc:85:44:ce;
+	fixed-address 192.168.50.81;
+}
+host Miguel-Cornet {
+# GSPRS
+	hardware ethernet 00:1f:c6:69:d8:88;
+	fixed-address 192.168.50.82;
+}
+host pc-douglas-paz {
+#PC escritorio de Douglas Paz
+	hardware ethernet 74:27:ea:27:c1:b2;
+	fixed-address 192.168.50.83;
+}
+host douglas-paz {
+#Laptop de Douglas Paz 
+    hardware ethernet e8:40:f2:04:86:18;
+	fixed-address 192.168.50.84;
+}
+host Oswendi_viloria {
+        #SHA_Recepcion
+        hardware ethernet EC:A8:6B:98:C3:70;
+        fixed-address 192.168.50.85;
+}
+host jose-alfredo {
+        #RRSS
+        hardware ethernet 70:71:bc:b6:c0:5c;
+        fixed-address 192.168.50.86;
+}
+host jose-iglesias-cubano {
+        # hardware ethernet 00:e0:4c:21:5e:7d; old interface
+		hardware ethernet 00:19:21:4f:da:e3;
+        fixed-address 192.168.50.87;
+}
+host laptop-vicepresidencia {
+#Laptop provicional para reunion sala conf
+	hardware ethernet 00:1a:80:f9:18:2b;
+	fixed-address 192.168.50.89;
+}
+host PC-consultorio {
+# Nestor Carmona
+	hardware ethernet 70:71:bc:b6:d2:ae;
+	fixed-address 192.168.50.90;
+}
+host hp1415fn {
+#Impresora Planta alta Modulo Obrero
+	hardware ethernet 10:1f:74:46:1a:26;
+	fixed-address 192.168.50.92;
+}
+host hp1415fn_infraestructura {
+#Impresora Planta alta Modulo Obrero infraestructura
+	hardware ethernet 24:be:05:ee:a9:4a;
+	fixed-address 192.168.50.93;
+}
+host laptop_cuerpo_de_inspectores {
+#Impresora Planta alta Modulo Obrero infraestructura
+	hardware ethernet 24:be:05:ee:a9:4a;
+	fixed-address 192.168.50.94;
+}
+host Luis-Amaya {
+#Unidad de reciclaje
+	hardware ethernet c8:9c:dc:ad:9a:bd;
+	fixed-address 192.168.50.95;
+}
+host Samsung-ml4050 {
+        # Impresora SHA
+		hardware ethernet 00:15:99:48:01:8a;
+        fixed-address 192.168.50.96;
+}
+host Monica_Ayala-provisional {
+# SHA Gerente proviucional
+	hardware ethernet 00:1f:c6:69:e5:87;
+	fixed-address 192.168.50.97;
+}
+host romer-che {
+# Bibloteca
+	hardware ethernet 70:71:bc:b6:d3:0f;
+	fixed-address 192.168.50.98;
+}
+host leini_avila {
+# Bibloteca
+	hardware ethernet 00:1f:c6:69:da:39;
+	fixed-address 192.168.50.99;
+}
+
+host JOSE-IGLESIAS {                                                           
+# Biblioteca                                                     
+        hardware ethernet 00:19:21:2b:4d:05;                                  
+        fixed-address 192.168.50.100;                                          
+} 
+
+##############################################
+#########Infraestructura Tecnologica##########
+##############################################
+host laptop-guillmar-mes {
+#Laptop mes
+	hardware ethernet EC:A8:6B:5C:7E:2F;
+	fixed-address 192.168.50.217;
+}
+
+
+host laptop-sigesp {
+#Laptop desarrollo de aplicaciones
+	hardware ethernet 6c:62:6d:33:57:7f;
+	fixed-address 192.168.50.218;
+}
+host laptop-soporte {
+#Laptop soporte
+	hardware ethernet 00:90:f5:82:13:48;
+	fixed-address 192.168.50.219;
+}
+host laptop-it {
+#Laptop pruebas
+	hardware ethernet ec:a8:6b:5c:5d:37;
+	fixed-address 192.168.50.220;
+}
+host laptop-st {
+	# Laptop soporte tecnico
+	hardware ethernet 00:90:f5:8a:39:1e;
+	fixed-address 192.168.50.221;
+}
+host laptop-roger-zte {
+	# Laptop soporte tecnico
+	hardware ethernet b8:88:e3:e3:35:7e;
+	fixed-address 192.168.50.222;
+}
+host Fernando-laboratorio {
+	# Laptop soporte tecnico
+	hardware ethernet c8:d3:a3:0e:6e:cb;
+	fixed-address 192.168.50.224;
+}
+host Andy-Palacios {
+	# Laptop soporte tecnico
+	hardware ethernet 24:0a:64:8c:6a:67;
+	fixed-address 192.168.50.223;
+}
+host yaritza-BETANCOURT {
+	# pc
+	hardware ethernet c8:9c:dc:38:79:c9;
+	fixed-address 192.168.50.225;
+}
+
+
+#HOSTS LAN ADMINISTRATIVA;
+
+host Maria_Jose {
+	# ADMINISTRACION Asistente administrativo
+	hardware ethernet 70:71:bc:8a:df:e1;
+	fixed-address 192.168.100.2;
+}
+host laptop_infraestructura_tecnologica {
+      #infraestructura tecnologica TIC
+      hardware ethernet ec:a8:6b:5c:5d:37;
+      fixed-address 192.168.100.3;
+}
+host laptop_infraestructura_tecnologica-usb {
+      #infraestructura tecnologica TIC
+      hardware ethernet 00:e0:4c:53:44:58;
+      fixed-address 192.168.100.3;
+}
+host soporte_tecnico_pc {
+      #gallinero
+      hardware ethernet 00:1f:c6:69:d7:81;
+      fixed-address 192.168.100.4;
+}
+
+host computador_tv_presidencia {
+	# PRESIDENTES, GERENTES, VIP  Computadora conectada al TV de Presidencia 
+	hardware ethernet 00:1f:c6:69:da:39;
+	fixed-address 192.168.100.5;
+}
+host asistente-vicepresidencia {
+	# Viceprecidencia - Chada 
+	hardware ethernet 6c:fd:b9:02:a9:bb;
+	fixed-address 192.168.100.6;
+}
+
+host monitoreo-cliente {
+	# TIC conectada al televisor
+	hardware ethernet 00:1f:c6:69:e5:84;
+	fixed-address 192.168.100.7;
+}
+host jennys_rodriguez {
+	# GOT - Asistente administrativo presupuestario
+	hardware ethernet 70:71:bc:b6:d2:17;
+	fixed-address 192.168.100.8;
+}
+host Luisdy {
+	# Planificacion y presupuesto
+	hardware ethernet 70:71:bc:b6:d2:1c;
+	fixed-address 192.168.100.9;
+}
+host Victor-Moreno {
+	# TIC
+	hardware ethernet 74:27:ea:f4:04:f1;
+	fixed-address 192.168.100.10;
+}
+host miguel-gomez {
+	# mercadeo y comercializacion
+	hardware ethernet 70:71:bc:85:44:c3;
+	fixed-address 192.168.100.11;
+}
+host jaime_diaz {
+	# oficina de ensamblaje
+	hardware ethernet e0:69:95:9d:bb:6f;
+	fixed-address 192.168.100.12;
+}
+host rodolfo_butron {
+	# tic
+	hardware ethernet 74:27:ea:d2:83:d2;
+	fixed-address 192.168.100.13;
+}
+
+	# ROUTERS (Wireless)
+host router-produccion {
+	# ROUTERS Equipo wireless para el area de produccion
+	hardware ethernet 90:F6:52:63:BE:59;
+	fixed-address 192.168.100.16;
+}
+host Yolimar_Marin{
+        # Analista Gerencia de Administracion 
+        hardware ethernet 00:1f:c6:69:d8:d1;
+        fixed-address 192.168.100.17;
+}
+host Helen_Velazco{
+        # Planificacion y presupuesto 
+        hardware ethernet e0:69:95:9d:b8:74;
+        fixed-address 192.168.100.18;
+}
+host Hp-p4515-1 {
+	# IMPRESORAS Planta baja - Impresora administracion
+	hardware ethernet f4:ce:46:3d:4d:00;
+	fixed-address 192.168.100.19;
+}
+host pcp-desktop1 {
+	# oficina de pcp nueva
+	hardware ethernet 74:27:ea:27:bf:ef;
+	fixed-address 192.168.100.20;
+}
+host Hp-p4515-2 {
+	# IMPRESORAS Pasillo
+	hardware ethernet f4:ce:46:3d:bd:3b;
+	fixed-address 192.168.100.21;
+}
+host hp-cp5225n-01 {
+	# IMPRESORAS Asuntos públicos - Impresora 01
+	hardware ethernet 98:4b:e1:3d:42:39;
+	fixed-address 192.168.100.22;
+}
+host pcp-desktop2 {
+	# oficina de pcp nueva
+	hardware ethernet 74:27:ea:27:c1:bd;
+	fixed-address 192.168.100.84;
+}
+
+host Moises-Aldama {
+	# Calidad
+	hardware ethernet 00:1f:c6:69:e6:c7;
+	fixed-address 192.168.100.140;
+}
+host HU_ZTE {
+        # ZTE
+        hardware ethernet ec:a8:6b:4f:ed:ee;
+        fixed-address 192.168.100.24;
+}
+host XIAO_ZTE_laptop {
+        # ZTE                     
+        hardware ethernet 5c:f9:dd:6a:6f:5d;
+        fixed-address 192.168.100.25;
+}
+host englysmar-gonzalez {
+	# Organizacion del trabajo
+	hardware ethernet 74:27:ea:28:42:98;
+	fixed-address 192.168.100.26;
+}
+host XIAO_2_ZTE {
+        # ZTE
+        hardware ethernet c8:9c:dc:af:f6:80;
+        fixed-address 192.168.100.27;
+}
+host Wilnymar_Martinez {
+	# GOT
+	hardware ethernet e0:69:95:b4:e4:12;
+	fixed-address 192.168.100.28;
+}
+host impresora-canon {
+	# Impresora tecnologia
+	hardware ethernet 00:1e:8f:d9:07:63;
+	fixed-address 192.168.100.29;
+}
+
+host HP_LaserjetCM141fn2 {
+	# IMPRESORA planificacion y presupuesto
+	hardware ethernet 78:e3:b5:fc:d2:a4;
+	fixed-address 192.168.100.30;
+}
+host Canon-ir1025-impresora {
+	# Canon organizacion del trabajo
+	hardware ethernet 00:1e:8f:d9:43:c7;
+	fixed-address 192.168.100.31;
+}
+host pedro_sarmiento_c {
+	# Administracion
+	hardware ethernet 70:71:bc:b6:d2:f4;
+	fixed-address 192.168.100.33;
+}
+host mahibe_calles_c {
+	# Administracion 
+	hardware ethernet 70:71:bc:98:22:95;
+	fixed-address 192.168.100.34;
+}
+host Asesoria_Legal2 {
+	# Asesoria Legal
+	hardware ethernet 70:71:bc:8a:dd:1c;
+	fixed-address 192.168.100.35;
+}
+host Betzabeth_Gonzalez {
+	# ADMINISTRACION  GERENTE de administracion
+	hardware ethernet 24:0a:64:19:6d:8f;
+	fixed-address 192.168.100.36;
+}
+host Betzabeth_Gonzalez2 {
+	# ADMINISTRACION  GERENTE de administracion
+	hardware ethernet 74:27:ea:f3:fe:d2;
+	fixed-address 192.168.100.36;
+}
+host Valeria_Vargas {
+	#  ADMINISTRACION  Administracion 192.168.100.95 
+	hardware ethernet c8:9c:dc:38:aa:f9;
+	fixed-address 192.168.100.37;
+}
+host mpresora_almacen3 {
+	# para prueba 
+	hardware ethernet 00:1e:0b:1b:ce:74;
+	fixed-address 192.168.100.38;
+}
+host ZTE_YIN {
+        # ZTE
+        hardware ethernet ec:a8:6b:4d:b0:3e;
+        fixed-address 192.168.100.39;
+}
+host Ricardo_Ramirez {
+	# ADMINISTRACION   
+	hardware ethernet c8:9c:dc:38:7c:00;
+	fixed-address 192.168.100.40;
+}
+host grecy_guignan {
+	# Asuntos Punblicos
+	hardware ethernet 68:5b:35:7f:81:20;
+	fixed-address 192.168.100.41;
+}
+host marco_aviles {
+	# ADMINISTRACION  asistente tecnico Planificador 
+	hardware ethernet c8:9c:dc:38:9a:27;
+	fixed-address 192.168.100.42;
+}
+host gabriel_guinan {
+	# ADMINISTRACION  
+	hardware ethernet 70:71:bc:f1:34:e9;
+	fixed-address 192.168.100.43;
+}
+host darimar_ramirez{
+	# ADMINISTRACION  administracion 
+	hardware ethernet 70:71:bc:8b:69:e2;
+	fixed-address 192.168.100.44;
+}
+host yolanda_sanchez {
+	# ADMINISTRACION    
+	hardware ethernet 00:1f:c6:69:e5:f5;
+	fixed-address 192.168.100.45;
+}
+host Laptop-Benjamin-Moussa {
+	# TIC
+	hardware ethernet ec:a8:6b:5c:53:41;
+	fixed-address 192.168.100.46;
+}
+host eunny_cedeno_a {
+	# ADMINISTRACION  tecnico especialista 
+	hardware ethernet 74:27:ea:27:bc:5a;
+	fixed-address 192.168.100.47;
+}
+host daniel_primera {
+	# asuntos publicos 
+	hardware ethernet 74:27:ea:28:42:cd;
+	fixed-address 192.168.100.48;
+}
+host marianly_cabrera {
+	# ADMINISTRACION  Contadora Administracion 
+	hardware ethernet c8:9c:dc:38:7a:5c;
+	fixed-address 192.168.100.49;
+}
+host capta_huella1 {
+        # Molinete 1 Biometrico
+        hardware ethernet 00:0a:5d:f1:cd:9b;
+        fixed-address 192.168.100.50;
+}
+
+#192.168.100.51 Capta Huella 2
+
+host capta_huella3 {
+        # Molinete 3 Biometrico
+        hardware ethernet 00:0a:5d:f1:cb:7c;
+        fixed-address 192.168.100.52;
+}
+host capta_huella4 {
+        # Molinete 4 Biometrico
+        hardware ethernet 00:0a:5d:f1:cd:af;
+        fixed-address 192.168.100.53;
+}
+host capta_huella5 {
+        # Molinete 5 Biometrico
+        hardware ethernet 00:0a:5d:f1:cd:8e;
+        fixed-address 192.168.100.54;
+}
+host capta_huella6 {
+        # Molinete 6 Biometrico
+        hardware ethernet 00:0a:5d:f1:cb:9e;
+        fixed-address 192.168.100.55;
+}
+host capta_huella7 {
+        # Molinete 7 Biometrico
+        hardware ethernet 00:0a:5d:f1:cb:b5;
+        fixed-address 192.168.100.56;
+}
+host televisor-parley {
+        # Oficina Ensamblaje - Cerca de los cuartos de aislamiento
+        hardware ethernet ec:a8:6b:98:c7:67;
+        fixed-address 192.168.100.57;
+}
+
+host capta_huella9 {
+        # Biometrico de Pruebas
+        hardware ethernet 00:17:61:10:27:12;
+        fixed-address 192.168.100.58;
+}
+host lisbeth_rosales_ap {
+	# ASUNTOS PUBLICOS Desktop 1GERENTE DE AP
+	hardware ethernet e0:69:95:9d:bb:eb;
+	fixed-address 192.168.100.59;
+}
+host Zazha_Faneite {
+	# GOT
+	hardware ethernet 74:27:ea:28:42:8b;
+	fixed-address 192.168.100.60;
+}
+host david-luna {
+     	# desktop luna - Asuntos Publicos
+     	hardware ethernet e0:69:95:9d:bb:2e;
+	fixed-address 192.168.100.61;
+}
+host mario_guerrero {
+	# ASUNTOS PUBLICOS Desktop 3  Planificador
+	hardware ethernet 70:71:bc:ed:e8:2c;
+	fixed-address 192.168.100.62;
+}
+host Heryca_Chirinos {
+	# Consultoria Juridica
+	hardware ethernet 74:27:ea:28:42:1a;
+	fixed-address 192.168.100.63;
+}
+host jhoannier_garcia_ap {
+	# ASUNTOS PUBLICOS Desktop 5   
+	hardware ethernet 70:71:bc:ed:f1:a2;
+	fixed-address 192.168.100.64;
+}
+
+host HP_CM1415FN_ENSAMBLAJE{
+	# ENSAMBLAJE
+	hardware ethernet ac:16:2d:3c:4c:84;
+	fixed-address 192.168.100.65;
+}
+host Antonio_Arias {
+	# ASUNTOS PUBLICOS CIRCUITO DE AUDIO
+	hardware ethernet 00:1f:c6:69:da:b6;
+	fixed-address 192.168.100.66;
+}
+host todo-en-uno {
+	# Asuntos Publicos - Control de Audio 
+	hardware ethernet e8:40:f2:72:61:76;
+	fixed-address 192.168.100.67;
+}
+host Johana_Amador {
+	# ASUNTOS PUBLICOS Desktop 6 asuntos_publicos
+	hardware ethernet 74:27:ea:28:43:05;
+	fixed-address 192.168.100.68;
+}
+host Impresora_Calidad {
+	# IMPRESORAS Impresora de Calidad
+	hardware ethernet ac:16:2d:3c:1d:13;
+	fixed-address 192.168.100.69;
+}
+host Viejo-Pajuo {
+	# Presidencia
+	hardware ethernet 8c:89:a5:0a:ac:3d;
+	fixed-address 192.168.100.70;
+}
+host monitor_grande_presidencia {
+	# ROUTERS Router en Salon de Presidencia
+	hardware ethernet ec:a8:6b:9a:08:6a;
+	fixed-address 192.168.100.71;
+}
+
+host UPS_Sistema {
+        # SALA DE SERVIDORES Administracion remota de los UPS
+        hardware ethernet 00:c0:b7:5c:a1:34;
+        fixed-address 192.168.100.72;
+}
+host antonio {
+ 	# Sala de audio - Asuntos Publicos
+ 	hardware ethernet 74:27:ea:28:42:1c;
+ 	fixed-address 192.168.100.74;
+}
+host Mery_Seguro {
+	# Emsamblaje
+	hardware ethernet 70:71:bc:85:44:c9;
+	fixed-address 192.168.100.75;
+}
+host Paula_Hurtado {
+	# GOT 
+	hardware ethernet c8:9c:dc:1f:90:7b;
+	fixed-address 192.168.100.76;
+}
+host Gred_Navarrete {
+        # CALIDAD
+        hardware ethernet 00:1f:c6:69:dd:e3;
+        fixed-address 192.168.100.70;
+}
+host edieth_morillo {
+	# Impresora Agente Movilnet
+	hardware ethernet E0:69:95:B4:EB:FF;
+	fixed-address 192.168.100.78;
+}
+host impresora-canon-movilnet {
+	# Impresora Agente Movilnet
+	hardware ethernet 00:1e:8f:d9:27:66;
+	fixed-address 192.168.100.79;
+}
+host Luis_Suarez {
+        # Auditoria interna
+        hardware ethernet e0:69:95:af:2c:6c;
+        fixed-address 192.168.100.80;
+}
+host suneidy-mavarez {
+	# TIC 
+	hardware ethernet 74:27:ea:bb:e4:b8;
+	fixed-address 192.168.100.81;
+}
+host router-VTELCAIDI {
+	# Router Investigacion Desarrollo e Innovacion 
+	hardware ethernet 78:54:2e:5a:bc:75;
+	fixed-address 192.168.100.82;
+}
+host Canon-Produccion {
+	# Produccion Canon
+	hardware ethernet 00:1e:8f:d9:65:ff;
+	fixed-address 192.168.100.83;
+}
+host ronny_guanipa {
+	# Asuntos publicos
+	hardware ethernet 00:23:54:ac:34:fc;
+	fixed-address 192.168.100.85;
+}
+host impresora_canon {
+	# Gerencia PCP
+	hardware ethernet 00:1e:8f:d9:28:9e;
+	fixed-address 192.168.100.86;
+}
+host ROUTER-PCP {
+	# Router dlink ubicado en la oficina planta alta PCP
+	hardware ethernet 78:54:2e:5a:ed:07;
+	fixed-address 192.168.100.87;
+}
+host Martina_Martinez {
+	# G. Ensamblaje
+	hardware ethernet 70:71:bc:af:1a:57;
+	fixed-address 192.168.100.89;
+}
+host Benjamin-Moussa_Laptop {
+	# personal
+	hardware ethernet 00:90:f5:ce:14:3f;
+	fixed-address 192.168.100.90;
+}
+host Soporte-informatico_Laptop {
+	# TIC
+	hardware ethernet 00:1f:3c:28:43:c2;
+	fixed-address 192.168.100.91;
+}
+host Juan_Romero {
+        #  TIC - IT
+        hardware ethernet 74:27:ea:bb:a9:34;
+        fixed-address 192.168.100.92;
+}
+host Leswi_Romero {
+        # Asuntos Publicos
+        hardware ethernet 74:27:ea:28:42:fd;
+        fixed-address 192.168.100.93;
+}
+host Pasante_julio-velasquez {
+        # Pasante Gestion Tecnica
+        hardware ethernet 00:1f:c6:69:d8:87;
+        fixed-address 192.168.100.94;
+}
+host cronos {
+	# Aplicacion de capta huellas
+	hardware ethernet 70:71:bc:85:42:b3;
+	fixed-address 192.168.100.95;
+}
+host CHINA {
+	# ZTE
+	hardware ethernet ec:a8:6b:5a:cd:db;
+	fixed-address 192.168.100.96;
+}
+host orlando_chirino_pt {
+	# TIC APLICACIONES planificacion de tecnologia 
+	hardware ethernet c8:9c:dc:38:aa:c0;
+	fixed-address 192.168.100.97;
+}
+host herlin_pulgar {
+	# TIC APLICACIONES planificacion de tecnologia 
+	hardware ethernet 74:27:ea:ba:90:44;
+	fixed-address 192.168.100.98;
+}
+host ysabel_zarraga_pt {
+	# TIC APLICACIONES especialista I  TI
+	hardware ethernet 74:27:ea:bb:ae:9e;
+	fixed-address 192.168.100.99;
+}
+host marisbelia_castillo_pt {
+	# TIC APLICACIONES especialista I 
+	hardware ethernet 74:27:ea:d2:b1:5e;
+	fixed-address 192.168.100.100;
+}
+host wilmary_lacle_pt {
+	# PIC APLICACIONES especialista I 
+	hardware ethernet 74:27:ea:d2:b4:5f;
+	fixed-address 192.168.100.101;
+}
+host eraldo_espin_f {
+	# TIC APLICACIONES supervisor
+	hardware ethernet e0:69:95:9d:b8:fc;
+	fixed-address 192.168.100.102;
+}
+host cesilia_lopez_pt {
+	# Reparacion 
+	hardware ethernet e0:69:95:9d:ba:ee;
+	fixed-address 192.168.100.103;
+}
+host gilmar_ortiz {
+	# TIC APLICACIONES especialista I 
+	hardware ethernet E0:69:95:9D:BA:39;
+	fixed-address 192.168.100.105;  
+}
+host Efrain-tic {             
+        #TIC_Desarrollo                                                                                                                            
+        hardware ethernet 74:27:ea:bb:ad:ef;
+	fixed-address 192.168.100.104;                                                                                                       
+} 
+
+host HP_laserjetcm1415fn-pcp {
+	# IMPRESORAS Impresora para PCP
+	hardware ethernet ac:16:2d:3c:3c:69;
+	fixed-address 192.168.100.106;
+}
+host carmen-mora {
+	# especialista 1 
+	hardware ethernet 74:27:ea:d2:b1:bd;
+	fixed-address 192.168.100.107; 
+}
+host pasante {
+	# Asistente de Gerente Infraestructura 
+	hardware ethernet e0:69:95:9d:ba:f4;
+	fixed-address 192.168.100.108; 
+}
+host jesus_hernandez {
+	# IP asignada a Jesus Hernandez
+	hardware ethernet 00:1f:c6:69:e6:4d;
+	fixed-address 192.168.100.109;
+}
+host yesenia_arias_f {
+	# TIC
+	hardware ethernet 74:27:ea:d2:81:df;
+	fixed-address 192.168.100.110; 
+}
+host Eliomar_Brett {
+	# Administracion
+	hardware ethernet ec:a8:6b:98:c9:0f;
+	fixed-address 192.168.100.111; 
+}
+host router_sala_conferencias {
+      #Sala de conferencia, planta alta del edificio principal
+      hardware ethernet 78:54:2e:5d:79:6d;
+      fixed-address 192.168.100.112;
+}
+host Frain-Bracho {
+	# Investigacion  
+	hardware ethernet 00:e0:52:c0:98:62;
+	fixed-address 192.168.100.113;
+}
+###192.168.100.114---No usar# DHCP Modulo obrero
+
+host yoste-laptop {
+	# TIC
+	hardware ethernet ec:a8:6b:5c:52:92;
+	fixed-address 192.168.100.115; 
+}
+
+host PC-Recepcion {
+	# PCP - Lobby
+	hardware ethernet ec:a8:6b:98:c9:22;
+	fixed-address 192.168.100.116;
+}
+host laptop-IT-nueva {
+	# laptop 
+	hardware ethernet 6c:62:6d:31:5f:87;
+	fixed-address 192.168.100.117;
+}
+
+host garita_entrada_vehicular {
+	# PCP
+	hardware ethernet 00:19:21:1b:03:52;
+	fixed-address 192.168.100.118;
+}
+host Roberto-Giusti-Yoste {
+	# TIC
+	hardware ethernet 74:27:ea:d2:83:39;
+	fixed-address 192.168.100.119;
+}
+
+host Reyna_Colmenarez {
+	# unidad de requirimientos
+	hardware ethernet 00:1f:c6:69:d7:53;
+	fixed-address 192.168.100.120;
+}
+host carlos_payares {
+	# especialista I 
+	hardware ethernet 74:27:ea:d2:af:25;
+	fixed-address 192.168.100.122;
+}
+host Betsabet_administracion {
+        # Gerente de Administracion
+        hardware ethernet 00:e3:20:01:c5:1d;
+        fixed-address 192.168.100.123;
+}
+host Eddy-Bermudez {
+	# Jefe IT
+	hardware ethernet 74:27:ea:d2:84:1c;
+	fixed-address 192.168.100.124;
+}
+host pedro_lugo {
+	# TIC - Desarrollo
+	hardware ethernet 74:27:ea:ba:90:4c;
+	fixed-address 192.168.100.125;
+}
+host maximiliano_zapata_tI_eth1 {
+	# asistente tecnico 
+	hardware ethernet 74:27:ea:bb:a9:47;
+	fixed-address 192.168.100.126;
+}
+host buffalo {
+	# asistente tecnico 
+	hardware ethernet 4C:E6:76:AA:38:8B;
+	fixed-address 192.168.100.126;
+}
+host maredi-pardo {
+	# TIC
+	hardware ethernet 74:27:ea:d2:80:23;
+	fixed-address 192.168.100.127;
+}
+host Dennie_Lugo {
+	# Gerente de calidad
+	hardware ethernet c8:9c:dc:38:78:40;
+	fixed-address 192.168.100.128;
+
+}
+host Pasantes-Calidad {
+	# Calidad
+	hardware ethernet 00:1f:c6:69:e5:f9;
+	fixed-address 192.168.100.129;
+}
+host Yoanyi-Lopez {
+	# Asistente de calidad - al lado del gerente
+	hardware ethernet c8:9c:dc:ad:73:08;
+	fixed-address 192.168.100.130;
+}
+host Duglerys_Gonzalez{
+	# Soporte Tecnico  
+	hardware ethernet 74:27:ea:d2:b4:97;
+	fixed-address 192.168.100.131;
+}
+host Asistente_Vicepresidencia {
+	# Vicepresidencia  
+	hardware ethernet 74:27:ea:28:41:d5;
+	fixed-address 192.168.100.132;
+}
+host Yoanyi_Lopez {
+	# Calidad 
+	hardware ethernet c8:9c:dc:38:a9:1b;
+	fixed-address 192.168.100.133;
+}
+host noriannys_hernandez {
+	# Oficina de produccion
+	hardware ethernet 70:71:bc:b6:d2:3b;
+	fixed-address 192.168.100.134;
+}
+host pedro_queipo {
+	# Asuntos Publicos
+	hardware ethernet ec:a8:6b:4b:ef:65;
+	fixed-address 192.168.100.135;
+}
+host Laptop-Desarrollo  {
+	# Gerencia TIC
+	hardware ethernet ec:a8:6b:5a:cf:0e;
+	fixed-address 192.168.100.136;
+}
+host albelys_acosta {
+	# Oficina de produccion
+	hardware ethernet ec:a8:6b:98:bf:d2;
+	fixed-address 192.168.100.137;
+}
+host Marianela_Colina {
+	# Analista Nomina GOT
+	hardware ethernet 74:27:ea:28:43:0d;
+	fixed-address 192.168.100.138;
+}
+host laptop_soporte-tecnico {
+	# TIC 
+	hardware ethernet 00:1f:3c:6d:22:c4;
+	fixed-address 192.168.100.139;
+}
+host laptop_desarrollo-de-app {
+	# Pruebas induccion sigesp
+	hardware ethernet 6c:62:6d:33:57:7f;
+	fixed-address 192.168.100.141;
+}
+host ivan_gomez_f {
+	# supervisor 
+	hardware ethernet c8:9c:dc:af:ff:f7;
+	fixed-address 192.168.100.142;
+}
+host Jorge_planificacion {
+	# Planificacion y Presupuesto
+	hardware ethernet 6c:62:6d:33:18:4c;
+	fixed-address 192.168.100.143;
+}
+host Laptop-movilnet {
+	# Agente Movilnet
+	hardware ethernet 38:60:77:19:fa:02;
+	fixed-address 192.168.100.144;
+}
+host Eudy_Diaz {
+	# Coordinacion de presidencia
+	hardware ethernet 74:27:ea:f4:83:e0;
+	fixed-address 192.168.100.145;
+}
+host HPLaserJet_CM1415fn-prod {
+	# Impresora de Red en la oficina de Fabrica 
+	hardware ethernet ac:16:2d:3c:4c:84;
+	fixed-address 192.168.100.146;
+}
+host rosaura_martinez {
+	# Computador de Escritorio del Gerente de Fabrica
+	hardware ethernet e0:69:95:e7:a3:b0;
+	fixed-address 192.168.100.147;
+}
+host duglerys_gonzales {
+	# TIC
+	hardware ethernet 74:27:ea:bb:af:5f;
+	fixed-address 192.168.100.148;
+}
+host AP-FABRICA {
+	# ACCESS POINT de Fabrica
+	hardware ethernet 78:54:2e:5a:dc:1d;
+	fixed-address 192.168.100.149;
+}
+host router-zte {
+	# oficina de infraestructura
+	hardware ethernet F4:EC:38:E5:72:7F;
+	fixed-address 192.168.100.150;
+}
+host ana_castellano {
+	# suministro
+	hardware ethernet 00:1f:c6:69:d9:21;
+	fixed-address 192.168.100.151;
+}
+host Jose-Cossi {
+	# Alm Defectuoso
+	hardware ethernet ec:a8:6b:98:c9:0d;
+	fixed-address 192.168.100.152;
+}
+host victor_marval_s {
+	# asistente tecnico - suminitro  
+	hardware ethernet 70:71:bc:b6:c0:17;
+	fixed-address 192.168.100.153;
+}
+host frank_sierra_almacen3  {
+	# asistente tecnico 
+	hardware ethernet 00:1f:c6:69:d7:e2;
+	fixed-address 192.168.100.154;
+}
+host angie-martinez {
+	# Reparacion
+	hardware ethernet 74:27:ea:f3:fe:e2;
+	fixed-address 192.168.100.155;
+}
+host Martina {
+	# ENSAMBLAJE
+	hardware ethernet 00:27:19:b5:16:27;
+	fixed-address 192.168.100.156;
+}
+host Ana-ZTE {
+	# ZTE
+	hardware ethernet e0:69:95:14:f6:38;
+	fixed-address 192.168.100.157;
+}
+host Luisana_ALbarran {
+	# Despacho Presidencia
+	hardware ethernet 74:27:ea:28:42:bb;
+	fixed-address 192.168.100.158;
+}
+host Cristal_Garcia{
+	# PCP
+	hardware ethernet 70:71:bc:b6:d3:15;
+	fixed-address 192.168.100.159;
+}
+host Cagla-Caliskan2 {
+     	# Vicepresidencia core i7  
+	hardware ethernet 74:27:ea:ba:90:49;
+	fixed-address 192.168.100.160;
+}
+host telf_ZTE_HU {
+        #ZTE_HU
+        hardware ethernet d8:55:a3:c3:3e:c2;
+        fixed-address 192.168.100.161;
+}
+host yeika-gotera {
+        # vicepresidencia
+        hardware ethernet 74:27:ea:bb:af:66;
+	fixed-address 192.168.100.162;
+}
+host elimer-urdaneta {
+        # GOT
+        hardware ethernet 74:27:ea:f3:fa:d3;
+	fixed-address 192.168.100.163;
+}
+host gresi_guignan {
+        # Asuntos Publicos - iMAC
+        hardware ethernet 00:1e:69:f1:42:07;
+		fixed-address 192.168.100.164;
+}
+host luisana_aldama {
+        # Asuntos Publicos - iMAC
+        hardware ethernet 68:5b:35:8a:2c:dd;
+	fixed-address 192.168.100.165;
+}
+host carilis_bravo {
+	# Vicepresidencia
+	hardware ethernet 74:27:ea:28:43:67;
+	fixed-address 192.168.100.166;
+}
+host Guillermo-Romero {
+	#TIC
+	hardware ethernet 74:27:ea:f3:fb:d4;
+	fixed-address 192.168.100.167;
+}
+host Javier_Albarran {
+	# Coordinador Adscrito Presidencia
+	hardware ethernet 74:27:ea:28:3e:f3;
+	fixed-address 192.168.100.168;
+}
+host Canon-impresora {
+	# Canon vicepresidencia
+	hardware ethernet 00:1e:8f:d9:67:ca;
+	fixed-address 192.168.100.169;
+}
+host marisela_ramones {
+	# GOT
+	hardware ethernet c8:9c:dc:67:80:6d;
+	fixed-address 192.168.100.170;
+}
+
+host hector_morales_pf {
+	# tecnico especialista  
+	hardware ethernet 00:1f:c6:69:e6:4e;
+	fixed-address 192.168.100.174;
+}
+host Jesus_Lugo {
+        # Planificacion y presupuesto - Organizacion y metodos
+	hardware  ethernet 74:27:ea:f3:ff:0c;
+	fixed-address 192.168.100.176;
+}
+host Anabell_Guilen {
+	# GOT
+	hardware ethernet e0:69:95:af:31:59;
+	fixed-address 192.168.100.177;
+}
+host Elba_Colina {
+	# GOT
+	hardware ethernet 00:e3:20:01:c1:4f;
+	fixed-address 192.168.100.178;
+}
+host hector_ldap {
+	# Servidor LDAP
+	hardware ethernet 00:19:21:4b:a5:4f;
+	fixed-address 192.168.100.179;
+}
+host Jorge_Prieto {
+	# GERENTE Asesoria Legal
+	hardware ethernet 70:71:bc:e8:07:0c;
+	fixed-address 192.168.100.181;
+}
+host doris_delgado_cj {
+	# abogado I 
+	hardware ethernet 70:71:bc:97:e0:92;
+	fixed-address 192.168.100.182;
+}
+host maria_lugo_cj {
+	# especialista-- Consultoria Juridica
+	hardware ethernet 74:27:ea:f4:08:5b;
+	fixed-address 192.168.100.183;
+}
+host Dennys-Lugo-Calidad {
+	# oficina de calidad
+	hardware ethernet  00:b1:11:c9:59:54;
+	fixed-address 192.168.100.184;
+}
+host cuarto_de_camaras {
+	# PCP
+	hardware ethernet 14:DA:E9:0B:16:13;
+	fixed-address 192.168.100.185;
+}
+host orlando_chirinos2 {
+	# nueva
+	hardware ethernet 74:27:ea:d2:81:85;
+	fixed-address 192.168.100.186;
+}
+host harmery_gonzalez {
+	# planificaciones y presupuesto 
+	hardware ethernet 70:71:bc:85:44:f9;
+	fixed-address 192.168.100.187;
+}
+host Laptop_Soporte {
+        # TIC
+        hardware ethernet E8:40:F2:04:87:FE;
+        fixed-address 192.168.100.188;
+}
+host Laptop-Sorporte-tecnico-i7 {
+        # TIC
+        hardware ethernet EC:A8:6B:5C:52:9A;
+        fixed-address 192.168.100.189;
+}
+host marvin_reyes{
+        # Administracion
+        hardware ethernet 00:19:21:1a:fc:65;
+        fixed-address 192.168.100.190;
+}
+host judith_rubio {
+	# planificaicion y presupuesto 
+	hardware ethernet 70:71:bc:b6:d2:83;
+	fixed-address 192.168.100.191;
+}
+host jesus_dacosta {
+	# Planificacion y presupuesto
+	hardware ethernet e0:69:95:9d:bc:3e;
+	fixed-address 192.168.100.192;
+}
+host desktop_zte {
+	# Escritorio oficina ZTE
+	hardware ethernet 00:21:cc:4b:0f:7d;
+	fixed-address 192.168.100.193;
+}
+host Jorge_Luis_Medina {
+	# Gerente de Planificaion y Presupuesto
+	hardware ethernet 6c:62:6d:33:18:4c;
+	fixed-address 192.168.100.194;
+}
+host wilmer_montano2 {
+	# pc wilmer montano
+	hardware ethernet 74:27:ea:bb:ad:f4;
+	fixed-address 192.168.100.195;
+}
+host benjamin_moussa {
+	# TIC
+	hardware ethernet 74:27:ea:f4:08:82;
+	fixed-address 192.168.100.196;
+}
+host oscar_romero {
+	# Departamento Calidad
+	hardware ethernet 74:27:ea:28:43:16;
+	fixed-address 192.168.100.197;
+}
+host router_pcp {
+	# Router pcp
+	hardware ethernet c8:d3:a3:0e:68:1f;
+	fixed-address 192.168.100.198;
+}
+host Impresora-Canon {
+	# Produccion
+	hardware ethernet 2c:9e:fc:d7:6b:f1;
+	fixed-address 192.168.100.199;
+}
+host gillmar_ortiz2 {
+	# TIC
+	hardware ethernet 74:27:ea:d2:81:88;
+	fixed-address 192.168.100.200;
+}
+host Pasante-TIC {
+	#Pansante-TIC LUIS
+	hardware ethernet 00:1e:8c:3b:13:c6;
+	fixed-address 192.168.100.201;
+}
+host shezary_romeno_ap2 {
+	# Desktop 1 Asuntos Publicos Agente Autorizado
+	hardware ethernet 70:71:bc:85:42:c7;
+	fixed-address 192.168.100.202;
+}
+host TV-Recepcion {
+	# Asuntos Publicos
+	hardware ethernet 00:1f:c6:69:e6:03;
+	fixed-address 192.168.100.203;
+}
+host impresora-canonir1025-got {
+        # GOT
+        hardware ethernet 00:1e:8f:d9:4e:fd;
+        fixed-address 192.168.100.204;
+}
+host Maria_Boscan {
+        # Ensamblaje
+        hardware ethernet c8:9c:dc:af:fd:fc;
+        fixed-address 192.168.100.205;
+}
+host Repetidor_2 {
+        # Almacen General
+        hardware ethernet 68:72:51:17:55:98;
+        fixed-address 192.168.100.206;
+}
+host karla_pasante {
+	# GOT - Pasante
+	hardware ethernet c8:9c:dc:38:78:a8;
+	fixed-address 192.168.100.207;
+}
+host fernando_ochoa {
+	# Cuarto de camaras
+	hardware ethernet 00:1f:c6:69:e6:4f;
+	fixed-address 192.168.100.208;
+}
+host Miguelangel_Mendez {
+	# administracion 
+	hardware ethernet c8:9c:dc:38:7c:25;
+	fixed-address 192.168.100.209;
+}
+host Peng-ZTE {
+	# ZTE
+	hardware ethernet 18:03:73:67:47:d7;
+	fixed-address 192.168.100.210;
+}
+
+host Neida_Thompson {
+	# GOT
+	hardware ethernet 00:1f:c6:69:e5:f3;
+	fixed-address 192.168.100.211;
+}
+host mariana_chourio_ot {
+	# Organizacion del trabajo
+	hardware ethernet 00:1f:c6:69:e5:ef;
+	fixed-address 192.168.100.212;
+}
+host carolina-bracho {
+	# Organizacion del trabajo 
+	hardware ethernet 70:71:bc:b6:d3:1d;
+	fixed-address 192.168.100.213;
+}
+host Maria_Martinez {
+	# Organizacion del trabajo 
+	hardware ethernet 70:71:bc:b6:d3:4d;
+	fixed-address 192.168.100.214;
+}
+host adriana_martinez-got {
+	# Organizacion del trabajo 
+	hardware ethernet 70:71:bc:85:45:01;
+	fixed-address 192.168.100.215;
+}
+host Anerlys_Cambero {
+        # Organizacion del trabajo
+        hardware ethernet 00:1f:c6:69:dc:26;
+        fixed-address 192.168.100.216;
+}
+host amangil_riera {
+	# Organizacion del trabajo
+	hardware ethernet ec:a8:6b:5f:dd:92;
+	fixed-address 192.168.100.217;
+}
+host amangil-riera2 {
+	# Organizacion del trabajo 
+	hardware ethernet e0:69:96:b4:eb:ff;
+	fixed-address 192.168.100.218;
+}
+host Linda_Lebrum {
+	# Organizacion del trabajo
+	hardware ethernet 00:1f:c6:69:e5:ec;
+	fixed-address 192.168.100.219;
+}
+host maria-jose-mavarez {
+	# Administracion
+	hardware ethernet c8:9c:dc:af:36:7e;
+	fixed-address 192.168.100.220;
+}
+host Repetidor_3 {
+	# Almacen General
+	hardware ethernet 68:72:51:17:4c:e4;
+	fixed-address 192.168.100.222;
+}
+host Impresora_Infraestructura {
+	# Impresora del Area
+	hardware ethernet 24:be:05:ee:a9:4a;
+	fixed-address 192.168.100.223;
+}
+host ST-Whillians-Castellano {
+        # TIC
+        hardware ethernet 74:27:ea:d2:82:fc;
+        fixed-address 192.168.100.224;
+}
+host ST-Carlos-Colina {
+        # TIC
+        hardware ethernet 74:27:ea:bb:ae:9f;
+        fixed-address 192.168.100.225;
+}
+host Pedro-Garcia {
+        # TIC Soporte
+        hardware ethernet 74:27:ea:d2:7e:e0;
+        fixed-address 192.168.100.226;
+}
+host fernando_ocho2 {
+        # PCP cuarto de camaras
+        hardware ethernet e0:69:95:9d:b9:a5;
+        fixed-address 192.168.100.227;
+}
+host cesilia_lopez {
+        # PC Reparacion
+        hardware ethernet 00:1f:c6:69:d7:b2;
+        fixed-address 192.168.100.228;
+
+}
+host Alfredo-Petit-PASANTE{
+        # Planificacion y Presupuesto
+        hardware ethernet 54:be:f7:52:95:83;
+        fixed-address 192.168.100.229;
+}
+host ORLANDO-PC-SIGESP{
+        # Planificacion y Presupuesto
+        hardware ethernet 70:71:bc:b6:d3:13;
+        fixed-address 192.168.100.229;
+}
+host ST-Alexfranc-Mujica {
+        # TIC
+        hardware ethernet c8:9c:dc:38:7b:3a;
+        fixed-address 192.168.100.230;
+}
+host Marwil{
+        # Ensamblaje
+        hardware ethernet e0:69:95:9d:b8:36;
+        fixed-address 192.168.100.231;
+}
+host PC-ANELCYS-ARELLANO {
+	# GOT
+	hardware ethernet 00:e0:52:c0:98:3f;
+	fixed-address 192.168.100.232;
+}
+host LAPTOP-PERSONAL-BETSABETH {
+	# ALMACEN
+	hardware ethernet 38:60:77:52:06:2f;
+	fixed-address 192.168.100.233;
+}
+host maquina_virtual-FIS {
+	# Oficina de ZTE vmware
+	hardware ethernet 00:0c:29:a4:07:39;
+	fixed-address 192.168.100.234;
+}
+host chivuo {
+	# departamento de calida 
+	hardware ethernet c8:9c:dc:af:fb:8e;
+	fixed-address 192.168.100.235;
+}
+host bluemario_quintero_ {
+	# departamento de calida 
+	hardware ethernet 00:1f:c6:69:e5:f1;
+	fixed-address 192.168.100.236;
+}
+host Rosana_Marval {
+	# calidad 
+	hardware ethernet e0:69:95:9d:ba:3b;
+	fixed-address 192.168.100.237;
+}
+host canon_asesoria_legal {
+	# impresora asesoria legal
+	hardware ethernet 00:1e:8f:d9:07:ff;
+	fixed-address 192.168.100.238;
+}
+host edgardo_perez_cc {
+	# lider decalida final 
+	hardware ethernet 00:1f:c6:69:d8:8f;
+	fixed-address 192.168.100.239;
+}
+host Yakelin_Gomez {
+	# Produccion 
+	hardware ethernet 00:19:21:22:99:d2;
+	fixed-address 192.168.100.241;
+}
+host Leonel_Blanco {
+	# Produccion 
+	hardware ethernet 70:71:bc:b6:d2:d2;
+	fixed-address 192.168.100.242;
+}
+host victor_zte {
+	# ZTE
+	hardware ethernet ec:a8:6b:4d:b6:f1;
+	fixed-address 192.168.100.243;
+}
+host switch_pruebaHP  {
+	#TIC 
+	hardware ethernet b8:af:67:98:b0:d3;
+	fixed-address 192.168.100.244;
+}
+host osly_garcia_pf {
+	# asistente
+	hardware ethernet 00:e0:4c:1c:32:8d;
+	fixed-address 192.168.100.245;
+}
+host Angley_Irausquin {
+	# Post-Venta
+	hardware ethernet 00:1f:c6:69:e5:72;
+	fixed-address 192.168.100.246;
+}
+
+host telf_yiao {
+	# ZTE_yiao
+	hardware ethernet d4:37:d7:27:ec:cd;
+	fixed-address 192.168.100.247;
+}
+
+host Ingrid-morales {
+	# Oficina de produccion

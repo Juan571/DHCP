@@ -1,0 +1,75 @@
+@CHARSET "UTF-8";
+
+body{
+    font-family:arial, Helvetica, sans-serif, serif, fantasy;
+	font-size: 12pt;
+	line-height: normal;
+	white-space: normal;
+}
+
+.sombra_borde{
+    box-shadow: 10px 10px 5px #888;
+}
+
+.form-signin {
+    max-width: 420px;
+    padding: 9px 19px 19px;
+    margin: 100px auto 1rem;
+    background-color: #fff;
+    border: 2px solid #e0e0e0;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-bottom: 10px;
+}
+.form-signin input[type="text"],
+.form-signin input[type="password"] {
+    font-size: 16px;
+    height: auto;
+    margin-bottom: 15px;
+    padding: 7px 9px;
+}	    
+.cabecera img{
+    width: auto;
+    height: 45px;
+}    
+
+.tablas-est-prod{
+	background-color: white;
+	font-family: sans-serif;
+	font-size: 16px;
+	width: 80%;
+}
+
+.tablas-est-prod th{
+	text-shadow: 0px 0px 1px black;
+	font-weight: bold;
+	border: 1px solid silver;
+	box-shadow: 0px 0px 1px white inset;
+	background-color: #D82929 !important;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.2) 40%, transparent 80%);
+	background-image: -moz-linear-gradient(rgba(0, 0, 0, 0.2) 40%, transparent 80%);
+	background-image: -ms-linear-gradient(rgba(0, 0, 0, 0.2) 40%, transparent 80%);
+	background-image: -o-linear-gradient(rgba(0, 0, 0, 0.2) 40%, transparent 80%);
+	background-image: -khtml-linear-gradient(rgba(0, 0, 0, 0.2) 40%, transparent 80%);
+	background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.2) 40%, transparent 80%);
+	color: white;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: center;
+	padding: 5px 0px 0px 5px; 
+}
+
+.tablas-est-prod td{
+	padding: 5px 0px 0px 5px; 
+}
+
+.centrar_celda{
+	text-align: center;
+}
+
+.alin_celda_der{
+	text-align: right; 
+}
