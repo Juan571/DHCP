@@ -3,7 +3,9 @@
 ####RESTART SERVICE IN PHP
 //exec("sudo /etc/init.d/networking restart");
 include_once("../../../clases_generales/subred.php");
-$f = "../../dhcpd2.conf";
+//$f = "../../dhcpd2.conf";
+$f = "/etc/dhcp/dhcpd.conf";
+
 if(isset($_REQUEST['action'])){
     $action = $_REQUEST['action'];
 } else {

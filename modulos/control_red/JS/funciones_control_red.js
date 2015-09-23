@@ -1,4 +1,3 @@
-var url = 'php/php_control_semanal.php';
 
 $(document).ready(function() {
 
@@ -147,7 +146,7 @@ function ajax(data){
         error: function (err) {
             error = err;
             console.log(error);
-           // alert("Este Registro ya existe..");
+            alert(error.responseText);
         },
         success: function (resp) {
             console.log(resp);

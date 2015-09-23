@@ -4,8 +4,8 @@
 //exec("sudo /etc/init.d/networking restart");
 
 
-
 include_once("../../../clases_generales/subred.php");
+$f = "/etc/dhcp/dhcpd.conf";
 
 if(isset($_REQUEST['action'])){
     $action = $_REQUEST['action'];
@@ -22,7 +22,7 @@ switch ($action) {
 
     case $action === 'obtenerRedes':
 
-        $file = fopen("../../dhcpd2.conf", "rw");
+        $file = fopen($f, "rw");
         while (!feof($file)) {
 
             $cadena_buscada = "subnet";
@@ -75,7 +75,7 @@ switch ($action) {
         break;
     case $action === 'GuardarRed':
 
-        $f = "../../dhcpd2.conf";
+
         $ipred=$data['ip_red'];
         $idred=$data['id_red'];
         $mascara=$data['mask'];
@@ -146,7 +146,7 @@ switch ($action) {
         break;
     case $action === 'EditarRedes':
 
-        $f = "../../dhcpd2.conf";
+
         $ipred=$data['ip_red'];
         $idred=$data['id_red'];
         $mascara=$data['mask'];
@@ -252,7 +252,7 @@ switch ($action) {
 
     case $action === 'EliminarRed':
 
-        $f = "../../dhcpd2.conf";
+
 
         $idred=$_REQUEST['id_red'];
 
