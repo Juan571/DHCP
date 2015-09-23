@@ -11,3 +11,4 @@ nbproject
 clases_generales/parametros_bd/parametros_bd.php
 .idea/*
 multimedia
+modulos/dhcpd2.conf
