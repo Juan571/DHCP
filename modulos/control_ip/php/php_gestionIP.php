@@ -55,6 +55,8 @@ switch ($action) {
             $resp["respuesta"]="Eliminado";
             echo json_encode($resp);
         }
+        exec("sudo /etc/init.d/isc-dhcp-server restart");
+
         break;
 
     case $action === 'EditarHost':
@@ -141,6 +143,8 @@ switch ($action) {
         $resp = array();
         $resp["evento"]=$action;
         $resp["respuesta"]="editado";
+        exec("sudo /etc/init.d/isc-dhcp-server restart");
+
         echo json_encode($resp);
         break;
 
@@ -224,6 +228,7 @@ switch ($action) {
         $resp = array();
         $resp["evento"]=$action;
         $resp["respuesta"]="guardado";
+        exec("sudo /etc/init.d/isc-dhcp-server restart");
         echo json_encode($resp);
         break;
 

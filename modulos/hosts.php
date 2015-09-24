@@ -1,44 +1,60 @@
 <?php
 
 
-        $file = fopen("dhcpd2.conf", "rw");
-        $hosts = array();
-        while (!feof($file)) {
+$file = fopen("/etc/dhcp/dhcpd.conf", "r");
+$archivohosts="/tmp/hola.txt";
+$hosts = array();
+if (!$fp = fopen($archivohosts, 'w+'))
+{
+    $resp="no se puede abrir el archivo";
+    die($resp);
+}
+while (!@feof($file)) {
 
-            //  if (fgets($file)){
-            $cadena_buscada = "host";
-            $linea = fgets($file);
-            // echo $cont.fgets($file)."<br>";
+    //  if (fgets($file)){
+    $cadena_buscada = "host";
+    $linea = @fgets($file);
+    // echo $cont.fgets($file)."<br>";
 
-            $posicion_coincidencia = strpos($linea, $cadena_buscada);
-            #var_dump($posicion_coincidencia);
-            if (!is_bool($posicion_coincidencia)) {
+    $posicion_coincidencia = strpos($linea, $cadena_buscada);
+    #var_dump($posicion_coincidencia);
+    if (!is_bool($posicion_coincidencia)) {
 
-                //   echo substr($linea, 4,-2)."<br>";
-                $datosh['nombre'] =trim(substr($linea, 4, -2));
-                $descripcion = fgets($file);
-                $pos = strpos($descripcion, "#");
-                //   echo "Descripcion: ".substr($descripcion, $pos+1,-1)."<br>";//substr($linea, 4,-2)."<br>";
-                $datosh['descrip'] = substr($descripcion, $pos + 1, -1);
-                $mac = fgets($file);
-                $pos = strpos($mac, ":");
-                //   echo "Mac: ".substr($mac,$pos-2,-2)."<br>";
-                $datosh['mac'] = substr($mac, $pos - 2, -2);
-                substr($descripcion, $pos + 1, -1);
-                $ip = fgets($file);
+        //   echo substr($linea, 4,-2)."<br>";
+        $datosh['nombre'] =trim(substr($linea, 4, -2));
+        $descripcion = fgets($file);
+        $pos = strpos($descripcion, "#");
+        //   echo "Descripcion: ".substr($descripcion, $pos+1,-1)."<br>";//substr($linea, 4,-2)."<br>";
+        $datosh['descrip'] = substr($descripcion, $pos + 1, -1);
+        $mac = fgets($file);
+        $pos = strpos($mac, ":");
+        //   echo "Mac: ".substr($mac,$pos-2,-2)."<br>";
+        $datosh['mac'] = substr($mac, $pos - 2, -2);
+        substr($descripcion, $pos + 1, -1);
+        $ip = fgets($file);
 
-                preg_match('/(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/', $ip, $matches);
-                //   echo "IP: ".$matches[0]."<br>"."<br>";
-                $datosh["ip"] = $matches[0];
+        preg_match('/(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/', $ip, $matches);
+        //   echo "IP: ".$matches[0]."<br>"."<br>";
+        $datosh["ip"] = $matches[0];
 
-                    $hosts[] = $datosh;
+        $hosts[] = $datosh;
 
-echo $datosh["ip"]." ".$datosh['nombre']."\n";
-            }
 
-        }
-      //  echo json_encode($hosts);
-        fclose($file);
+
+
+        fwrite($fp,$datosh["ip"]." ".$datosh['nombre']."     ##".$datosh['mac']." - ".$datosh['descrip']."\n");
+
+
+
+
+
+
+    }
+}
+echo "Archivo Genererado Satisfactoriamente";
+//  echo json_encode($hosts);
+fclose($file);
+fclose($fp);
 
 
 ?>
