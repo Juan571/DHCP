@@ -42,7 +42,7 @@ while (!@feof($file)) {
 
 
 
-        fwrite($fp,$datosh["ip"]." ".$datosh['nombre']."     ##".$datosh['mac']." - ".$datosh['descrip']."\n");
+        fwrite($fp,$datosh["ip"]." ".$datosh['nombre']."\n");
 
 
 
