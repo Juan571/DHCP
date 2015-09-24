@@ -12,7 +12,7 @@
 #
 # Configuraciones globales
 #
-# Última modificación 25-08-2015
+# Última modificación 23/09/2015
 
 
 ddns-update-style none;
@@ -30,6 +30,7 @@ log-facility local7;
 shared-network VTELCA {
 
 }
+
 subnet 192.168.20.0 netmask 255.255.255.0 {
     option routers 192.168.20.1;
 #   range
@@ -52,6 +53,11 @@ subnet 192.168.200.0 netmask 255.255.255.0 {
      option routers 192.168.200.1;
 #    range 192.168.200.240 192.168.200.254;
 #    Segmento 6: LAN Servidores
+}
+subnet 192.168.10.0 netmask 255.255.255.0 {
+      option routers 192.168.10.1;
+#    range ###
+#   SEGMENTO 1: PRODUCCION red
 }
 ###FINSUBNET
 
@@ -84,11 +90,6 @@ host MEID-linea1-- {
         hardware ethernet ec:a8:6b:9a:00:04;
         fixed-address 192.168.10.15;
 }
-host Caja-Grande-L2 {
-	# Caja grande Linea2 
-	hardware ethernet 00:19:21:28:1f:99;
-	fixed-address 192.168.10.20;
-}
 host Meid1-L2 {
 	# Meid Linea 2
 	hardware ethernet c8:9c:dc:38:7a:a0;
@@ -108,11 +109,6 @@ host Meid3-L2 {
 	# Meid Linea 2
 	hardware ethernet 00:1f:c6:69:d8:03;
 	fixed-address 192.168.10.25;
-}
-host Caja-Grande-L3 {
-	# Caja grande Linea3
-	hardware ethernet 00:1f:c6:69:db:1e;
-	fixed-address 192.168.10.30;
 }
 host MEID-Linea3 {
 	# linea 3 - meid 3
@@ -388,11 +384,6 @@ host DEQWEQWEWQ {
     hardware ethernet 00:1F:C6:69:D8:81;
     fixed-address 192.168.20.147;
 }
-host Akram_Makaren_Ext {
-	# Ext. 1100 Presidencia
-	hardware ethernet 00:0B:82:3A:04:64;
-	fixed-address 192.168.20.2;
-}
 host Faraj_Elandari_Ext {
 	# Ext. 1101 Vice-Presidencia
 	hardware ethernet 00:0B:82:3E:74:CB;
@@ -492,11 +483,6 @@ host Rosaura_Martinez_Ext {
 	# Ext. 1301 Ensamblaje - Gerente
 	hardware ethernet 00:0B:82:39:12:33;
 	fixed-address 192.168.20.22;
-}
-host Albelys_Acosta_Ext {
-	# Ext. 1302 Ensamblaje - Jefe de Produccion
-	hardware ethernet 00:0B:82:3A:04:67;
-	fixed-address 192.168.20.23;
 }
 host Ozlis_Garcia_Ext {
 	# Ext. 1303 Ensamblaje - Produccion
@@ -727,11 +713,6 @@ host Luis_Suarez_Ext     {
 	# Ext. 2200 Auditoría
 	hardware ethernet 00:0B:82:3e:73:2c;
 	fixed-address 192.168.20.71;
-}
-host Ana_Guerrero_Ext     {
-	# Ext. 2300 ZTE
-	hardware ethernet 00:0B:82:3E:73:35;
-	fixed-address 192.168.20.72;
 }
 host Carmen_Vera_Ext    {
 	# Ext. 1000 PCP - Recepcion
@@ -965,11 +946,6 @@ host pc-douglas-paz {
 	hardware ethernet 74:27:ea:27:c1:b2;
 	fixed-address 192.168.50.83;
 }
-host douglas-paz {
-     	#Laptop de Douglas Paz 
-     	hardware ethernet e8:40:f2:04:86:18;
-	fixed-address 192.168.50.84;
-}
 host Oswendi_viloria {
         #SHA_Recepcion
         hardware ethernet EC:A8:6B:98:C3:70;
@@ -1070,11 +1046,6 @@ host Fernando-laboratorio {
 	hardware ethernet c8:d3:a3:0e:6e:cb;
 	fixed-address 192.168.50.224;
 }
-host Andy-Palacios {
-	# Laptop soporte tecnico
-	hardware ethernet 24:0a:64:8c:6a:67;
-	fixed-address 192.168.50.223;
-}
 host yaritza-BETANCOURT {
 	# pc
 	hardware ethernet c8:9c:dc:38:79:c9;
@@ -1085,6 +1056,11 @@ host yaritza-BETANCOURT {
 #SEGMENTO LAN ADMINISTRATIVA
 ##############################
 
+host MAXIMILIANO {
+    # EL TONTO
+    hardware ethernet 00:1F:C6:69:D8:81;
+    fixed-address 192.168.100.126;
+}
 host Maria_Jose {
 	# ADMINISTRACION Asistente administrativo
 	hardware ethernet 70:71:bc:8a:df:e1;
@@ -1672,11 +1648,6 @@ host pedro_lugo {
 	hardware ethernet 74:27:ea:ba:90:4c;
 	fixed-address 192.168.100.125;
 }
-host maximiliano_zapata_tI_eth1 {
-	# asistente tecnico 
-	hardware ethernet 74:27:ea:bb:a9:47;
-	fixed-address 192.168.100.126;
-}
 host maredi-pardo {
 	# TIC
 	hardware ethernet 74:27:ea:d2:80:23;
@@ -2257,5 +2228,3 @@ host ZTE-chamo {
 }
 host Roger-Hernandez {
 	# ZTE
-	hardware ethernet b8:88:e3:e3:35:7e;
-	fixed-address 192.168.100.252;

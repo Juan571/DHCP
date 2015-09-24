@@ -157,7 +157,6 @@ switch ($action){
      **/
 
     case $action == 'obtenerUsuarios':
-
         $sql1 = ("SELECT
                     id_usuario as id,
                     login as Login,
@@ -167,6 +166,8 @@ switch ($action){
                     tipo_usuario as tipo
 
                           FROM  usuarios");
+        die($sql1);
+
         $sql= str_replace("''","null", $sql1);
 
         echo $ejecuta->obtener($sql,$action);

@@ -42,7 +42,6 @@ if($sesion->sesion_iniciada()==false)
 
     <script src="../../js/dataTables/media/js/jquery.dataTables.js"></script>
 
-    <link href='http://fonts.googleapis.com/css?family=Orbitron:500,700,900,400' rel='stylesheet' type='text/css'>
 
     <script type="text/javascript" src="../../js/foundation/js/foundation.min.js"></script>
     <link rel="stylesheet" href="../../js/foundation/css/foundation.css">

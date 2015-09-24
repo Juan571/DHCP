@@ -106,6 +106,7 @@ $(document).ready(function(){
     $("#hostlibres").parent().parent().click(function(){
         $("#ipslibresmodal").html("");
         datosips=obteneriplibres();
+
         for (i = 0; i < datosips['iplibres'].length; i++) {
             $("#ipslibresmodal").prepend("<span class='badge ipslibrebadge'><strong id='gateway'>"+datosips['iplibres'][i]+"</strong>")
         }
@@ -146,7 +147,7 @@ $(document).ready(function(){
             },
             descripcion_ip:{
                 required:"Ingresa una descripción para el Host",
-                minlength: "Ingresa el una Ip Válida (192.168.100.0)"
+                minlength: "La descripcion debe de tener al menos 4 caracteres"
             },
             mac_ip:{
                 required:"Ingresa una MAC válida",
@@ -398,7 +399,7 @@ function obteneriplibres(){
             }
         }
         if (!bandera){
-            iplibres.push(iptotales[0][index])
+            iplibres.push(iptotales[index])
         }
     }
     var result ={};

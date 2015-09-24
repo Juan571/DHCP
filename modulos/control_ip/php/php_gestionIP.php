@@ -107,7 +107,7 @@ switch ($action) {
 
         $arr = file($f);
         $arr = array_values($arr);
-
+        $totallineas = count($arr);
         // fclose($file);
         $arr1=array_slice($arr, 0,$cont);
 
@@ -120,9 +120,9 @@ switch ($action) {
         foreach($ipNueva as $x => $value) {
             array_push($arr1,$value."\n");
         }
-        $arr2=array_slice($arr, $cont,-1);
+        $arr2=array_slice($arr, $cont,$totallineas);
         $arr=array_merge($arr1,$arr2);
-        //print_r($arr);
+
 
         if (!$fp = fopen($f, 'w+'))
         {
@@ -190,7 +190,7 @@ switch ($action) {
 
         $arr = file($f);
         $arr = array_values($arr);
-
+        $totallineas = count($arr);
         // fclose($file);
         $arr1=array_slice($arr, 0,$cont);
 
@@ -203,7 +203,7 @@ switch ($action) {
         foreach($ipNueva as $x => $value) {
             array_push($arr1,$value."\n");
         }
-        $arr2=array_slice($arr, $cont,-1);
+        $arr2=array_slice($arr, $cont,$totallineas);
         $arr=array_merge($arr1,$arr2);
         //print_r($arr);
 
