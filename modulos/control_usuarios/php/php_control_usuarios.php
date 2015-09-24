@@ -166,7 +166,7 @@ switch ($action){
                     tipo_usuario as tipo
 
                           FROM  usuarios");
-        die($sql1);
+        //die($sql1);
 
         $sql= str_replace("''","null", $sql1);
 

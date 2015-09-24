@@ -2,7 +2,7 @@
 
 
 $file = fopen("/etc/dhcp/dhcpd.conf", "r");
-$archivohosts="/tmp/hola.txt";
+$archivohosts="/etc/sarg/usertab";
 $hosts = array();
 if (!$fp = fopen($archivohosts, 'w+'))
 {

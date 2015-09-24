@@ -101,7 +101,7 @@ switch ($action) {
 
         $arr = file($f);
         $arr = array_values($arr);
-
+        $totallineas = count($arr);
         // fclose($file);
         $arr1=array_slice($arr, 0,$cont);
 
@@ -120,7 +120,7 @@ switch ($action) {
         foreach($subnetNueva as $x => $value) {
             array_push($arr1,$value."\n");
         }
-        $arr2=array_slice($arr, $cont,-1);
+        $arr2=array_slice($arr, $cont,$totallineas);
         $arr=array_merge($arr1,$arr2);
         //print_r($arr);
 
@@ -141,6 +141,7 @@ switch ($action) {
         $resp = array();
         $resp["evento"]=$action;
         $resp["respuesta"]="editado";
+        exec("sudo /etc/init.d/isc-dhcp-server restart");
         echo json_encode($resp);
 
         break;
@@ -246,13 +247,12 @@ switch ($action) {
         $resp = array();
         $resp["evento"]=$action;
         $resp["respuesta"]="editado";
+        exec("sudo /etc/init.d/isc-dhcp-server restart");
         echo json_encode($resp);
 
         break;
 
     case $action === 'EliminarRed':
-
-
 
         $idred=$_REQUEST['id_red'];
 
@@ -289,6 +289,7 @@ switch ($action) {
         $resp = array();
         $resp["evento"]=$action;
         $resp["respuesta"]="eliminado";
+        exec("sudo /etc/init.d/isc-dhcp-server restart");
         echo json_encode($resp);
 
         break;

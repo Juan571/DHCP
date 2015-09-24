@@ -12,23 +12,27 @@ $(document).ready(function() {
 
     });
     var cambiarDiseno = {};
-
     cambiarDiseno['tamano']= null;
     cambiarDiseno['bPaginate'] = true;
     cambiarDiseno['bScrollCollapse'] = false;
     cambiarDiseno['searching'] = true;
     cambiarDiseno['bLengthChange'] = false;
-    cambiarDiseno['iDisplayLength'] = 5;
-    //bSort = cambiarDiseno['bSort'];
+    cambiarDiseno['iDisplayLength'] = 8;
+    cambiarDiseno['ancho'] = [
+        { "width": "10%" },
+        { "width": "10%" },
+        { "width": "10%" },
+        { "width": "15%" },
+        { "width": "35%" },
+        { "width": "35%" },
+        { "width": "35%" }
 
-    sDefaultContent ="<button title='Editar' style='padding:3px' class='btnEditar  btn btn-warning'>" +
-    "<span class='glyphicon glyphicon-pencil'></span>" +
-    "</button>"+
-    "<button title='Resetear Clave' style='padding:3px' class='btnReset btn btn-info '>" +
-    "<span class='glyphicon glyphicon-refresh'></span>" +
-    "</button>"
-    ;
-    cargarTablas("obtenerUsuarios", "", "#tabla_usuarios", cambiarDiseno, [0,-2],"./php/php_control_usuarios.php",null,sDefaultContent);
+    ];
+    sDefaultContent ="" +
+        "<button style='padding:3px' class='botonRow editip  btn btn-info '><span class='glyphicon glyphicon-wrench'>Editar</span></button>" +
+        "<button style='padding:3px' class='botonRow eliminarip btn btn-danger '><span class='glyphicon glyphicon-remove'>Eliminar</span></button>";
+
+    cargarTablas("obtenerUsuarios", "", "#tabla_usuarios", cambiarDiseno, [0,-1],"./php/php_control_usuarios.php",null,sDefaultContent);
 
     $("#cedula_usuario").focus();
     $(".btnsw").bootstrapSwitch();
@@ -189,24 +193,25 @@ function ajax(data){
                 $("#tabla_usuarios thead > tr >  th").hide();
             }
             var cambiarDiseno = {};
-
             cambiarDiseno['tamano']= null;
             cambiarDiseno['bPaginate'] = true;
             cambiarDiseno['bScrollCollapse'] = false;
             cambiarDiseno['searching'] = true;
             cambiarDiseno['bLengthChange'] = false;
-            cambiarDiseno['iDisplayLength'] = 5;
-            //bSort = cambiarDiseno['bSort'];
+            cambiarDiseno['iDisplayLength'] = 8;
+            cambiarDiseno['ancho'] = [
+                { "width": "10%" },
+                { "width": "10%" },
+                { "width": "10%" },
+                { "width": "15%" },
+                { "width": "35%" }
 
+            ];
+            sDefaultContent ="" +
+                "<button style='padding:3px' class='botonRow editip  btn btn-info '><span class='glyphicon glyphicon-wrench'>Editar</span></button>" +
+                "<button style='padding:3px' class='botonRow eliminarip btn btn-danger '><span class='glyphicon glyphicon-remove'>Eliminar</span></button>";
 
-            sDefaultContent ="<button style='padding:3px' class='btnEditar  btn btn-warning'>" +
-            "<span class='glyphicon glyphicon-pencil'></span>" +
-            "</button>"+
-            "<button style='padding:3px' class='btnReset btn btn-info'>" +
-            "<span class='glyphicon glyphicon-refresh'></span>" +
-            "</button>"
-            ;
-            cargarTablas("obtenerUsuarios", "", "#tabla_usuarios", cambiarDiseno, [0,-2],"./php/php_control_usuarios.php",null,sDefaultContent);
+            cargarTablas("obtenerUsuarios", "", "#tabla_usuarios", cambiarDiseno, [0,-1],"./php/php_control_usuarios.php",null,sDefaultContent);
             $("#botonlimpiar").trigger("click");
         }
     });
