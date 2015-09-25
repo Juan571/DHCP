@@ -144,7 +144,7 @@ if($sesion->sesion_iniciada()==false)
         <a href="../index.php" class="icon-home">Inicio</a>
         <a href="../control_red/control_red.php"  class="icon-programar">Gestionar Redes</a>
         <a href="../control_ip/control_ip.php" class="icon-RegPc">Gestionar IP's</a>
-        <a href="../control_archivos/control_archivos.php" class="icon-RegCont">Agregar Contenido</a>
+        <!--a href="../control_archivos/control_archivos.php" class="icon-RegCont">Agregar Contenido</a-->
         <?php
         if ($_SESSION['tipo_usuario']=='S'){
             echo "<a href='../control_usuarios/control_usuarios.php' class='icon-GesUsuarios'>Gestión de Usuarios</a>";
