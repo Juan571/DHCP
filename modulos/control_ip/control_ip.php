@@ -7,7 +7,7 @@ $sesion = new Sesion();
 
 
 if($sesion->sesion_iniciada()==false)
-   // header("Location: ../../index.php");
+    header("Location: ../../index.php");
 
 //$info_ultima_sesion = "Ultima sesión iniciada el dia ".date("d-m-Y");
 

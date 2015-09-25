@@ -212,7 +212,27 @@ function cargarTablas(action,data,tabla,cambiarDiseno,columnasvisibles,url,urlId
 
 
                     }
+                    if(tabla==="#tabla_usuarios"){
 
+
+                        var btnEditar = $(nRow).find(".btnEditar").off();
+                        var btnReset = $(nRow).find(".btnReset").off();
+
+                        $(btnReset).on("click",function () {
+                            $(nRow).removeClass("selected");
+                            var r = confirm("Desea resetear la contreseña de "+aData[2]+" "+aData[3]+" la nueva contraseña sera: 123456");
+                            if (r == true) {
+                                ResetClave(aData);
+                            }
+                        });
+                        $(btnEditar).on("click",function () {
+                            $(nRow).removeClass("selected");
+
+                            seleccionarUsuario(aData);
+                        });
+
+                        $(btnEditar).parent().attr('style','text-align:center');
+                    }
                     if(tabla==="#tabla_redes"){
 
 

@@ -39,15 +39,7 @@ while (!@feof($file)) {
 
         $hosts[] = $datosh;
 
-
-
-
         fwrite($fp,$datosh["ip"]." ".$datosh['nombre']."\n");
-
-
-
-
-
 
     }
 }

@@ -28,11 +28,14 @@ $(document).ready(function() {
         { "width": "35%" }
 
     ];
-    sDefaultContent ="" +
-        "<button style='padding:3px' class='botonRow editip  btn btn-info '><span class='glyphicon glyphicon-wrench'>Editar</span></button>" +
-        "<button style='padding:3px' class='botonRow eliminarip btn btn-danger '><span class='glyphicon glyphicon-remove'>Eliminar</span></button>";
-
-    cargarTablas("obtenerUsuarios", "", "#tabla_usuarios", cambiarDiseno, [0,-1],"./php/php_control_usuarios.php",null,sDefaultContent);
+    sDefaultContent ="<button title='Editar' style='padding:3px' class='btnEditar  btn btn-warning'>" +
+        "<span class='glyphicon glyphicon-pencil'></span>" +
+        "</button>"+
+        "<button title='Resetear Clave' style='padding:3px' class='btnReset btn btn-info '>" +
+        "<span class='glyphicon glyphicon-refresh'></span>" +
+        "</button>"
+    ;
+    cargarTablas("obtenerUsuarios", "", "#tabla_usuarios", cambiarDiseno, [0,-2],"./php/php_control_usuarios.php",null,sDefaultContent);
 
     $("#cedula_usuario").focus();
     $(".btnsw").bootstrapSwitch();
@@ -204,14 +207,19 @@ function ajax(data){
                 { "width": "10%" },
                 { "width": "10%" },
                 { "width": "15%" },
+                { "width": "35%" },
+                { "width": "35%" },
                 { "width": "35%" }
 
             ];
-            sDefaultContent ="" +
-                "<button style='padding:3px' class='botonRow editip  btn btn-info '><span class='glyphicon glyphicon-wrench'>Editar</span></button>" +
-                "<button style='padding:3px' class='botonRow eliminarip btn btn-danger '><span class='glyphicon glyphicon-remove'>Eliminar</span></button>";
-
-            cargarTablas("obtenerUsuarios", "", "#tabla_usuarios", cambiarDiseno, [0,-1],"./php/php_control_usuarios.php",null,sDefaultContent);
+            sDefaultContent ="<button title='Editar' style='padding:3px' class='btnEditar  btn btn-warning'>" +
+                "<span class='glyphicon glyphicon-pencil'></span>" +
+                "</button>"+
+                "<button title='Resetear Clave' style='padding:3px' class='btnReset btn btn-info '>" +
+                "<span class='glyphicon glyphicon-refresh'></span>" +
+                "</button>"
+            ;
+            cargarTablas("obtenerUsuarios", "", "#tabla_usuarios", cambiarDiseno, [0,-2],"./php/php_control_usuarios.php",null,sDefaultContent);
             $("#botonlimpiar").trigger("click");
         }
     });
