@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="http://rec.vtelca.gob.ve/img/favicon.ico" />
 
 
+    <script src="http://rec.vtelca.gob.ve/jquery/2.1.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href="http://rec.vtelca.gob.ve/font-awesome/4.1.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://rec.vtelca.gob.ve/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -16,9 +17,8 @@
     <link rel="stylesheet" href="css/estilos_personalizados.css" type="text/css" media="screen">
 
 
-    <script src="http://rec.vtelca.gob.ve/jquery/2.1.1/jquery.min.js"></script>
 
-    <style>
+    <style type="text/css">
         body {
             background-color: #f5f5f5;
             background: #f5f5f5 url(img/back1.jpg) center fixed no-repeat;
@@ -57,6 +57,30 @@
             background: #fff url(http://rec.vtelca.gob.ve/img/fondo-claro.png) center no-repeat;
             background-size: cover;
         }
+        /*.form-signin {
+            max-width: 300px;
+            padding: 19px 29px 29px;
+            margin: 0 auto 20px;
+            background-color: #fff;
+            border: 1px solid #e5e5e5;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            box-shadow: 0 1px 2px rgba(0,0,0,.05);
+        }
+        .form-signin .form-signin-heading,
+        .form-signin .checkbox {
+            margin-bottom: 10px;
+        }
+        .form-signin input[type="text"],
+        .form-signin input[type="password"] {
+            font-size: 16px;
+            height: auto;
+            margin-bottom: 15px;
+            padding: 7px 9px;
+        }*/
 
     </style>
 </head>

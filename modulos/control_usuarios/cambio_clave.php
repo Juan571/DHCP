@@ -62,42 +62,6 @@ if($sesion->sesion_iniciada()==false)
     <link rel="stylesheet" type="text/css" href="../../css/estilos_personales.css" />
 
     <style type="text/css">
-        .container{
-            width: 90%;
-
-        }
-        html{
-            position: fixed;
-        }
-        input[type="search"] {
-            height: 5%;
-        }
-
-
-        body{
-            /* background-image: url("http://rec.vtelca.gob.ve/img/fondo-claro.png");*/
-            background: transparent url(../../img/back1-blur.jpg) center fixed no-repeat;
-
-            background-attachment: fixed;
-            overflow: scroll;
-            background-repeat:no-repeat;
-            background-size:cover;
-            opacity: 0.9;
-        }
-        header {
-            height: 80px;
-            background: url(http://rec.vtelca.gob.ve/img/cintillo-i.png) left no-repeat,
-            url(http://rec.vtelca.gob.ve/img/vtelca-transparente.png) center no-repeat,
-            url(http://rec.vtelca.gob.ve/img/pueblo-victorioso.jpg) right no-repeat;
-            background-color: #fff;
-            background-size: auto 50px;
-            margin: 0px;
-            margin-top: -10px;
-            border-bottom: 4px solid #f00;
-        }
-
-        #imagenFlotante a img { border: none; }
-
 
 
     </style>
@@ -105,19 +69,7 @@ if($sesion->sesion_iniciada()==false)
 
 
     <script>
-        $(document).ready(function () {
 
-        });
-        /**
-         * valida si la sesion esta iniciada para dejar acceder, de lo contrario redirecciona la pagina de logueo
-         *
-         **/
-
-        <?php
-            if (!isset($_SESSION["id_usuario"])) {
-                print "parent.location.replace('../../index.php');";
-            }
-        ?>
     </script>
 
     <title>Cambio de Clave</title>
@@ -151,12 +103,12 @@ if($sesion->sesion_iniciada()==false)
                             <div style="width:40%;" class="" id="" align="center" >
                                 <div class="col-md-12">
                                     <b style="color: white;">Contraseña Actual</b>
-                                    <input   name="actual" type="text" id="actual" class="form-control" value="" size="12" placeholder="Nombre de Usuario para Iniciar Sesion" >
+                                    <input   name="actual" type="text" id="actual" class="form-control" value="" size="12" placeholder="Indique la contraseña Actual" >
                                 </div>
 
                                 <div class="col-md-12">
                                   <b style="color: white;">Clave</b>
-                                  <input  name="password" type="password" id="password" class="form-control" value="" maxlength="30" placeholder="Clave">
+                                  <input  name="password" type="password" id="password" class="form-control" value="" maxlength="30" placeholder="Nueva Contraseña">
                                 </div>
                                 <div class="col-md-12">
                                   <b style="color: white;">Confirmar Clave</b>

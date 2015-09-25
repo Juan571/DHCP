@@ -48,43 +48,6 @@ if($sesion->sesion_iniciada()==false)
     <script src="../../js/modernizr.custom.25376.js"></script>
     <link rel="stylesheet" type="text/css" href="../../css/estilos_personales.css" />
     <style type="text/css">
-        .container{
-            width: 90%;
-
-        }
-        html{
-            position: fixed;
-        }
-        input[type="search"] {
-            height: 5%;
-        }
-
-
-        body{
-            /* background-image: url("http://rec.vtelca.gob.ve/img/fondo-claro.png");*/
-            background: transparent url(../../img/back1-blur.jpg) center fixed no-repeat;
-
-            background-attachment: fixed;
-            overflow: scroll;
-            background-repeat:no-repeat;
-            background-size:cover;
-            opacity: 0.9;
-        }
-        header {
-            height: 80px;
-            background: url(http://rec.vtelca.gob.ve/img/cintillo-i.png) left no-repeat,
-            url(http://rec.vtelca.gob.ve/img/vtelca-transparente.png) center no-repeat,
-            url(http://rec.vtelca.gob.ve/img/pueblo-victorioso.jpg) right no-repeat;
-            background-color: #fff;
-            background-size: auto 50px;
-            margin: 0px;
-            margin-top: -10px;
-            border-bottom: 4px solid #f00;
-        }
-
-        #imagenFlotante a img { border: none; }
-
-
 
     </style>
 
