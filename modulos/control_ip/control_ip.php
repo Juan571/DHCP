@@ -22,7 +22,6 @@ if($sesion->sesion_iniciada()==false)
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="http://rec.vtelca.gob.ve/img/favicon.ico" />
     <script src="http://rec.vtelca.gob.ve/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://rec.vtelca.gob.ve/jquery/2.1.1/jquery.js"></script>
     <link rel="stylesheet" href="http://rec.vtelca.gob.ve/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://rec.vtelca.gob.ve/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <script src="http://rec.vtelca.gob.ve/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -35,32 +34,16 @@ if($sesion->sesion_iniciada()==false)
     <link rel="stylesheet" type="text/css" href="../../css/pnotify.custom.min.css">
     <script type="text/javascript" src="../../js/pnotify.custom.min.js"></script>
     <script type="text/javascript" src="../../js/tablas.js"></script>
-    <link rel="stylesheet" type="text/css" href="../../css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="../../css/demo.css" />
+
     <link rel="stylesheet" type="text/css" href="../../css/component.css" />
     <script src="../../js/jquery.validate.js"></script>
     <script src="../../js/jquery.mask.min.js"></script>
     <script src="../../js/morris-0.4.1.min.js"></script>
     <script src="../../js/raphael-min.js"></script>
     <script src="../../js/modernizr.custom.25376.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="../../css/estilos_personales.css" />
     <style type="text/css">
-        .container{
-            width: 90%;
-        }
-        html{
-            position: fixed;
-        }
-        body{
-           /* background-image: url("http://rec.vtelca.gob.ve/img/fondo-claro.png");*/
-            background: transparent url(../../img/back1-blur.jpg) center fixed no-repeat;
 
-            background-attachment: fixed;
-            overflow: scroll;
-            background-repeat:no-repeat;
-            background-size:cover;
-            opacity: 0.9;
-        }
 
         #mac_ip-error  {
             color: #c00000;
@@ -75,70 +58,16 @@ if($sesion->sesion_iniciada()==false)
             color: #c00000;
         }
 
-        header {
-            height: 80px;
-            background: url(http://rec.vtelca.gob.ve/img/cintillo-i.png) left no-repeat,
-            url(http://rec.vtelca.gob.ve/img/vtelca-transparente.png) center no-repeat,
-            url(http://rec.vtelca.gob.ve/img/pueblo-victorioso.jpg) right no-repeat;
-            background-color: #fff;
-            background-size: auto 50px;
-            margin: 0px;
-            margin-top: -10px;
-            border-bottom: 4px solid #f00;
+        .ipslibrebadge{
+            background-color: #B22222;
         }
-
-        .horas{
-            font-family: 'BebasNeueRegular';
-
-        }
-        .btnmarcar1{
-
-            position: absolute;
-            margin-left: 66px%;
-
-
-        }
-        .redText { color: red; }
-       /* html,body { height: 100%;  }*/
-        .full1 {
-            background: transparent url(../../img/back1-blur.jpg) center fixed no-repeat;
-
-            background-attachment: fixed;
-            overflow: auto;
-
-        }
-        #imagenFlotante {
-            bottom:10px;
-            right:0px;
-            position: fixed;
-            _position:absolute;
-            clip:inherit;
-            _top:expression(document.documentElement.scrollTop+document.documentElement.clientHeight-this.clientHeight);
-            _right:expression(document.documentElement.scrollLeft+ document.documentElement.clientWidth - offsetWidth);
-        }
-        #imagenFlotante a img { border: none; }
-
-        #showMenu:hover{
-            color: red;
-        }
-        input[type="search"]{
-            float: right;
-            text-align: center;
-            height: 15px;
-        }
-        .estadisticasred{
-            color: #c00000;
-
+        .ipslibrebadge:hover{
+            background-color: #0000FF;
+            font-size: large;
         }
         #donut-articulos, #donut-usuarios {
             min-height: 200px;
             margin-left: 21%;
-        }
-        ul{
-            box-shadow: 1px 2px 2px 2px rgba(0,0,0,0.4);
-        }
-        .list-group-item, .panel {
-            background-color: rgba(255, 247, 255, 0.4);
         }
         .step_menu1 {
             z-index: 1000;
@@ -152,7 +81,6 @@ if($sesion->sesion_iniciada()==false)
             list-style: none;
             background-color: rgba(255,255,255,0.8);
         }
-
         .step_menu1 a {
             display: block;
             padding: 5px 15px;
@@ -163,7 +91,6 @@ if($sesion->sesion_iniciada()==false)
             color: #333;
             white-space: nowrap;
         }
-
         .step_menu1 li {
             text-align: center;
             padding: 4px 0;
@@ -177,14 +104,12 @@ if($sesion->sesion_iniciada()==false)
             -webkit-transition: all 0.26s ease-out;
             -ms-transition: all 0.26s ease-out;
         }
-
         /* Giving border to even LI */
         .step_menu1 li:nth-child(even) {
             background: rgba(255,255,255,0.4);
             border: solid #CCC;
             border-width: 0 1px 1px 0;
         }
-
         /* Hover Action Here */
         .step_menu1 li:hover {
             -moz-box-shadow: 1px 1px #CCC, 2px 2px #CCC, 3px 3px #CCC, 4px 4px #CCC,
@@ -199,14 +124,6 @@ if($sesion->sesion_iniciada()==false)
             -ms-transform: translate(-10px, -10px);
             text-decoration: none;
         }
-        .ipslibrebadge{
-            background-color: #B22222;
-        }
-        .ipslibrebadge:hover{
-            background-color: #0000FF;
-            font-size: large;
-        }
-
     </style>
 
 
@@ -224,11 +141,7 @@ if($sesion->sesion_iniciada()==false)
                 };
             })();
         });
-        <?php
-            if (!isset($_SESSION["usuarioId"])) {
-             //   print "parent.location.replace('../../index.php');";
-            }
-        ?>
+
     </script>
 
     <title>Gestion de IP's</title>
@@ -239,14 +152,15 @@ if($sesion->sesion_iniciada()==false)
     </script>
 </header>
 <body>
-
-
-
+<?php
+echo "<div style='text-align:right;color: aliceblue'><span class='glyphicon glyphicon-user'>&nbsp;</span><h2  style='font-size: large;float: right;color: aliceblue;margin-right: 1%;'>". $_SESSION["nombre_usuario"]." ".$_SESSION["apellido_usuario"]."</h2></div>";
+?>
 <div  id="perspective" class="perspective full effect-airbnb" style="overflow-y: inherit;">
     <a class="glyphicon glyphicon-tasks" id="showMenu" style="text-decoration: none; position: fixed;font-size: xx-large; padding-left: 94%; padding-top: 8%; color: aliceblue;" ></a>
 
-        <div id="" class="container" >
-            <div class="wrapper">
+    <div id="" class="container" style="-webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px; /*background-color: silver;*/">
+
+    <div class="wrapper">
 
                 <div class="fluid">
                     <div class="row-fluid">

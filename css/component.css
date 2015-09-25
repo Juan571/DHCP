@@ -162,9 +162,9 @@ html, body, .perspective {
 	backface-visibility: hidden;
 }
 
-.icon-programar::before { content: "\ea71" }
+.icon-programar::before { content: "\e609" }
 .icon-home::before { content: "\e902" }
-.icon-RegPc::before { content: "\e95b" }
+.icon-RegPc::before { content: "\e956" }
 .icon-RegCont::before { content: "\e914" }
 .icon-GesUsuarios::before { content: "\e972" }
 .icon-CerrarSesion::before { content: "\e98d" }

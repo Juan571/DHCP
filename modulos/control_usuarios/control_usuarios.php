@@ -23,44 +23,30 @@ if($sesion->sesion_iniciada()==false)
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="http://rec.vtelca.gob.ve/img/favicon.ico" />
-
     <script src="http://rec.vtelca.gob.ve/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://rec.vtelca.gob.ve/jquery/2.1.1/jquery.js"></script>
-
-    <script src="http://rec.vtelca.gob.ve/bootstrap-switch/master/js/bootstrap-switch.min.js"></script>
-    <link rel="stylesheet" href="http://rec.vtelca.gob.ve/bootstrap-switch/master/css/bootstrap3/bootstrap-switch.min.css">
-    <link rel="stylesheet" href="http://rec.vtelca.gob.ve/bootstrap-switch/master/css/bootstrap2/bootstrap-switch.min.css">
-
     <link rel="stylesheet" href="http://rec.vtelca.gob.ve/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://rec.vtelca.gob.ve/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <script src="http://rec.vtelca.gob.ve/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-    <script src="http://rec.vtelca.gob.ve/bootstrap-select/1.6.0/dist/js/bootstrap-select.min.js"></script>
-    <link rel="stylesheet" href="http://rec.vtelca.gob.ve/bootstrap-select/1.6.0/dist/css/bootstrap-select.min.css">
-
+    <script src="http://rec.vtelca.gob.ve/bootstrap-switch/master/js/bootstrap-switch.min.js"></script>
+    <link rel="stylesheet" href="http://rec.vtelca.gob.ve/bootstrap-switch/master/css/bootstrap3/bootstrap-switch.min.css">
+    <link rel="stylesheet" href="http://rec.vtelca.gob.ve/bootstrap-switch/master/css/bootstrap2/bootstrap-switch.min.css">
     <link rel="stylesheet" type="text/css" href="../../js/dataTables/media/css/jquery.dataTables.css">
-
     <script src="../../js/dataTables/media/js/jquery.dataTables.js"></script>
-
-
+    <script src="JS/funciones_control_usuarios.js"></script>
     <script type="text/javascript" src="../../js/foundation/js/foundation.min.js"></script>
     <link rel="stylesheet" href="../../js/foundation/css/foundation.css">
     <link rel="stylesheet" href="../../js/foundation/css/foundation.min.css">
-
     <link rel="stylesheet" type="text/css" href="../../css/pnotify.custom.min.css">
     <script type="text/javascript" src="../../js/pnotify.custom.min.js"></script>
-    <script src="../../js/jquery.mask.js"></script>
-    <script src="../../js/jquery.validate.js"></script>
-    <link rel="stylesheet" type="text/css" href="../../css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="../../css/demo.css" />
-    <link rel="stylesheet" type="text/css" href="../../css/component.css" />
-
-    <script type="text/javascript" src="./JS/funciones_control_usuarios.js"></script>
-    <script src="../..//js/jquery.validate.js"></script>
-
     <script type="text/javascript" src="../../js/tablas.js"></script>
-    <!-- csstransforms3d-shiv-cssclasses-prefixed-teststyles-testprop-testallprops-prefixes-domprefixes-load -->
+
+    <link rel="stylesheet" type="text/css" href="../../css/component.css" />
+    <script src="../../js/jquery.validate.js"></script>
+    <script src="../../js/jquery.mask.min.js"></script>
+    <script src="../../js/morris-0.4.1.min.js"></script>
+    <script src="../../js/raphael-min.js"></script>
     <script src="../../js/modernizr.custom.25376.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/estilos_personales.css" />
     <style type="text/css">
         .container{
             width: 90%;
