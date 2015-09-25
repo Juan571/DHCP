@@ -174,7 +174,7 @@ echo "<div style='text-align:right;color: aliceblue'><span class='glyphicon glyp
                                 <?php
                                 if ($_SESSION['tipo_usuario']=='S') {
 
-                                    a id = "btnGuardarHost" class='btn btn-info btn-lg' onclick = 'GuardarHost()' ><span class="glyphicon glyphicon-floppy-save" ></span > Nuevo Host </a >
+                                    echo "<a id = 'btnGuardarHost' class='btn btn-info btn-lg' onclick = 'GuardarHost()' ><span class='glyphicon glyphicon-floppy-save' ></span > Nuevo Host </a >";
                                     }
                                 ?>
                             </div>
