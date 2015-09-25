@@ -1,3 +1,4 @@
+
 <?php if (!isset($_SESSION)) session_start(); ?>
 <!DOCTYPE html>
 <html>
@@ -6,9 +7,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="http://rec.vtelca.gob.ve/img/favicon.ico" />
-
-
     <script src="http://rec.vtelca.gob.ve/jquery/2.1.1/jquery.min.js"></script>
+
+
 
     <link rel="stylesheet" href="http://rec.vtelca.gob.ve/font-awesome/4.1.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://rec.vtelca.gob.ve/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -18,10 +19,10 @@
 
 
 
-    <style type="text/css">
+    <style>
         body {
             background-color: #f5f5f5;
-            background: #f5f5f5 url(img/back1.jpg) center fixed no-repeat;
+            background: #f5f5f5 url(img/madera.jpg) center fixed no-repeat;
         }
 
 
@@ -57,99 +58,75 @@
             background: #fff url(http://rec.vtelca.gob.ve/img/fondo-claro.png) center no-repeat;
             background-size: cover;
         }
-        /*.form-signin {
-            max-width: 300px;
-            padding: 19px 29px 29px;
-            margin: 0 auto 20px;
-            background-color: #fff;
-            border: 1px solid #e5e5e5;
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
-            border-radius: 5px;
-            -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-            -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-            box-shadow: 0 1px 2px rgba(0,0,0,.05);
-        }
-        .form-signin .form-signin-heading,
-        .form-signin .checkbox {
-            margin-bottom: 10px;
-        }
-        .form-signin input[type="text"],
-        .form-signin input[type="password"] {
-            font-size: 16px;
-            height: auto;
-            margin-bottom: 15px;
-            padding: 7px 9px;
-        }*/
 
     </style>
 </head>
 <body>
 <!-- HEADER -->
-        <header>
+<header>
 
-            <script>
-                $(document).ready(function () {
+    <script>
+        $(document).ready(function () {
 
-                    $("#txtCedula").focus();
-                });
-            </script>
-        </header>
-        <div id="full" class="container">
-            <h1 style="color: #fdfdfd; text-align:center">ADMINISTRAR DHCP</h1>
-            <br>
-            <form class="form-signin" action="login/iniciar_sesion.php" method="post">
-                <input type="hidden" name="accion" value="iniciarSesion">
-                <div class="row">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4">
-                        <div class="panel panel-default"  style="margin: 35px;">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><span class="glyphicon glyphicon-lock"></span> Acceso de Usuario</h3>
+            $("#txtCedula").focus();
+        });
+    </script>
+</header>
+<div id="full" class="container">
+    <h1 style="color: #fdfdfd; text-align:center">ADMINISTRAR DHCP</h1>
+    <br>
+    <form class="form-signin" action="login/iniciar_sesion.php" method="post">
+        <input type="hidden" name="accion" value="iniciarSesion">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="panel panel-default"  style="margin: 35px;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><span class="glyphicon glyphicon-lock"></span> Acceso de Usuario</h3>
+                    </div>
+                    <div class="panel-body" >
+                        <div class="row">
+                            <div class="col-md-12">Usuario:</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" id="txtCedula" name="usuario">
                             </div>
-                            <div class="panel-body" >
-                                <div class="row">
-                                    <div class="col-md-12">Usuario:</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" id="txtCedula" name="usuario">
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-md-12">Contraseña:</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <input type="password" class="form-control" id="txtClave" name="clave">
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-md-6"></div>
-                                    <div class="col-md-6">
-                                        <input type="submit" class="btn btn-danger" style="width: 100%" id="btnEnviar" name="btnEnviar" value="Ingresar">
-                                    </div>
-                                </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12">Contraseña:</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="password" class="form-control" id="txtClave" name="clave">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6"></div>
+                            <div class="col-md-6">
+                                <input type="submit" class="btn btn-danger" style="width: 100%" id="btnEnviar" name="btnEnviar" value="Ingresar">
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4"></div>
                 </div>
-            </form>
-            <br>
-            <div class="row">
-                <div class="col-md-4"></div>
-                <?php if (isset($_GET["error"]) && $_GET["error"] == 1) { ?>
-                <div class="col-md-4 alert alert-danger" style="text-align:center">
-                    <span class="glyphicon glyphicon-warning-sign"></span>
-                    El Usuario y la Contraseña no coninciden..
-                </div>
-                <?php } ?>
-                <div class="col-md-4"></div>
             </div>
+            <div class="col-md-4"></div>
         </div>
+    </form>
+    <br>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <?php if (isset($_GET["error"]) && $_GET["error"] == 1) { ?>
+            <div class="col-md-4 alert alert-danger" style="text-align:center">
+                <span class="glyphicon glyphicon-warning-sign"></span>
+                El Usuario y la Contraseña no coninciden..
+            </div>
+        <?php } ?>
+        <div class="col-md-4"></div>
+    </div>
+</div>
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span12 pie_pagina" style="text-align: right; padding: 3px 15px 3px 5px;">
@@ -157,5 +134,3 @@
         </div>
     </div>
 </div>
-
-

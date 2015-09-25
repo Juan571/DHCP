@@ -8,8 +8,8 @@ html{
 }
 
 body{
-	/* background-image: url("http://rec.vtelca.gob.ve/img/fondo-claro.png");*/
-	background: transparent url(http://www.enmanosdenadie.com.ar/wp-content/uploads/2009/05/piso-de-madera.png) center fixed no-repeat;
+
+	background: transparent url(../img/madera.jpg) center fixed no-repeat;
 	background-attachment: fixed;
 	overflow: scroll;
 	background-repeat:no-repeat;

@@ -101,13 +101,13 @@ if($sesion->sesion_iniciada()==false)
                                     <h2 style="font-size: 280%;">Gestionar IP's</h2>
                                     <p>Módulo para consulta y registro de HOSTS (ip's)</p>
                                     <a href="control_ip/control_ip.php" class="da-link">Ir al Modulo</a>
-                                    <div class="da-img"><img src="../img/Setser.png" alt="Administrar Hosts" /></div>
+                                    <div class="da-img"><img src="../img/monitor-ip.png" alt="Administrar Hosts" /></div>
                                 </div>
                                 <div style="top: 10%" class="da-slide">
                                     <h2 style="font-size: 280%;">Gestionar Redes</h2>
                                     <p>Módulo de gestión de Redes..</p>
                                     <a href="control_red/control_red.php" class="da-link">Ir&nbsp;al&nbsp;Modulo</a>
-                                    <div class="da-img"><img src="../img/agregarpc.png" alt="Registrar Pc's" /></div>
+                                    <div class="da-img"><img src="../img/monitor-red.png" alt="Registrar Pc's" /></div>
                                 </div>
                                 <div style="top: 10%" class="da-slide">
                                     <h2 style="font-size: 280%;">Reportes Sarg</h2>

@@ -171,7 +171,12 @@ echo "<div style='text-align:right;color: aliceblue'><span class='glyphicon glyp
                                 </select>
                             </div>
                             <div class="col-md-4" style="text-align: right;">
-                                <a id="btnGuardarHost" class='btn btn-info btn-lg' onclick='GuardarHost()'><span class="glyphicon glyphicon-floppy-save" ></span>Nuevo Host</a>
+                                <?php
+                                if ($_SESSION['tipo_usuario']=='S') {
+
+                                    a id = "btnGuardarHost" class='btn btn-info btn-lg' onclick = 'GuardarHost()' ><span class="glyphicon glyphicon-floppy-save" ></span > Nuevo Host </a >
+                                    }
+                                ?>
                             </div>
 
                                 <div class="col-md-8" style="text-align: right;">
@@ -209,7 +214,7 @@ echo "<div style='text-align:right;color: aliceblue'><span class='glyphicon glyp
                             <a class="close-reveal-modal" aria-label="Cerrar">&#215;</a>
                         </div>
                         <div id="modalEditarPc" class="reveal-modal " style="" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-                            <h2 id="modalTitleIP">JUAN</h2>
+                            <h2 id="modalTitleIP"></h2>
 
                             <form id="form1" name="formulario" enctype="application/x-www-form-urlencoded">
 

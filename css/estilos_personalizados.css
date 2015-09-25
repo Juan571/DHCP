@@ -26,7 +26,7 @@
 html,body { height: 95%; }
 
 #full {
-    background: transparent url(../img/back1-blur.jpg) center fixed no-repeat;
+    background: transparent url(../img/madera-blur.jpg) center fixed no-repeat;
     height: 95%;
     width: 95%;
     margin-top: 1%;
@@ -56,7 +56,7 @@ html,body { height: 95%; }
 	}
 
 	.contenedor_principal{
-	    background: transparent url(../img/back2-blur.jpg) center fixed no-repeat;
+	    background: transparent url(../img/piso-de-madera.png) center fixed no-repeat;
 		background-color: white;
         border: 1px solid #e5e5e5;
         -webkit-border-radius: 5px;
@@ -130,13 +130,3 @@ html,body { height: 95%; }
 	}
 
 
-	/* ESTILOS VENTANA MODAL DE VIDEOS */
-	.cont_modal_multimedia{
-		width: 80%;
-		max-height: 80%;
-		height: 70%;
-		overflow: none;
-		text-align: center;
-		margin-left: auto;
-		margin-right: auto;
-	}
