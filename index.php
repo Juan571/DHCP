@@ -31,7 +31,7 @@
         header {
 
             height: 80px;
-            background: url(http://rec.vtelca.gob.ve/img/cintillo-movilnet.png) left no-repeat,
+            background: url(http://rec.vtelca.gob.ve/img/cintillo-tic.png) left no-repeat,
             url(http://rec.vtelca.gob.ve/img/vtelca-transparente.png) center no-repeat,
             url(http://rec.vtelca.gob.ve/img/pueblo-victorioso.jpg) right no-repeat;
             background-color: #fff;
