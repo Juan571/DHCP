@@ -173,6 +173,15 @@ switch ($action){
         echo $ejecuta->obtener($sql,$action);
         break;
 
+    case $action == 'obtenerUsuarios':
+
+        //die($sql1);
+
+        $sql= str_replace("''","null", $sql1);
+
+        echo $ejecuta->obtener($sql,$action);
+        break;
+
 
     default :
         break;

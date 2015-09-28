@@ -1,6 +1,6 @@
 <?php
 
-$output = shell_exec('ping -c1 192.168.100.126');
+$output = shell_exec('sarg -z');
 $cadena_buscada = "Unreachable";
 
 $posicion_coincidencia = strpos($output, $cadena_buscada);

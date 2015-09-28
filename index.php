@@ -25,18 +25,15 @@
             background-color: #f5f5f5;
             background: #f5f5f5 url(img/madera.jpg) center fixed no-repeat;
         }
-
-
-
         header {
-
-            height: 80px;
-            background: url(http://rec.vtelca.gob.ve/img/cintillo-tic.png) left no-repeat,
+            height: 70px;
+            background: url(http://rec.vtelca.gob.ve/img/cintillo-tic.png)  left no-repeat,
             url(http://rec.vtelca.gob.ve/img/vtelca-transparente.png) center no-repeat,
             url(http://rec.vtelca.gob.ve/img/pueblo-victorioso.jpg) right no-repeat;
             background-color: #fff;
-            background-size: auto 40px;
+            background-size: auto 50px;
             margin: 0px;
+            margin-top: -10px;
             border-bottom: 4px solid #f00;
         }
         footer {
