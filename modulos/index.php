@@ -110,8 +110,12 @@ if($sesion->sesion_iniciada()==false)
                                 <div style="top: 10%" class="da-slide">
                                     <h2 style="font-size: 280%;">Reportes Sarg</h2>
                                     <p>Módulo para consultar los reportes generados por Sarg, para el consumo del ancho de banda</p>
-                                    <a href="./control_archivos/control_archivos.php" class="da-link">Ir&nbsp;al&nbsp;Modulo</a>
-                                    <div class="da-img"><img src="../img/agregarContenido.png" alt="Agregar Contenidos" /></div>
+
+                                        <a href="http://reportes.vtelca.gob.ve/reportes_diarios" class="da-link" style="margin-left: 12%;">Reportes Diarios</a>
+
+                                        <a href="http://reportes.vtelca.gob.ve/reportes_manual" class="da-link">Reportes Manual</a>
+
+                                    <div class="da-img"><img src="../img/monitor-reporte.png" alt="Agregar Contenidos" /></div>
                                 </div>
                                 <nav class="da-arrows">
                                     <span class="da-arrows-prev"></span>
