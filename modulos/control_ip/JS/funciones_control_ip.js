@@ -14,6 +14,10 @@ $(document).ready(function(){
     $("#ip-error").css("color","red");
     $("#perspective").hide();
 
+    $("#tipo_usuario").bootstrapSwitch('state',false);
+
+
+
     $.validator.addMethod('IP4Checker', function(value) {
         var ip = /^(25[0-5]|2[0-4][0-9]|[0-1][0-9]{2}|[0-9]{2}|[0-9])(\.(25[0-5]|2[0-4][0-9]|[0-1][0-9]{2}|[0-9]{2}|[0-9])){3}$/;
         return value.match(ip);
@@ -359,12 +363,13 @@ function dibujartablahost(red){
     cambiarDiseno['bScrollCollapse'] = false;
     cambiarDiseno['searching'] = true;
     cambiarDiseno['bLengthChange'] = false;
-    cambiarDiseno['iDisplayLength'] = 7;
+    cambiarDiseno['iDisplayLength'] = 5;
     cambiarDiseno['ancho'] = [
-        { "width": "20%" },
-        { "width": "50%" },
+        { "width": "15%" },
+        { "width": "25%" },
         { "width": "10%" },
-        { "width": "10%" },
+        { "width": "15%" },
+        { "width": "15%" },
         { "width": "10%" }
 
     ];

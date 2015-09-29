@@ -25,6 +25,8 @@ if($sesion->sesion_iniciada()==false)
     <link rel="stylesheet" href="http://rec.vtelca.gob.ve/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://rec.vtelca.gob.ve/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <script src="http://rec.vtelca.gob.ve/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="http://rec.vtelca.gob.ve/bootstrap-switch/master/js/bootstrap-switch.min.js"></script>
+    <link rel="stylesheet" href="http://rec.vtelca.gob.ve/bootstrap-switch/master/css/bootstrap3/bootstrap-switch.min.css">
     <link rel="stylesheet" type="text/css" href="../../js/dataTables/media/css/jquery.dataTables.css">
     <script src="../../js/dataTables/media/js/jquery.dataTables.js"></script>
     <script src="JS/funciones_control_ip.js"></script>
@@ -44,7 +46,9 @@ if($sesion->sesion_iniciada()==false)
     <link rel="stylesheet" type="text/css" href="../../css/estilos_personales.css" />
     <style type="text/css">
 
-
+        .bootstrap-switch-mini{
+            width: 100%;
+        }
         #mac_ip-error  {
             color: #c00000;
         }
