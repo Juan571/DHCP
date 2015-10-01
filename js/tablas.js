@@ -47,7 +47,7 @@ function crearTh(datos,tabla){
             $(tabla).append("<th>Recibido</th>");
             break;
         case '#tablaHosts':
-            $(tabla).append("<th style='text-align: center'>  ACL  </th>");
+           /* $(tabla).append("<th style='text-align: center'>  ACL  </th>");*/
             $(tabla).append("<th style='text-align: center'>OPERACION</th>");
 
             break;
@@ -85,15 +85,6 @@ function cargarTablas(action,data,tabla,cambiarDiseno,columnasvisibles,url,urlId
         sDefaultContent ="<buton style='padding:3px' class='botonRow  btn btn-danger '>Editar</span></buton>";
     }
 
-    sDefaultContent2 ="" +
-        "<input name='dns' id='dns' class ='btnsw dns' type='checkbox' data-off-color='danger' data-on-color='info' data-size='mini' data-on-text='' data-off-text=''>"+
-        "<input name='squid' id='squid' class ='btnsw squid' type='checkbox' data-off-color='danger' data-on-color='info' data-size='mini' data-on-text='' data-off-text=''>"+
-        "<input name='iptables' id='iptables' class ='btnsw iptables' type='checkbox' data-off-color='danger' data-on-color='info' data-size='mini' data-on-text='' data-off-text=''>";
-
-
-
-
-
     $.ajax({
         url:dir,
         data:datos,
@@ -120,9 +111,7 @@ function cargarTablas(action,data,tabla,cambiarDiseno,columnasvisibles,url,urlId
                     case "#tablaHosts":
                         alert("No hay datos");
                         break;
-
                 }
-
                 return 0;
             }
             Keys = Object.keys(resp[0]);
@@ -186,12 +175,6 @@ function cargarTablas(action,data,tabla,cambiarDiseno,columnasvisibles,url,urlId
                         "sDefaultContent" :sDefaultContent,
                         "mRender": function (data, type, full) {
                         }
-                    },{
-                        "aTargets": [-2],
-                        "mData": null,
-                        "sDefaultContent" :sDefaultContent2,
-                        "mRender": function (data, type, full) {
-                        }
                     },
                     {
                         "targets": columnasvisibles,
@@ -201,36 +184,53 @@ function cargarTablas(action,data,tabla,cambiarDiseno,columnasvisibles,url,urlId
                 ],
                 "fnDrawCallback": function( oSettings ) {
                     if(tabla==="#tablaHosts") {
+                        //dnsacls();
+                        $(".acldns").bootstrapSwitch({
+                             onSwitchChange: function(value) {
+                               console.log(value.currentTarget.dataset.nombre);
+                               editardns(value.currentTarget.dataset.ip,value.currentTarget.dataset.nombre,$(value.currentTarget).prop('checked'));
 
-                        $(".btnsw").bootstrapSwitch();
+                            }
+                        });
+                        $(".squid").bootstrapSwitch({
+                            onSwitchChange: function(value) {
+                                console.log(value);
+                            }
+                        });
+                        $(".iptables").bootstrapSwitch({
+                            onSwitchChange: function(value) {
+                                console.log($(value.currentTarget).prop('checked'));
+                            }
+                        });
+
                         $(".btnsw").parent().parent().parent().attr("style","font-size: x-small");
                         $('.bootstrap-switch-handle-on').attr("class", "glyphicon glyphicon-ok-sign bootstrap-switch-handle-on bootstrap-switch-info");
                         $('.bootstrap-switch-handle-off').attr("class", "glyphicon glyphicon-remove bootstrap-switch-handle-off bootstrap-switch-danger");
 
-                        $(".dns").parent().children(".bootstrap-switch-handle-on").attr("class", "glyphicon glyphicon-ok-sign bootstrap-switch-handle-on bootstrap-switch-warning");
-                        $(".dns").parent().children("label").text("DNS");
                         $(".squid").parent().children(".bootstrap-switch-handle-on").attr("class", "glyphicon glyphicon-ok-sign bootstrap-switch-handle-on bootstrap-switch-success");
                         $(".squid").parent().children("label").text("SQUID");
+                        $(".acldns").parent().children(".bootstrap-switch-handle-on").attr("class", "glyphicon glyphicon-ok-sign bootstrap-switch-handle-on bootstrap-switch-warning");
+                        $(".acldns").parent().children("label").text("DNS");
                         $(".iptables").parent().children("label").text("IPTABLES");
-
+                        dnsacls();
                     }
                 },
 
 
-                "fnRowCallback":function( nRow, aData, iDisplayIndex, iDisplayIndexFull ){
+                "fnRowCallback":function(nRow,aData, iDisplayIndex, iDisplayIndexFull ){
 
                     if(tabla==="#tablaHosts"){
                         var boton = $(nRow).find(".botonRow");
                         $(boton).parent().attr('style','text-align:center');
 
                         var btnEditar = $(nRow).find(".editip").off();
-                        var btndns = $(nRow).find(".dns").off();
                         var btnEliminar = $(nRow).find(".eliminarip").off();
+
+                        /*var btndns = $(nRow).find(".acldns").off("switchChange.bootstrapSwitch");
                         $(btndns).on('switchChange.bootstrapSwitch', function(event, state) {
-                            console.log(aData); // DOM element
-                            
-                        });
-                        $(btnEditar).on("click",function () {
+                            editardns(aData,state);
+                        });*/
+                         $(btnEditar).on("click",function () {
                             //    abrirmodal();
                            editarIp(aData);
                         });
@@ -258,7 +258,6 @@ function cargarTablas(action,data,tabla,cambiarDiseno,columnasvisibles,url,urlId
                         });
                         $(btnEditar).on("click",function () {
                             $(nRow).removeClass("selected");
-
                             seleccionarUsuario(aData);
                         });
 

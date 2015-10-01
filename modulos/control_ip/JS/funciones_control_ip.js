@@ -215,9 +215,37 @@ function ajaxHOST(data){
             // alert("Este Registro ya existe..");
         },
         success: function (resp) {
-          //  console.log(resp);
+            console.log(resp);
 
             switch (resp.evento) {
+                case "editarACLDNS":
+
+                    if (resp.respuesta=="error_archivo"){
+                        PNotify.removeAll();
+                        new PNotify({
+                            title: 'Error',
+                            text: 'Error al abrir el archivo',
+                            hide: true,
+                            type: 'error',
+                            buttons: {
+                                sticker: true
+                            }
+                        });
+
+                        break;
+                    }
+                    PNotify.removeAll();
+                    new PNotify({
+                        title: 'Exito',
+                        text: resp.respuesta,
+                        hide: true,
+                        type: 'success',
+                        buttons: {
+                            sticker: true
+                        }
+                    });
+                    return ;
+                    break;
 
                 case "EditarHost":
                     $('#modalEditarPc').foundation('reveal', 'close');
@@ -382,9 +410,50 @@ function dibujartablahost(red){
         "<button style='padding:3px' class='botonRow editip  btn btn-info '><span class='glyphicon glyphicon-wrench'></span></button>" +
         "<button style='padding:3px' class='botonRow eliminarip btn btn-danger '><span class='glyphicon glyphicon-remove'></span></button>";
     cargarTablas("obtenerHosts", data, "#tablaHosts", cambiarDiseno, [],"./php/php_gestionIP.php",null,sDefaultContent);
+
     //console.log($("#tablaHosts").children());
     dibujarGrafico();
     obteneriplibres();
+
+}
+function editardns(aData,nombre,state){
+    data={};
+    datos={};
+    datos["ip"]=aData;
+    datos["nombre"]=nombre;
+    datos["estado"]=state;
+    data["action"]="editarACLDNS";
+    data["data"]=datos;
+    console.log(data);
+    ajaxHOST(data);
+}
+function dnsacls(){
+    datos = {
+        action          : "obtenerDNSACL",
+        data            : "nada"
+    };
+
+    $.ajax({
+        url:url,
+        data:datos,
+        dataType:"json",
+        type:"POST",
+        async:false,
+        error:function(req,err){
+            console.log(req);
+
+        },
+        success: function(resp) {
+            $.each(resp, function (i, a) {
+                ipnum = a.ip;
+                ipnum = ipnum.replace(/\D/g,'');
+                $("#dns"+ipnum).bootstrapSwitch('state', true,true);
+            });
+
+
+        }
+    });
+
 }
 
 function obteneriplibres(){
