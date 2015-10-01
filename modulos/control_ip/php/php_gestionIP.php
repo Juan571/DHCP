@@ -394,7 +394,7 @@ switch ($action) {
             // fclose($file);
             $arr1 = array_slice($arr, 0, $cont);
 
-            $ipNueva[] = "        ip $ipsel; #$nombre";
+            $ipNueva[] = "        ip $ipsel#$nombre";
 
             foreach ($ipNueva as $x => $value) {
                 array_push($arr1, $value . "\n");
