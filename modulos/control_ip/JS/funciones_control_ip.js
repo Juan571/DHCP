@@ -215,10 +215,11 @@ function ajaxHOST(data){
             // alert("Este Registro ya existe..");
         },
         success: function (resp) {
-            console.log(resp);
+       //     console.log(resp);
 
             switch (resp.evento) {
                 case "editarACLDNS":
+                case "editarACLSQUID":
 
                     if (resp.respuesta=="error_archivo"){
                         PNotify.removeAll();
@@ -424,7 +425,7 @@ function editardns(aData,nombre,state){
     datos["estado"]=state;
     data["action"]="editarACLDNS";
     data["data"]=datos;
-    console.log(data);
+    //console.log(data);
     ajaxHOST(data);
 }
 function dnsacls(){
@@ -455,6 +456,47 @@ function dnsacls(){
     });
 
 }
+
+function editarsquid(aData,nombre,state){
+    data={};
+    datos={};
+    datos["ip"]=aData;
+    datos["nombre"]=nombre;
+    datos["estado"]=state;
+    data["action"]="editarACLSQUID";
+    data["data"]=datos;
+ //   console.log(data);
+    ajaxHOST(data);
+}
+function squidacl(){
+    datos = {
+        action          : "obtenerSQUIDACL",
+        data            : "nada"
+    };
+
+    $.ajax({
+        url:url,
+        data:datos,
+        dataType:"json",
+        type:"POST",
+        async:false,
+        error:function(req,err){
+            console.log(req);
+
+        },
+        success: function(resp) {
+            $.each(resp, function (i, a) {
+                ipnum = a.ip;
+                ipnum = ipnum.replace(/\D/g,'');
+                $("#squid"+ipnum).bootstrapSwitch('state', true,true);
+            });
+
+
+        }
+    });
+
+}
+
 
 function obteneriplibres(){
 

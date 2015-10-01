@@ -6,6 +6,7 @@ include_once("../../../clases_generales/subred.php");
 //$f = "../../dhcpd2.conf";
 $f = "/etc/dhcp/dhcpd.conf";
 $dns = "/etc/bind/named.conf.default-zones";
+$squid = "/etc/squidguard/squidGuard.conf";
 
 if(isset($_REQUEST['action'])){
     $action = $_REQUEST['action'];
@@ -265,7 +266,7 @@ switch ($action) {
             }else{
                 $resp = array();
                 $resp["evento"]=$action;
-                $resp["respuesta"]="Archivo revocado Exitosamente";
+                $resp["respuesta"]="Eliminado de la ACL de <strong>DNS</strong> Exitosamente";
                 exec("sudo /etc/init.d/bind9 restart");
 
                 echo json_encode($resp);
@@ -322,11 +323,106 @@ switch ($action) {
             }
             $resp = array();
             $resp["evento"]=$action;
-            $resp["respuesta"]="Privilegio de DNS asignado exitosamente";
+            $resp["respuesta"]="Asignado a la ACL de <strong>DNS</strong> asignado exitosamente";
             exec("sudo /etc/init.d/bind9 restart");
             echo json_encode($resp);
         }
         break;
+    case $action === 'editarACLSQUID':
+
+        $ipsel=$data['ip'];
+        $estado=$data['estado'];
+        $nombre=$data['nombre'];
+        if ($estado!="true"){
+
+            $file = fopen($squid, "rw");
+            $cont = 0;
+            while (!feof($file)) {
+                $cont++;
+                $cadena_buscada = $ipsel;
+                $linea = fgets($file);
+                $posicion_coincidencia = strpos($linea, $cadena_buscada);
+                if (!is_bool($posicion_coincidencia)) {
+                    $a="no exixte";
+                    break;
+                }////IF
+            }//whileee
+
+            if (is_bool($posicion_coincidencia)){
+                die ($_REQUEST['data']);
+            }
+            $linea = $cont;
+            if (!delLineFromFile($squid,$linea)){
+                $resp = array();
+                $resp["evento"]=$action;
+                $resp["respuesta"]="error_archivo";
+                echo json_encode($resp);
+            }else{
+                $resp = array();
+                $resp["evento"]=$action;
+                $resp["respuesta"]="Eliminado de la ACL de <strong>SQUID</strong> Exitosamente";
+                exec("sudo squid3 -k reconfigure");
+
+                echo json_encode($resp);
+            }
+            fclose($file);
+        }
+        else {
+            $file = fopen($squid, "rw");
+            $cont = 0;
+            while (!feof($file)) {
+                $cont++;
+                $cadena_buscada = "src libres {";
+                $linea = fgets($file);
+                $posicion_coincidencia = strpos($linea, $cadena_buscada);
+                if (!is_bool($posicion_coincidencia)) {
+                    $a="no exixte";
+                    break;
+                }////IF
+            }//whileee
+
+            if (is_bool($posicion_coincidencia)){
+                die ("no existe");
+            }
+            $linea = $cont;
+
+            $cont = $linea;
+
+            $arr = file($squid);
+            $arr = array_values($arr);
+            $totallineas = count($arr);
+            // fclose($file);
+            $arr1 = array_slice($arr, 0, $cont);
+
+            $ipNueva[] = "        ip $ipsel; #$nombre";
+
+            foreach ($ipNueva as $x => $value) {
+                array_push($arr1, $value . "\n");
+            }
+            $arr2 = array_slice($arr, $cont, $totallineas);
+            $arr = array_merge($arr1, $arr2);
+
+
+            if (!$fp = fopen($squid, 'w+')) {
+                $resp = array();
+                $resp["evento"] = $action;
+                $resp["respuesta"] = "error_archivo";
+                echo json_encode($resp);
+            }
+            if ($fp) {
+                foreach ($arr as $line) {
+                    fwrite($fp, $line);
+                }
+                fclose($fp);
+            }
+            $resp = array();
+            $resp["evento"]=$action;
+            $resp["respuesta"]="Asignado a la ACL de <strong>SQUID</strong> asignado exitosamente";
+            exec("sudo squid3 -k reconfigure");
+            echo json_encode($resp);
+        }
+        break;
+
 
 
     case $action === 'obtenerHosts':
@@ -364,8 +460,8 @@ switch ($action) {
                 $ipnum = preg_replace('/\D/', '', $matches[0]);
                 $nombre_sel = $datosh['nombre'];
                 $datosh["acl"] = "  <input data-ip='$matches[0]' data-nombre=$nombre_sel name='dns' id='dns$ipnum' class ='btnsw acldns' type='checkbox' data-off-color='danger' data-on-color='info' data-size='mini' data-on-text='' data-off-text=''>
-                                    <input data-ip='$matches[0]' name='squid' id='squid$ipnum' class ='btnsw squid' type='checkbox' data-off-color='danger' data-on-color='info' data-size='mini' data-on-text='' data-off-text='' >
-                                    <input data-ip='$matches[0]' name='iptables' id='iptables$ipnum' class ='btnsw iptables' type='checkbox' data-off-color='danger' data-on-color='info' data-size='mini' data-on-text='' data-off-text=''>";
+                                    <input data-ip='$matches[0]' data-nombre=$nombre_sel name='squid' id='squid$ipnum' class ='btnsw squid' type='checkbox' data-off-color='danger' data-on-color='info' data-size='mini' data-on-text='' data-off-text='' >
+                                    <input data-ip='$matches[0]' data-nombre=$nombre_sel name='iptables' id='iptables$ipnum' class ='btnsw iptables' type='checkbox' data-off-color='danger' data-on-color='info' data-size='mini' data-on-text='' data-off-text=''>";
                 if ($red=="todos"){
                     $hosts[] = $datosh;
                 }else{
@@ -407,6 +503,40 @@ switch ($action) {
                 }
             }
         if ($bandera) break;
+
+        }
+        echo json_encode($hosts);
+        fclose($file);
+        break;
+
+    case $action === 'obtenerSQUIDACL':
+        $file = fopen($squid, "rw");
+        $hosts = array();
+        $bandera = false;
+        while (!feof($file)) {
+
+            //  if (fgets($file)){
+            $cadena_buscada = "src libres {";
+            $linea = fgets($file);
+
+            $posicion_coincidencia = strpos($linea, $cadena_buscada);
+            if (!is_bool($posicion_coincidencia)) {
+
+                while (1==1) {
+                    //var_dump($posicion_coincidencia);
+                    $ip = fgets($file);
+                    $cadenacierre = "}";
+                    $fincadena = strpos($ip, $cadenacierre);
+                    if (!is_bool($fincadena)) {
+                        $bandera = true;
+                        break;
+                    }
+                    preg_match('/(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/', $ip, $matches);
+                    $datosh["ip"] = trim($matches[0]);
+                    $hosts[] = $datosh;
+                }
+            }
+            if ($bandera) break;
 
         }
         echo json_encode($hosts);

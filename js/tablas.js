@@ -187,14 +187,14 @@ function cargarTablas(action,data,tabla,cambiarDiseno,columnasvisibles,url,urlId
                         //dnsacls();
                         $(".acldns").bootstrapSwitch({
                              onSwitchChange: function(value) {
-                               console.log(value.currentTarget.dataset.nombre);
+                              // console.log(value.currentTarget.dataset.nombre);
                                editardns(value.currentTarget.dataset.ip,value.currentTarget.dataset.nombre,$(value.currentTarget).prop('checked'));
 
                             }
                         });
                         $(".squid").bootstrapSwitch({
                             onSwitchChange: function(value) {
-                                console.log(value);
+                                editarsquid(value.currentTarget.dataset.ip,value.currentTarget.dataset.nombre,$(value.currentTarget).prop('checked'));
                             }
                         });
                         $(".iptables").bootstrapSwitch({
@@ -213,6 +213,7 @@ function cargarTablas(action,data,tabla,cambiarDiseno,columnasvisibles,url,urlId
                         $(".acldns").parent().children("label").text("DNS");
                         $(".iptables").parent().children("label").text("IPTABLES");
                         dnsacls();
+                        squidacl();
                     }
                 },
 
