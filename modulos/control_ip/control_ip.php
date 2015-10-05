@@ -159,6 +159,12 @@ if($sesion->sesion_iniciada()==false)
 <?php
 echo "<div style='text-align:right;color: aliceblue'><span class='glyphicon glyphicon-user'>&nbsp;</span><h2  style='font-size: large;float: right;color: aliceblue;margin-right: 1%;'>". $_SESSION["nombre_usuario"]." ".$_SESSION["apellido_usuario"]."</h2></div>";
 ?>
+<?php
+if ($_SESSION['tipo_usuario']=='S'){
+    $user=$_SESSION['tipo_usuario'];
+    echo "<a id='user' hidden>$user</a>";
+}
+?>
 <div  id="perspective" class="perspective full effect-airbnb" style="overflow-y: inherit;">
     <a class="glyphicon glyphicon-tasks" id="showMenu" style="text-decoration: none; position: fixed;font-size: xx-large; padding-left: 94%; padding-top: 8%; color: aliceblue;" ></a>
 

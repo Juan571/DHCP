@@ -216,120 +216,131 @@ function ajaxHOST(data){
         },
         success: function (resp) {
        //     console.log(resp);
-
-            switch (resp.evento) {
-                case "editarACLDNS":
-                case "editarACLSQUID":
-
-                    if (resp.respuesta=="error_archivo"){
-                        PNotify.removeAll();
-                        new PNotify({
-                            title: 'Error',
-                            text: 'Error al abrir el archivo',
-                            hide: true,
-                            type: 'error',
-                            buttons: {
-                                sticker: true
-                            }
-                        });
-
-                        break;
+            if (resp.respuesta=="noprivilegios"){
+                $('#modalEditarPc').foundation('reveal', 'close');
+                PNotify.removeAll();
+                new PNotify({
+                    title: 'Error',
+                    text: 'Error no tiene Suficientes Privilegios, no hacer TRAMPAAA',
+                    hide: true,
+                    type: 'error',
+                    buttons: {
+                        sticker: true
                     }
-                    PNotify.removeAll();
-                    new PNotify({
-                        title: 'Exito',
-                        text: resp.respuesta,
-                        hide: true,
-                        type: 'success',
-                        buttons: {
-                            sticker: true
-                        }
-                    });
-                    return ;
-                    break;
-
-                case "EditarHost":
-                    $('#modalEditarPc').foundation('reveal', 'close');
-                    if (resp.respuesta=="erroip"){
-                        PNotify.removeAll();
-                        new PNotify({
-                            title: 'Error',
-                            text: 'La ip no esta dentro del segmento de la red Seleccionada',
-                            hide: true,
-                            type: 'error',
-                            buttons: {
-                                sticker: true
-                            }
-                        });
-                        break;
-                    }
-                    PNotify.removeAll();
-                    new PNotify({
-                        title: 'Exito',
-                        text: 'Editado Exitosamente',
-                        hide: true,
-                        type: 'success',
-                        buttons: {
-                            sticker: true
-                        }
-                    });
-                    break;
-                case "GuardarHost":
-                    $('#modalEditarPc').foundation('reveal', 'close');
-                    if (resp.respuesta=="erroip"){
-                        PNotify.removeAll();
-                        new PNotify({
-                            title: 'Error',
-                            text: 'La ip no esta dentro del segmento de la red Seleccionada',
-                            hide: true,
-                            type: 'error',
-                            buttons: {
-                                sticker: true
-                            }
-                        });
-                        break;
-                    }
-                    PNotify.removeAll();
-                    new PNotify({
-                        title: 'Exito',
-                        text: 'Guardado Exitosamente',
-                        hide: true,
-                        type: 'success',
-                        buttons: {
-                            sticker: true
-                        }
-                    });
-                    break;
-                case "EliminarHost":
-                    PNotify.removeAll();
-
-                    new PNotify({
-                        title: 'Exito',
-                        text: 'Eliminado Exitosamente',
-                        hide: true,
-                        type: 'success',
-                        buttons: {
-                            sticker: true
-                        }
-                    });
-                    break;
-                default :
-                    PNotify.removeAll();
-
-                    new PNotify({
-                        title: 'Alert',
-                        text: 'Error',
-                        hide: true,
-                        type: 'warning',
-                        buttons: {
-                            sticker: true
-                        }
-                    });
-                    break;
+                });
             }
+            else {
+                switch (resp.evento) {
+                    case "editarACLDNS":
+                    case "editarACLSQUID":
+                        if (resp.respuesta == "error_archivo") {
+                            PNotify.removeAll();
+                            new PNotify({
+                                title: 'Error',
+                                text: 'Error al abrir el archivo',
+                                hide: true,
+                                type: 'error',
+                                buttons: {
+                                    sticker: true
+                                }
+                            });
 
+                            break;
+                        }
+                        PNotify.removeAll();
+                        new PNotify({
+                            title: 'Exito',
+                            text: resp.respuesta,
+                            hide: true,
+                            type: 'success',
+                            buttons: {
+                                sticker: true
+                            }
+                        });
+                        return;
+                        break;
+
+                    case "EditarHost":
+                        $('#modalEditarPc').foundation('reveal', 'close');
+                        if (resp.respuesta == "erroip") {
+                            PNotify.removeAll();
+                            new PNotify({
+                                title: 'Error',
+                                text: 'La ip no esta dentro del segmento de la red Seleccionada',
+                                hide: true,
+                                type: 'error',
+                                buttons: {
+                                    sticker: true
+                                }
+                            });
+                            break;
+                        }
+                        PNotify.removeAll();
+                        new PNotify({
+                            title: 'Exito',
+                            text: 'Editado Exitosamente',
+                            hide: true,
+                            type: 'success',
+                            buttons: {
+                                sticker: true
+                            }
+                        });
+                        break;
+                    case "GuardarHost":
+                        $('#modalEditarPc').foundation('reveal', 'close');
+                        if (resp.respuesta == "erroip") {
+                            PNotify.removeAll();
+                            new PNotify({
+                                title: 'Error',
+                                text: 'La ip no esta dentro del segmento de la red Seleccionada',
+                                hide: true,
+                                type: 'error',
+                                buttons: {
+                                    sticker: true
+                                }
+                            });
+                            break;
+                        }
+                        PNotify.removeAll();
+                        new PNotify({
+                            title: 'Exito',
+                            text: 'Guardado Exitosamente',
+                            hide: true,
+                            type: 'success',
+                            buttons: {
+                                sticker: true
+                            }
+                        });
+                        break;
+                    case "EliminarHost":
+                        PNotify.removeAll();
+
+                        new PNotify({
+                            title: 'Exito',
+                            text: 'Eliminado Exitosamente',
+                            hide: true,
+                            type: 'success',
+                            buttons: {
+                                sticker: true
+                            }
+                        });
+                        break;
+                    default :
+                        PNotify.removeAll();
+
+                        new PNotify({
+                            title: 'Alert',
+                            text: 'Error',
+                            hide: true,
+                            type: 'warning',
+                            buttons: {
+                                sticker: true
+                            }
+                        });
+                        break;
+                }
+            }
             dibujartablahost($("#comboSEGRED").val().toString());
-
             $("#form1").trigger("reset");
             $("#btneditarRED").hide();
             $("#guardar").show();
@@ -405,14 +416,16 @@ function dibujartablahost(red){
 
     var data ={};
     data["subnet"]= red;//$("#comboSEGRED").val();
-    //console.log(data["subnet"]);
+    disable="disabled";
+    if($("#user").text()=='S'){
+        disable= ""
+    }
 
     sDefaultContent ="" +
-        "<button style='padding:3px' class='botonRow editip  btn btn-info '><span class='glyphicon glyphicon-wrench'></span></button>" +
-        "<button style='padding:3px' class='botonRow eliminarip btn btn-danger '><span class='glyphicon glyphicon-remove'></span></button>";
+        "<button style='padding:3px' class='botonRow editip  btn btn-info '"+disable+"><span class='glyphicon glyphicon-wrench'></span></button>" +
+        "<button style='padding:3px' class='botonRow eliminarip btn btn-danger '"+disable+"><span class='glyphicon glyphicon-remove'></span></button>";
     cargarTablas("obtenerHosts", data, "#tablaHosts", cambiarDiseno, [],"./php/php_gestionIP.php",null,sDefaultContent);
 
-    //console.log($("#tablaHosts").children());
     dibujarGrafico();
     obteneriplibres();
 
@@ -450,8 +463,6 @@ function dnsacls(){
                 ipnum = ipnum.replace(/\D/g,'');
                 $("#dns"+ipnum).bootstrapSwitch('state', true,true);
             });
-
-
         }
     });
 
@@ -482,7 +493,6 @@ function squidacl(){
         async:false,
         error:function(req,err){
             console.log(req);
-
         },
         success: function(resp) {
             $.each(resp, function (i, a) {

@@ -221,6 +221,11 @@ function cargarTablas(action,data,tabla,cambiarDiseno,columnasvisibles,url,urlId
                 "fnRowCallback":function(nRow,aData, iDisplayIndex, iDisplayIndexFull ){
 
                     if(tabla==="#tablaHosts"){
+                        $(nRow).children().each(function(index, td) {
+                            if(index != 1)  {
+                                $(td).attr("style","text-align: center;");
+                            }
+                        });
                         var boton = $(nRow).find(".botonRow");
                         $(boton).parent().attr('style','text-align:center');
 
@@ -264,6 +269,8 @@ function cargarTablas(action,data,tabla,cambiarDiseno,columnasvisibles,url,urlId
 
                         $(btnEditar).parent().attr('style','text-align:center');
                     }
+
+
                     if(tabla==="#tabla_redes"){
 
 
@@ -284,6 +291,7 @@ function cargarTablas(action,data,tabla,cambiarDiseno,columnasvisibles,url,urlId
 
 
                         $(nRow).children().each(function(index, td) {
+
                             if(index == 3)  {
                                 if ($(td).html().length>0) {
                                 }else{

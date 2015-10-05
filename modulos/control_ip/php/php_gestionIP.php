@@ -3,6 +3,13 @@
 ####RESTART SERVICE IN PHP
 //exec("sudo /etc/init.d/networking restart");
 include_once("../../../clases_generales/subred.php");
+
+use login\Sesion;
+require_once '../../../login/Sesion.php';
+$sesion = new Sesion();
+if($sesion->sesion_iniciada()==false)
+    header("Location: ../../../index.php");
+
 //$f = "../../dhcpd2.conf";
 $f = "/etc/dhcp/dhcpd.conf";
 $dns = "/etc/bind/named.conf.default-zones";
@@ -21,10 +28,17 @@ if(isset($_REQUEST['data'])){
     die(json_encode($red));
 }
 
+
 switch ($action) {
 
     case $action === 'EliminarHost':
-
+        $tipouser=$_SESSION['tipo_usuario'];
+        if ($tipouser=='N'){
+            $resp = array();
+            $resp["evento"]=$action;
+            $resp["respuesta"]="noprivilegios";
+            die(json_encode($resp));
+        }
         $ipeliminar=trim(strtoupper($data['ipsel']));
 
         $file = fopen($f, "rw");
@@ -62,7 +76,13 @@ switch ($action) {
         break;
 
     case $action === 'EditarHost':
-
+        $tipouser=$_SESSION['tipo_usuario'];
+        if ($tipouser=='N'){
+            $resp = array();
+            $resp["evento"]=$action;
+            $resp["respuesta"]="noprivilegios";
+            die(json_encode($resp));
+        }
         $ipsel=$data['id_sel'];
         $idred=$data['red'];
         $descripcion=strtoupper($data['descripcion_ip']);
@@ -151,7 +171,14 @@ switch ($action) {
         break;
 
     case $action === 'GuardarHost':
+        $tipouser=$_SESSION['tipo_usuario'];
 
+        if ($tipouser=='N'){
+            $resp = array();
+            $resp["evento"]=$action;
+            $resp["respuesta"]="noprivilegios";
+            die(json_encode($resp));
+        }
         $idred=$data['red'];
         $descripcion=strtoupper($data['descripcion_ip']);
         $ip_nueva=$data['ip'];
@@ -459,9 +486,16 @@ switch ($action) {
                 $datosh["ip"] = trim($matches[0]);
                 $ipnum = preg_replace('/\D/', '', $matches[0]);
                 $nombre_sel = $datosh['nombre'];
-                $datosh["acl"] = "  <input data-ip='$matches[0]' data-nombre=$nombre_sel name='dns' id='dns$ipnum' class ='btnsw acldns' type='checkbox' data-off-color='danger' data-on-color='info' data-size='mini' data-on-text='' data-off-text=''>
-                                    <input data-ip='$matches[0]' data-nombre=$nombre_sel name='squid' id='squid$ipnum' class ='btnsw squid' type='checkbox' data-off-color='danger' data-on-color='info' data-size='mini' data-on-text='' data-off-text='' >
-                                    <input data-ip='$matches[0]' data-nombre=$nombre_sel name='iptables' id='iptables$ipnum' class ='btnsw iptables' type='checkbox' data-off-color='danger' data-on-color='info' data-size='mini' data-on-text='' data-off-text=''>";
+                $tipouser=$_SESSION['tipo_usuario'];
+
+                if ($tipouser=='N'){
+                    $datosh["acl"] = "<span title='Sin privilegios' class='glyphicon glyphicon-eye-close'></span>";
+                }else{
+                    $datosh["acl"] = "  <input data-ip='$matches[0]' data-nombre=$nombre_sel name='dns' id='dns$ipnum' class ='btnsw acldns' type='checkbox' data-off-color='danger' data-on-color='info' data-size='mini' data-on-text='' data-off-text='' $disable>
+                                        <input data-ip='$matches[0]' data-nombre=$nombre_sel name='squid' id='squid$ipnum' class ='btnsw squid' type='checkbox' data-off-color='danger' data-on-color='info' data-size='mini' data-on-text='' data-off-text='' $disable>
+                                        <input data-ip='$matches[0]' data-nombre=$nombre_sel name='iptables' id='iptables$ipnum' class ='btnsw iptables' type='checkbox' data-off-color='danger' data-on-color='info' data-size='mini' data-on-text='' data-off-text='' $disable>";
+                }
+
                 if ($red=="todos"){
                     $hosts[] = $datosh;
                 }else{
