@@ -31,7 +31,7 @@ if($sesion->sesion_iniciada()==false)
     <link rel="stylesheet" href="http://rec.vtelca.gob.ve/bootstrap-switch/master/css/bootstrap3/bootstrap-switch.min.css">
     <link rel="stylesheet" type="text/css" href="../../js/dataTables/media/css/jquery.dataTables.css">
     <script src="../../js/dataTables/media/js/jquery.dataTables.js"></script>
-    <script src="JS/funciones_control_usuarios.js"></script>
+    <script src="JS/funciones_auditorias.js"></script>
     <script type="text/javascript" src="../../js/foundation/js/foundation.min.js"></script>
     <link rel="stylesheet" href="../../js/foundation/css/foundation.css">
     <link rel="stylesheet" href="../../js/foundation/css/foundation.min.css">
@@ -87,60 +87,11 @@ if($sesion->sesion_iniciada()==false)
                 <div class="row-fluid">
                     <div style="width:auto;/*background-color: #c0c0c0*/" class="" id="" align="center" >
                         <input style="display: none" id="id_usuario" >
-                        <h1  style="color: white;">Gestión de Usuarios</h1>
-                        <form id="form1" name="formulario" enctype="application/x-www-form-urlencoded"  >
 
-                            <fieldset style="border: none" >
-                            <div style="width:60%;" class="" id="" align="center" >
-                                <div class="col-md-6">
-                                    <b style="color: white;">Nombre Usuario</b>
-                                    <input  style=' text-transform:uppercase;' name="login" type="text" id="login" class="form-control" value="" size="12" placeholder="Nombre de Usuario para Iniciar Sesion" >
-                                </div>
-                                <div class="col-md-6">
-                                  <b style="color: white;">Cédula Usuario</b>
-                                  <input  style='text-transform:uppercase;' name="cedula_usuario" onkeypress="return isNumberKey(event);" type="text" id="cedula_usuario" class="form-control" value="" size="12" placeholder="Cédula de Identidad" >
-                                </div>
-                                <div class="col-md-6">
-                                  <b style="color: white;">Nombres</b>
-                                  <input  style='text-transform:uppercase;' name="nombre_usuario" type="text" id="nombre_usuario" class="form-control" value="" size="12" placeholder="Nombres" >
-                                </div>
-                                <div class="col-md-6">
-                                  <b style="color: white;">Apellidos</b>
-                                  <input  style='text-transform:uppercase;' name="apellido_usuario" type="text" id="apellido_usuario" class="form-control" value="" size="12" placeholder="Apellidos" >
-                                </div>
+                        <h1 style="color: white;">Registro de Movimientos</h1>
 
-                                <div class="col-md-6">
-                                  <b style="color: white;">Clave</b>
-                                  <input style='text-transform:uppercase' name="password" type="password" id="password" class="form-control" value="" maxlength="30" placeholder="Clave">
-                                </div>
-                                <div class="col-md-6">
-                                  <b style="color: white;">Confirmar Clave</b>
-                                  <input style='text-transform:uppercase' name="confirma_clave" type="password" id="confirma_clave" class="form-control" maxlength="30" value="" maxlength="100"  placeholder="Confirma Clave">
-                                </div>
-
-                                <div class="col-md-12">
-                                  <b style="color: white;">Administrador</b>
-
-                                    <input data-text="" data-inventario_id='' data-motivo='' name="tipo_usuario" id='tipo_usuario' class ='btnsw' type='checkbox' data-off-color='danger' data-on-color='info' data-size='large' data-on-text='' data-off-text=''>
-
-                                </div>
-                                <div class="col-md-12" style="margin-top: 1%">
-                                    <input style="display:none;width: 9%;" class="btn btn-warning submit" type="submit" id="btneditarMaterial" value="EDITAR">
-                                    <input class="btn btn-info submit"  id="guardar" type="submit" value="GUARDAR">
-                                    <input type="reset" value="LIMPIAR " title="Limpiar Campos" id="botonlimpiar" class="btn botonlimpiar btn-danger">
-                                </div>
-                            </div>
-                            </fieldset>
-                        </form>
-
-
-
-
-
-                        <h3 style="color: white;">Usuarios Registrados</h3>
-
-                        <div class="col-md-12" style="margin-top: -3%">
-                            <table id="tabla_usuarios" class="display" cellspacing="0"  style="min-height:2%;  font-size: inherit;text-align: center"></table>
+                        <div class="col-md-12" style="margin-top: 3%">
+                            <table id="tabla_auditorias" class="display" cellspacing="0"  style="min-height:2%;  font-size: inherit;text-align: center"></table>
                         </div>
 
 
@@ -159,11 +110,10 @@ if($sesion->sesion_iniciada()==false)
         <?php
         if ($_SESSION['tipo_usuario']=='S'){
             echo "<a href='control_usuarios.php' class='icon-GesUsuarios'>Gestión de Usuarios</a>";
-            echo "<a href='../auditorias/auditorias.php' class='icon-auditoria'>Auditorías</a>";
-
+            echo "<a href='auditorias.php.php' class='icon-auditoria'>Auditorías</a>";
         }
         ?>
-        <a href='cambio_clave.php' class='icon-cambiarClave'>Cambiar Contraseña</a>
+        <a href='../control_usuarios/cambio_clave.php' class='icon-cambiarClave'>Cambiar Contraseña</a>
         <a href="../../login/cerrar_sesion.php" class="icon-CerrarSesion">Cerrar Sesión</a>
     </nav>
 

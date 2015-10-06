@@ -128,6 +128,8 @@ if($sesion->sesion_iniciada()==false)
         <?php
         if ($_SESSION['tipo_usuario']=='S'){
             echo "<a href='../control_usuarios/control_usuarios.php' class='icon-GesUsuarios'>Gestión de Usuarios</a>";
+            echo "<a href='../auditorias/auditorias.php' class='icon-auditoria'>Auditorías</a>";
+
         }
         ?>
         <a href='../control_usuarios/cambio_clave.php' class='icon-cambiarClave'>Cambiar Contraseña</a>

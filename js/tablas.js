@@ -176,6 +176,7 @@ function cargarTablas(action,data,tabla,cambiarDiseno,columnasvisibles,url,urlId
                         "mRender": function (data, type, full) {
                         }
                     },
+
                     {
                         "targets": columnasvisibles,
                         "visible": false,
@@ -268,6 +269,51 @@ function cargarTablas(action,data,tabla,cambiarDiseno,columnasvisibles,url,urlId
                         });
 
                         $(btnEditar).parent().attr('style','text-align:center');
+                    }
+                    if(tabla==="#tabla_auditorias"){
+
+                        $(nRow).children().each(function(index, td) {
+
+                            if((index == 0)||(index == 1)||(index == 3)||(index == 4))  {
+                                $(td).attr("style","text-align: center;");
+
+                                /* if ($(td).html() == "") {
+                                 $(nRow).children().each(function(index, td) {
+                                 console.log($(td).html());
+                                 if(index == 1)  {
+                                 $(td).attr("style","background-color:rgb(103, 255, 33)")
+                                 }});
+                                 }else{
+                                 $(td).attr("style","background-color:rgb(255,151,142)")
+                                 }*/
+                            }
+                            if(index == 1){
+                                data = $(td).html();
+
+                                if (!data.search("Eliminar ACL DNS")){
+                                    $(nRow).attr("style","background-color:rgba(0, 255, 0, 0.2)")
+                                }
+                                if (!data.search("Asignar ACL DNS")){
+                                    $(nRow).attr("style","background-color:rgba(0, 255, 0, 0.4)")
+                                }
+                                if (!data.search("Eliminar ACL SQUID")){
+                                    $(nRow).attr("style","background-color:rgba(1, 65, 255, 0.2)")
+                                }
+                                if (!data.search("Asignar ACL SQUID")){
+                                    $(nRow).attr("style","background-color:rgba(1, 65, 255, 0.4)")
+                                }
+                                if (!data.search("Login")){
+                                    $(nRow).attr("style","background-color:rgba(255,0,0,0.2)")
+                                }
+                                if (!data.search("Logout")){
+                                    $(nRow).attr("style","background-color:rgba(255,0,0,0.4)")
+                                }
+
+
+                            }
+
+                        });
+
                     }
 
 

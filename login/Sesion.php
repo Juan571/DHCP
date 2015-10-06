@@ -58,7 +58,7 @@ include_once("../clases_generales/subred.php");
 						$this->setTipo_usuario($info["tipo_usuario"]);
 						$usuarioid= $info["id_usuario"];
 						$ipusuario = get_client_ip();
-						$sql="INSERT INTO SYSADMIN.auditoria (usuario_id, accion, ip_origen) VALUES ('$usuarioid', 'login','$ipusuario');";
+						$sql="INSERT INTO SYSADMIN.auditoria (usuario_id, accion,descripcion, ip_origen) VALUES ('$usuarioid', 'Login','Inicio de Sesíon','$ipusuario');";
 
 						$clsSql->consulta_bd($sql);
 						$clsSql->cerrar_conexion();
@@ -86,7 +86,7 @@ include_once("../clases_generales/subred.php");
 			$this->setApellido_usuario(NULL);
 			$this->setTipo_usuario(NULL);
 			$ipusuario = get_client_ip();
-			$sql="INSERT INTO SYSADMIN.auditoria (usuario_id, accion, ip_origen) VALUES ('$usuarioid', 'logout','$ipusuario');";
+			$sql="INSERT INTO SYSADMIN.auditoria (usuario_id, accion,descripcion, ip_origen) VALUES ('$usuarioid', 'Logout','Cierre de Sesion','$ipusuario');";
 			$clsSql->consulta_bd($sql);
 			$clsSql->cerrar_conexion();
 

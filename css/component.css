@@ -164,6 +164,7 @@ html, body, .perspective {
 
 .icon-programar::before { content: "\e609" }
 .icon-home::before { content: "\e902" }
+.icon-auditoria::before { content: "\e922" }
 .icon-RegPc::before { content: "\e956" }
 .icon-RegCont::before { content: "\e914" }
 .icon-GesUsuarios::before { content: "\e972" }
