@@ -1,7 +1,9 @@
 <?php
 
-####RESTART SERVICE IN PHP
-//exec("sudo /etc/init.d/networking restart");
+namespace  login;
+require_once ('../../../clases_generales/Sql.php');
+use clases_generales\Sql as Conexion;
+
 include_once("../../../clases_generales/subred.php");
 
 use login\Sesion;
@@ -66,6 +68,15 @@ switch ($action) {
         delLineFromFile($f,$linea);
 
         if (delLineFromFile($f,$linea)){
+
+            $clsSql = new Conexion();
+            $clsSql->abrir_conexion();
+            $usuarioid= $_SESSION['id_usuario'];
+            $ipusuario = $_SERVER['REMOTE_ADDR'];
+            $sql="INSERT INTO SYSADMIN.auditoria (usuario_id, accion, ip_origen) VALUES ('$usuarioid', 'eliminar_host ($ipeliminar) ','$ipusuario');";
+            $clsSql->consulta_bd($sql);
+            $clsSql->cerrar_conexion();
+
             $resp = array();
             $resp["evento"]=$action;
             $resp["respuesta"]="Eliminado";
@@ -162,10 +173,19 @@ switch ($action) {
             }
             fclose($fp);
         }
+
         $resp = array();
         $resp["evento"]=$action;
         $resp["respuesta"]="editado";
         exec("sudo /etc/init.d/isc-dhcp-server restart");
+
+        $clsSql = new Conexion();
+        $clsSql->abrir_conexion();
+        $usuarioid= $_SESSION['id_usuario'];
+        $ipusuario = $_SERVER['REMOTE_ADDR'];
+        $sql="INSERT INTO SYSADMIN.auditoria (usuario_id, accion, ip_origen) VALUES ('$usuarioid', 'editar_host ($ipsel) host->$nombre_ip # $descripcion hardware ethernet->$mac_ip fixed-address->$ip_nueva','$ipusuario');";
+        $clsSql->consulta_bd($sql);
+        $clsSql->cerrar_conexion();
 
         echo json_encode($resp);
         break;
@@ -254,6 +274,15 @@ switch ($action) {
             }
             fclose($fp);
         }
+
+        $clsSql = new Conexion();
+        $clsSql->abrir_conexion();
+        $usuarioid= $_SESSION['id_usuario'];
+        $ipusuario = $_SERVER['REMOTE_ADDR'];
+        $sql="INSERT INTO SYSADMIN.auditoria (usuario_id, accion, ip_origen) VALUES ('$usuarioid', 'guardar_host host->$nombre_ip # $descripcion hardware ethernet->$mac_ip fixed-address->$ip_nueva','$ipusuario');";
+        $clsSql->consulta_bd($sql);
+        $clsSql->cerrar_conexion();
+
         $resp = array();
         $resp["evento"]=$action;
         $resp["respuesta"]="guardado";
@@ -291,6 +320,14 @@ switch ($action) {
                 $resp["respuesta"]="error_archivo";
                 echo json_encode($resp);
             }else{
+                $clsSql = new Conexion();
+                $clsSql->abrir_conexion();
+                $usuarioid= $_SESSION['id_usuario'];
+                $ipusuario = $_SERVER['REMOTE_ADDR'];
+                $sql="INSERT INTO SYSADMIN.auditoria (usuario_id, accion, ip_origen) VALUES ('$usuarioid', 'eliminar_acldns ($ipsel) nombre->$nombre ','$ipusuario');";
+                $clsSql->consulta_bd($sql);
+                $clsSql->cerrar_conexion();
+
                 $resp = array();
                 $resp["evento"]=$action;
                 $resp["respuesta"]="Eliminado de la ACL de <strong>DNS</strong> Exitosamente";
@@ -348,6 +385,14 @@ switch ($action) {
                 }
                 fclose($fp);
             }
+            $clsSql = new Conexion();
+            $clsSql->abrir_conexion();
+            $usuarioid= $_SESSION['id_usuario'];
+            $ipusuario = $_SERVER['REMOTE_ADDR'];
+            $sql="INSERT INTO SYSADMIN.auditoria (usuario_id, accion, ip_origen) VALUES ('$usuarioid', 'asignar_acldns ($ipsel) nombre->$nombre ','$ipusuario');";
+            $clsSql->consulta_bd($sql);
+            $clsSql->cerrar_conexion();
+
             $resp = array();
             $resp["evento"]=$action;
             $resp["respuesta"]="Asignado a la ACL de <strong>DNS</strong> asignado exitosamente";
@@ -385,6 +430,14 @@ switch ($action) {
                 $resp["respuesta"]="error_archivo";
                 echo json_encode($resp);
             }else{
+                $clsSql = new Conexion();
+                $clsSql->abrir_conexion();
+                $usuarioid= $_SESSION['id_usuario'];
+                $ipusuario = $_SERVER['REMOTE_ADDR'];
+                $sql="INSERT INTO SYSADMIN.auditoria (usuario_id, accion, ip_origen) VALUES ('$usuarioid', 'eliminar_aclSQUID ($ipsel) nombre->$nombre ','$ipusuario');";
+                $clsSql->consulta_bd($sql);
+                $clsSql->cerrar_conexion();
+
                 $resp = array();
                 $resp["evento"]=$action;
                 $resp["respuesta"]="Eliminado de la ACL de <strong>SQUID</strong> Exitosamente";
@@ -442,6 +495,15 @@ switch ($action) {
                 }
                 fclose($fp);
             }
+
+            $clsSql = new Conexion();
+            $clsSql->abrir_conexion();
+            $usuarioid= $_SESSION['id_usuario'];
+            $ipusuario = $_SERVER['REMOTE_ADDR'];
+            $sql="INSERT INTO SYSADMIN.auditoria (usuario_id, accion, ip_origen) VALUES ('$usuarioid', 'asignar_aclSQUID ($ipsel) nombre->$nombre ','$ipusuario');";
+            $clsSql->consulta_bd($sql);
+            $clsSql->cerrar_conexion();
+
             $resp = array();
             $resp["evento"]=$action;
             $resp["respuesta"]="Asignado a la ACL de <strong>SQUID</strong> asignado exitosamente";
@@ -583,7 +645,7 @@ switch ($action) {
         $red_datos['broadcast'] =subnet_info($red,"broadcast");
 
         echo json_encode($red_datos);
-        fclose($file);
+        //fclose($file);
         break;
     default :
         break;

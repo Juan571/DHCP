@@ -403,7 +403,7 @@ function dibujartablahost(red){
     cambiarDiseno['bScrollCollapse'] = false;
     cambiarDiseno['searching'] = true;
     cambiarDiseno['bLengthChange'] = false;
-    cambiarDiseno['iDisplayLength'] = 5;
+    cambiarDiseno['iDisplayLength'] = 6;
     cambiarDiseno['ancho'] = [
         { "width": "15%" },
         { "width": "25%" },

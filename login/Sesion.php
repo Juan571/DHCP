@@ -55,10 +55,12 @@ use clases_generales\Sql as Conexion;
 						$this->setNombre_usuario($info["nombre_usuario"]);
 						$this->setApellido_usuario($info["apellido_usuario"]);
 						$this->setTipo_usuario($info["tipo_usuario"]);
-						
-					//	$sql="UPDATE usuarios set intentos_fallidos=0 where id_usuario=".$info["id_usuario"];
-						//$clsSql->consulta_bd($sql);
-						//$clsSql->cerrar_conexion();
+						$usuarioid= $info["id_usuario"];
+						$ipusuario = $_SERVER['REMOTE_ADDR'];
+						$sql="INSERT INTO SYSADMIN.auditoria (usuario_id, accion, ip_origen) VALUES ('$usuarioid', 'login','$ipusuario');";
+
+						$clsSql->consulta_bd($sql);
+						$clsSql->cerrar_conexion();
 						return true;
 					}
 					else{
@@ -73,12 +75,20 @@ use clases_generales\Sql as Conexion;
 		
 		function destruir_sesion()
 		{
+			$clsSql = new Conexion();
+			$clsSql->abrir_conexion();
+			$usuarioid=$_SESSION["id_usuario"];
 			$this->setId_usuario(NULL);
 			$this->setLogin(NULL);
 			$this->setCedula_usuario(NULL);
 			$this->setNombre_usuario(NULL);
 			$this->setApellido_usuario(NULL);
 			$this->setTipo_usuario(NULL);
+			$ipusuario = $_SERVER['REMOTE_ADDR'];
+			$sql="INSERT INTO SYSADMIN.auditoria (usuario_id, accion, ip_origen) VALUES ('$usuarioid', 'logout','$ipusuario');";
+			$clsSql->consulta_bd($sql);
+			$clsSql->cerrar_conexion();
+
 			return session_destroy();
 		}
 		

@@ -275,7 +275,7 @@ if ($_SESSION['tipo_usuario']=='S'){
         }
         ?>
         <a href='../control_usuarios/cambio_clave.php' class='icon-cambiarClave'>Cambiar Contraseña</a>
-        <a href="../login/cerrar_sesion.php" class="icon-CerrarSesion">Cerrar Sesión</a>
+        <a href="../../login/cerrar_sesion.php" class="icon-CerrarSesion">Cerrar Sesión</a>
     </nav>
 
 </div><!-- /perspective -->

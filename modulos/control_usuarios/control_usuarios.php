@@ -162,7 +162,7 @@ if($sesion->sesion_iniciada()==false)
         }
         ?>
         <a href='cambio_clave.php' class='icon-cambiarClave'>Cambiar Contraseña</a>
-        <a href="../login/cerrar_sesion.php" class="icon-CerrarSesion">Cerrar Sesión</a>
+        <a href="../../login/cerrar_sesion.php" class="icon-CerrarSesion">Cerrar Sesión</a>
     </nav>
 
 </div><!-- /perspective -->
