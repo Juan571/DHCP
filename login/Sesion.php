@@ -2,6 +2,7 @@
 namespace  login;
 require_once dirname(__FILE__).'/../clases_generales/Sql.php';
 use clases_generales\Sql as Conexion;
+include_once("../clases_generales/subred.php");
 
 	class Sesion {
 		public $id_usuario = NULL;
