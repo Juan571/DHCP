@@ -111,7 +111,7 @@ if($sesion->sesion_iniciada()==false)
         <!--a href="../control_archivos/control_archivos.php" class="icon-RegCont">Agregar Contenido</a-->
         <?php
         if ($_SESSION['tipo_usuario']=='S'){
-            echo "<a href='control_usuarios.php' class='icon-GesUsuarios'>Gestión de Usuarios</a>";
+            echo "<a href='../control_usuarios/control_usuarios.php' class='icon-GesUsuarios'>Gestión de Usuarios</a>";
             echo "<a href='auditorias.php.php' class='icon-auditoria'>Auditorías</a>";
         }
         ?>
