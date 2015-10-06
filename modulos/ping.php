@@ -1,7 +1,5 @@
 <?php
-echo $_SERVER['REMOTE_ADDR'];
 
-/*
 $output = shell_exec('sarg -z');
 $cadena_buscada = "Unreachable";
 
@@ -14,5 +12,5 @@ if (!is_bool($posicion_coincidencia)) {
 
     echo "<pre>$output</pre>";
 }
-*/
+
 ?>

@@ -56,7 +56,7 @@ use clases_generales\Sql as Conexion;
 						$this->setApellido_usuario($info["apellido_usuario"]);
 						$this->setTipo_usuario($info["tipo_usuario"]);
 						$usuarioid= $info["id_usuario"];
-						$ipusuario = $_SERVER['REMOTE_ADDR'];
+						$ipusuario = get_client_ip();
 						$sql="INSERT INTO SYSADMIN.auditoria (usuario_id, accion, ip_origen) VALUES ('$usuarioid', 'login','$ipusuario');";
 
 						$clsSql->consulta_bd($sql);
@@ -84,7 +84,7 @@ use clases_generales\Sql as Conexion;
 			$this->setNombre_usuario(NULL);
 			$this->setApellido_usuario(NULL);
 			$this->setTipo_usuario(NULL);
-			$ipusuario = $_SERVER['REMOTE_ADDR'];
+			$ipusuario = get_client_ip();
 			$sql="INSERT INTO SYSADMIN.auditoria (usuario_id, accion, ip_origen) VALUES ('$usuarioid', 'logout','$ipusuario');";
 			$clsSql->consulta_bd($sql);
 			$clsSql->cerrar_conexion();

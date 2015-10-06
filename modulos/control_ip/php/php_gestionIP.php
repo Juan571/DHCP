@@ -72,7 +72,7 @@ switch ($action) {
             $clsSql = new Conexion();
             $clsSql->abrir_conexion();
             $usuarioid= $_SESSION['id_usuario'];
-            $ipusuario = $_SERVER['REMOTE_ADDR'];
+            $ipusuario = get_client_ip();
             $sql="INSERT INTO SYSADMIN.auditoria (usuario_id, accion, ip_origen) VALUES ('$usuarioid', 'eliminar_host ($ipeliminar) ','$ipusuario');";
             $clsSql->consulta_bd($sql);
             $clsSql->cerrar_conexion();
@@ -182,7 +182,7 @@ switch ($action) {
         $clsSql = new Conexion();
         $clsSql->abrir_conexion();
         $usuarioid= $_SESSION['id_usuario'];
-        $ipusuario = $_SERVER['REMOTE_ADDR'];
+        $ipusuario = get_client_ip();
         $sql="INSERT INTO SYSADMIN.auditoria (usuario_id, accion, ip_origen) VALUES ('$usuarioid', 'editar_host ($ipsel) host->$nombre_ip # $descripcion hardware ethernet->$mac_ip fixed-address->$ip_nueva','$ipusuario');";
         $clsSql->consulta_bd($sql);
         $clsSql->cerrar_conexion();
@@ -278,7 +278,7 @@ switch ($action) {
         $clsSql = new Conexion();
         $clsSql->abrir_conexion();
         $usuarioid= $_SESSION['id_usuario'];
-        $ipusuario = $_SERVER['REMOTE_ADDR'];
+        $ipusuario = get_client_ip();
         $sql="INSERT INTO SYSADMIN.auditoria (usuario_id, accion, ip_origen) VALUES ('$usuarioid', 'guardar_host host->$nombre_ip # $descripcion hardware ethernet->$mac_ip fixed-address->$ip_nueva','$ipusuario');";
         $clsSql->consulta_bd($sql);
         $clsSql->cerrar_conexion();
@@ -323,7 +323,7 @@ switch ($action) {
                 $clsSql = new Conexion();
                 $clsSql->abrir_conexion();
                 $usuarioid= $_SESSION['id_usuario'];
-                $ipusuario = $_SERVER['REMOTE_ADDR'];
+                $ipusuario = get_client_ip();
                 $sql="INSERT INTO SYSADMIN.auditoria (usuario_id, accion, ip_origen) VALUES ('$usuarioid', 'eliminar_acldns ($ipsel) nombre->$nombre ','$ipusuario');";
                 $clsSql->consulta_bd($sql);
                 $clsSql->cerrar_conexion();
@@ -388,7 +388,7 @@ switch ($action) {
             $clsSql = new Conexion();
             $clsSql->abrir_conexion();
             $usuarioid= $_SESSION['id_usuario'];
-            $ipusuario = $_SERVER['REMOTE_ADDR'];
+            $ipusuario = get_client_ip();
             $sql="INSERT INTO SYSADMIN.auditoria (usuario_id, accion, ip_origen) VALUES ('$usuarioid', 'asignar_acldns ($ipsel) nombre->$nombre ','$ipusuario');";
             $clsSql->consulta_bd($sql);
             $clsSql->cerrar_conexion();
@@ -433,7 +433,7 @@ switch ($action) {
                 $clsSql = new Conexion();
                 $clsSql->abrir_conexion();
                 $usuarioid= $_SESSION['id_usuario'];
-                $ipusuario = $_SERVER['REMOTE_ADDR'];
+                $ipusuario = get_client_ip();
                 $sql="INSERT INTO SYSADMIN.auditoria (usuario_id, accion, ip_origen) VALUES ('$usuarioid', 'eliminar_aclSQUID ($ipsel) nombre->$nombre ','$ipusuario');";
                 $clsSql->consulta_bd($sql);
                 $clsSql->cerrar_conexion();
@@ -499,7 +499,7 @@ switch ($action) {
             $clsSql = new Conexion();
             $clsSql->abrir_conexion();
             $usuarioid= $_SESSION['id_usuario'];
-            $ipusuario = $_SERVER['REMOTE_ADDR'];
+            $ipusuario = get_client_ip();
             $sql="INSERT INTO SYSADMIN.auditoria (usuario_id, accion, ip_origen) VALUES ('$usuarioid', 'asignar_aclSQUID ($ipsel) nombre->$nombre ','$ipusuario');";
             $clsSql->consulta_bd($sql);
             $clsSql->cerrar_conexion();
