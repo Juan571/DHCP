@@ -164,7 +164,7 @@ function cargarTablas(action,data,tabla,cambiarDiseno,columnasvisibles,url,urlId
             if (tabla==="#tabla_auditorias"){
 
                     tabletools = {
-                       
+
                             "aButtons": [
 
                                 {

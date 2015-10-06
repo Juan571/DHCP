@@ -8,8 +8,8 @@ $(document).ready(function() {
     cambiarDiseno['bPaginate'] = true;
     cambiarDiseno['bScrollCollapse'] = false;
     cambiarDiseno['searching'] = true;
-    cambiarDiseno['bLengthChange'] = true;
-    cambiarDiseno['iDisplayLength'] = 10;
+    cambiarDiseno['bLengthChange'] = false;
+    cambiarDiseno['iDisplayLength'] = 15;
     cambiarDiseno['ancho'] = [
         { "width": "0%" },
         { "width": "15%" },
