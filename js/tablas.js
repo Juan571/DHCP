@@ -308,6 +308,12 @@ function cargarTablas(action,data,tabla,cambiarDiseno,columnasvisibles,url,urlId
                                 if (!data.search("Logout")){
                                     $(nRow).attr("style","background-color:rgba(255,0,0,0.4)")
                                 }
+                                if (!data.search("Editar Host")){
+                                    $(nRow).attr("style","background-color:rgba(255,128,0,0.2)")
+                                }
+                                if (!data.search("Guardar Host")){
+                                    $(nRow).attr("style","background-color:rgba(255,128,0,0.4)")
+                                }
 
 
                             }
