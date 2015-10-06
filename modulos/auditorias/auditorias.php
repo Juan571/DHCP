@@ -30,7 +30,9 @@ if($sesion->sesion_iniciada()==false)
     <script src="http://rec.vtelca.gob.ve/bootstrap-switch/master/js/bootstrap-switch.min.js"></script>
     <link rel="stylesheet" href="http://rec.vtelca.gob.ve/bootstrap-switch/master/css/bootstrap3/bootstrap-switch.min.css">
     <link rel="stylesheet" type="text/css" href="../../js/dataTables/media/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="../../js/dataTables/TableTools-2.2.4/css/dataTables.tableTools.css">
     <script src="../../js/dataTables/media/js/jquery.dataTables.js"></script>
+    <script src="../../js/dataTables/TableTools-2.2.4/js/dataTables.tableTools.js"></script>
     <script src="JS/funciones_auditorias.js"></script>
     <script type="text/javascript" src="../../js/foundation/js/foundation.min.js"></script>
     <link rel="stylesheet" href="../../js/foundation/css/foundation.css">
@@ -64,7 +66,7 @@ if($sesion->sesion_iniciada()==false)
         ?>
     </script>
 
-    <title>Control de Usuarios</title>
+    <title>Auditorias</title>
 </head>
 <header>
     <script>

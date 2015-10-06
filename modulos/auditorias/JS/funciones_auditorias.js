@@ -31,8 +31,6 @@ $(document).ready(function() {
     cargarTablas("obtenerAuditorias", "", "#tabla_auditorias", cambiarDiseno, [-1,0],"./php/php_auditorias.php",null,sDefaultContent);
 
 
-
-
     $("#perspective").hide();
 
     setInterval(function(){

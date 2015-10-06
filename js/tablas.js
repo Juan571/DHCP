@@ -153,6 +153,34 @@ function cargarTablas(action,data,tabla,cambiarDiseno,columnasvisibles,url,urlId
                 sScrollY= "";
             }
 
+            tabletools = {
+                "aButtons": [
+
+                ],
+                "sSwfPath": "../../js/dataTables/TableTools-2.2.4/swf/copy_csv_xls_pdf.swf"
+
+            };
+
+            if (tabla==="#tabla_auditorias"){
+
+                    tabletools = {
+                       
+                            "aButtons": [
+
+                                {
+                                    "sExtends": "pdf",
+                                    "sButtonText": "Generar PDF",
+                                    "sPdfOrientation": "landscape",
+                                    "sPdfMessage": "Reporte Generado por Sistema de Gestion de Red",
+                                    "mColumns": [1,2,3,4,5],
+
+                                },
+                            ],
+                                "sSwfPath": "../../js/dataTables/TableTools-2.2.4/swf/copy_csv_xls_pdf.swf"
+
+                    }
+            }
+
             $(tabla).dataTable( {
                 "bRetrieve" :true,
                 "iDisplayLength": iDisplayLength ,
@@ -168,6 +196,8 @@ function cargarTablas(action,data,tabla,cambiarDiseno,columnasvisibles,url,urlId
                 "oLanguage" : {
                     "sUrl": "http://rec.vtelca.gob.ve/datatables/lang/Spanish.json"
                 },"columns": ancho,
+                "sDom": 'lfrtip<"clear spacer">T',
+                tableTools:tabletools,
                 "aoColumnDefs": [
                     {
                         "aTargets": [-1],
