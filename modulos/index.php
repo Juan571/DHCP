@@ -35,18 +35,51 @@ if($sesion->sesion_iniciada()==false)
     <link rel="stylesheet" href="http://rec.vtelca.gob.ve/bootstrap-select/1.6.0/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="../js/foundation/css/foundation.css">
     <link rel="stylesheet" type="text/css" href="../css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="../css/pnotify.custom.min.css">
+    <script type="text/javascript" src="../js/pnotify.custom.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/component.css" />
     <link rel="stylesheet" type="text/css" href="../plugins/parallaxSlide/css/style2.css" />
     <link rel="stylesheet" type="text/css" href="../css/estilos_personales.css" />
     <script src="../js/modernizr.custom.25376.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.7/socket.io.js"></script>
 
     <script>
         $(document).ready(function () {
+
             $("#perspective").hide();
 
             setInterval(function(){
                 $("#perspective").fadeIn(500);
             }, 0);
+
+/*
+            var socket = io('http://192.168.100.92:8080');
+            var data = {
+                id: <?php //echo $_SESSION["id_usuario"] ?>,
+                nombre: '<?php// echo $_SESSION["nombre_usuario"] ?>'
+            };
+
+            //socket.emit('sesion',data);
+            socket.on('saludo', function(msg){
+             //   console.log(msg);
+                PNotify.removeAll();
+                PNotify.prototype.options.styling = "jqueryui";
+
+                new PNotify({
+                    title: 'Gestion de Red',
+                    text: msg+" ha iniciado sesion",
+                    hide: true,
+                    type: 'success',
+                    buttons: {
+                        sticker: true
+                    },
+                    nonblock: {
+                        nonblock: true,
+                        nonblock_opacity: .2
+                    }
+                });
+            });
+            */
         });
         <?php
             if (!isset($_SESSION["id_usuario"])) {
@@ -69,8 +102,6 @@ if($sesion->sesion_iniciada()==false)
     </script>
 </header>
 <body>
-
-
 
 
 <div id="perspective" class="perspective full effect-airbnb" style="overflow-y: inherit;">

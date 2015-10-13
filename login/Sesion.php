@@ -56,12 +56,32 @@ include_once("../clases_generales/subred.php");
 						$this->setNombre_usuario($info["nombre_usuario"]);
 						$this->setApellido_usuario($info["apellido_usuario"]);
 						$this->setTipo_usuario($info["tipo_usuario"]);
-						$usuarioid= $info["id_usuario"];
+
+						/*$usuarioid= $info["id_usuario"];
 						$ipusuario = get_client_ip();
 						$sql="INSERT INTO SYSADMIN.auditoria (usuario_id, accion,descripcion, ip_origen) VALUES ('$usuarioid', 'Login','Inicio de Sesíon','$ipusuario');";
 
+						$url = 'http://localhost:8080/sesion';
+						$fields = array(
+							'id' => urlencode($info["id_usuario"]),
+							'nombre' => urlencode($info["nombre_usuario"])
+						);
+
+						$fields_string = '';
+						foreach($fields as $key=>$value) {
+							$fields_string .= $key.'='.$value.'&';
+						}
+						rtrim($fields_string, '&');
+						$ch = curl_init();
+						curl_setopt($ch,CURLOPT_URL, $url);
+						curl_setopt($ch,CURLOPT_POST, count($fields));
+						curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
+						$result = curl_exec($ch);
+						curl_close($ch);
+
+
 						$clsSql->consulta_bd($sql);
-						$clsSql->cerrar_conexion();
+						$clsSql->cerrar_conexion();*/
 						return true;
 					}
 					else{

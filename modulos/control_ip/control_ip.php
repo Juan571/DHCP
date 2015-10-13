@@ -34,7 +34,10 @@ if($sesion->sesion_iniciada()==false)
     <link rel="stylesheet" href="../../js/foundation/css/foundation.css">
     <link rel="stylesheet" href="../../js/foundation/css/foundation.min.css">
     <link rel="stylesheet" type="text/css" href="../../css/pnotify.custom.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/iosOverlay.css">
     <script type="text/javascript" src="../../js/pnotify.custom.min.js"></script>
+    <script type="text/javascript" src="../../js/iosOverlay.js"></script>
+    <script type="text/javascript" src="../../js/spin.min.js"></script>
     <script type="text/javascript" src="../../js/tablas.js"></script>
 
     <link rel="stylesheet" type="text/css" href="../../css/component.css" />
