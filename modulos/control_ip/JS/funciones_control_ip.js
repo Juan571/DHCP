@@ -303,7 +303,7 @@ function ajaxHOST(data){
                             });
 
 
-                        window.setTimeout(function() {
+                      
                             overlay.hide();
 
                             PNotify.removeAll();
@@ -322,7 +322,7 @@ function ajaxHOST(data){
                                 }
 
                             });
-                        }, 3e3);
+
 
                         return;
                         break;
