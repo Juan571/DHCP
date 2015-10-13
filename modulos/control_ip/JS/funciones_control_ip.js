@@ -302,8 +302,6 @@ function ajaxHOST(data){
                                 text: "Listo"
                             });
 
-
-                      
                             overlay.hide();
 
                             PNotify.removeAll();
