@@ -1,4 +1,5 @@
 <?php
+
 function obtener_ip(){
 if(!empty($_SERVER["HTTP_X_FORWARDED_FOR"]))
 return array_shift(explode(",",$_SERVER["HTTP_X_FORWARDED_FOR"]));
