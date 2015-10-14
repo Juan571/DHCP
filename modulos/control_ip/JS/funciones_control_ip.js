@@ -279,6 +279,7 @@ function ajaxHOST(data){
                 });
             }
             else {
+               
                 switch (resp.evento) {
                     case "editarACLDNS":
                     case "editarACLSQUID":
@@ -297,12 +298,12 @@ function ajaxHOST(data){
                             break;
                         }
 
-                            overlay.update({
-                                icon: "../../img/check.png",
-                                text: "Listo"
-                            });
+                        overlay.update({
+                            icon: "../../img/check.png",
+                            text: "Listo"
+                        });
 
-                            overlay.hide();
+                        overlay.hide();
 
                             PNotify.removeAll();
                             new PNotify({
@@ -350,6 +351,12 @@ function ajaxHOST(data){
                                 sticker: true
                             }
                         });
+                        overlay.update({
+                            icon: "../../img/check.png",
+                            text: "Listo"
+                        });
+
+                        overlay.hide();
                         break;
                     case "GuardarHost":
                         $('#modalEditarPc').foundation('reveal', 'close');
@@ -376,8 +383,20 @@ function ajaxHOST(data){
                                 sticker: true
                             }
                         });
+                        overlay.update({
+                            icon: "../../img/check.png",
+                            text: "Listo"
+                        });
+
+                        overlay.hide();
                         break;
                     case "EliminarHost":
+                        overlay.update({
+                            icon: "../../img/check.png",
+                            text: "Listo"
+                        });
+
+                        overlay.hide();
                         PNotify.removeAll();
 
                         new PNotify({
@@ -565,8 +584,6 @@ function squidacl(){
                 ipnum = ipnum.replace(/\D/g,'');
                 $("#squid"+ipnum).bootstrapSwitch('state', true,true);
             });
-
-
         }
     });
 
@@ -673,13 +690,11 @@ function obtenerHosts(red){
             return false;
         },
         success: function(resp) {
-
             $.each(resp, function (i, a) {
                 ips.push(a['ip']);
                 nombres.push(a['nombre']);
                 mac.push(a['mac']);
             });
-
             data.push(ips);
             data.push(nombres);
             data.push(mac);
@@ -694,7 +709,6 @@ function obteneipsred(red){
     //$(".btnsw").bootstrapSwitch('state', false, false);
 
     var ipsred;
-
     datos = {
         action          : "obtenerDatosRed",
         data            : red
@@ -727,11 +741,8 @@ function obteneipsred(red){
 
             inicio_octetoC=inicio_red.split(".")[2];
             fin_octetoC=fin_red.split(".")[2];
-
             inicio_octetoD=parseInt(inicio_red.split(".")[3]+1); //se le suma 1 xq (0 es ip de red y 1 puede ser un gateway.... )
-
             fin_octetoD=fin_red.split(".")[3];
-
             for (i = inicio_octetoC; i <=fin_octetoC; i++) {
                 //  console.log(i);
                 for (j = inicio_octetoD+1; j <fin_octetoD; j++) {
